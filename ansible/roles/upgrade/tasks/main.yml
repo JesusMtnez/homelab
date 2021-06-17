@@ -2,13 +2,15 @@
 - name: Install apt updates
   apt:
     upgrade: dist
-    update_cache: yes
-    autoremove: yes
-    autoclean: yes
+    update_cache: true
+    autoremove: true
+    autoclean: true
   register: result
 
 - name: List installed and updated packages
-  shell: grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
+  shell: |
+    set -o pipefail
+    grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
   register: result
 
 - name: Show Output

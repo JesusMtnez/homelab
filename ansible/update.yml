@@ -1,7 +1,7 @@
 ---
 
 - hosts: masters:workers
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
   roles:
     - role: upgrade

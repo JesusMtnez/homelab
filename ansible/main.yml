@@ -1,12 +1,12 @@
 ---
 
 - hosts: masters:workers
-  gather_facts: yes
-  become: yes
+  gather_facts: true
+  become: true
   roles:
     - role: prereq
 
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
   roles:
     - k3sup
