@@ -1,21 +1,27 @@
 ---
-- name: Install apt updates
+
+- name: Register if there are dietpi updates
+  stat:
+    path: /run/dietpi/.update_available
+  register: dietpi_updates
+
+- name: Update using APT
   apt:
     upgrade: dist
     update_cache: true
     autoremove: true
     autoclean: true
-  register: result
+  when: not dietpi_updates.stat.exists
 
-- name: List installed and updated packages
-  shell: |
-    set -o pipefail
-    grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
-  register: result
+# - name: List installed and updated packages
+#   shell: |
+#     set -o pipefail
+#     grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
+#   register: result
 
-- name: Show Output
-  debug: msg="{{ result.stdout_lines }}"
+# - name: Show Output
+#   debug: msg="{{ result.stdout_lines }}"
 
-# TODO Handle dietpi upgrades
-# - name: Install dietpi updates
-#   shell: dietpi-upgrade 1
+- name: Updating using dietpi-update
+  shell: /boot/dietpi/dietpi-update 1
+  when: dietpi_updates.stat.exists
