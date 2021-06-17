@@ -1,4 +1,6 @@
 ---
 - import_tasks: cgroup.yml
+  when: "ansible_architecture == 'armv7l'"
 - import_tasks: iptables.yml
+  when: "ansible_architecture == 'armv7l'"
 - import_tasks: docker.yml
