@@ -2,17 +2,14 @@
 
 My homelab k3s cluster configuration
 
-- `ansible/` handles nodes configuration and k3s installation
+- [`ansible/`](./ansible/) handles nodes configuration and k3s installation
 
 ## Playbooks
 
-### [`main`][main] playbook
+### `main` playbook
 
 > TBD
 
-### [`update`][update] playbook
+### `update` playbook
 
 Update system using `apt` and `dietpi` upgrader.
-
-[main][/ansible/main.yml]
-[update][/ansible/update.yml]
