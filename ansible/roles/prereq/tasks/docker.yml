@@ -8,5 +8,5 @@
   register: docker
 
 - name: Install docker
-  shell: dietpi-software install 162
+  shell: /boot/dietpi/dietpi-software install 162
   when: docker is changed
