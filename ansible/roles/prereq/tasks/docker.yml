@@ -1,0 +1,3 @@
+---
+- name: Install docker
+  command: dietpi-software install 162
