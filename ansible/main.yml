@@ -5,3 +5,8 @@
   become: yes
   roles:
     - role: prereq
+
+- hosts: localhost
+  gather_facts: no
+  roles:
+    - k3sup

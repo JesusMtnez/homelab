@@ -1,0 +1,8 @@
+---
+
+- name: Install k3sup binary
+  get_url:
+    url: "https://github.com/alexellis/k3sup/releases/download/{{ k3sup_version }}/k3sup"
+    dest: "/tmp/k3sup"
+    mode: 0755
+  register: installk3sup
