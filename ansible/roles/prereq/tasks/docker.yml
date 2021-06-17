@@ -1,3 +1,12 @@
 ---
+- name: Check if docker is installed
+  lineinfile:
+    path: /boot/dietpi/.installed
+    line: "aSOFTWARE_INSTALL_STATE[162]=2"
+    state: present
+  check_mode: true
+  register: docker
+
 - name: Install docker
-  command: dietpi-software install 162
+  shell: dietpi-software install 162
+  when: docker is changed
