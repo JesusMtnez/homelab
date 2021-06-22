@@ -1,0 +1,17 @@
+---
+- name: Create master server with k3s "{{ k3s_version }}"
+  command:
+    argv:
+      - /tmp/k3sup
+      - install
+      - --ip
+      - "{{ hostvars[item].ansible_host}}"
+      - --user
+      - "{{ ansible_user }}"
+      - --k3s-version
+      - "{{ k3s_version }}"
+      - --k3s-extra-args
+      - "{{ k3s_extra_args }}"
+    creates: "{{playbook_dir}}/kubeconfig"
+  with_items: "{{ groups['masters'] }}"
+  register: master_created

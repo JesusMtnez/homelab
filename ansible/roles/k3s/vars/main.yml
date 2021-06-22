@@ -1,0 +1,4 @@
+---
+
+k3s_version: 'v1.21.2+k3s1'
+k3s_extra_args: '--disable-cloud-controller --no-deploy traefik --docker'
