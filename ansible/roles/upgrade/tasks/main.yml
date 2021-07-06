@@ -5,23 +5,21 @@
     path: /run/dietpi/.update_available
   register: dietpi_updates
 
-- name: Update using APT
+- name: Updating using dietpi-update
+  shell:
+    cmd: /boot/dietpi/dietpi-update 1
+    stdin: true
+  when: dietpi_updates.stat.exists
+
+- name: Register if there are apt updates
+  stat:
+    path: /run/dietpi/.apt_updates
+  register: apt_updates
+
+- name: Update using apt
   apt:
     upgrade: dist
     update_cache: true
     autoremove: true
     autoclean: true
-  when: not dietpi_updates.stat.exists
-
-# - name: List installed and updated packages
-#   shell: |
-#     set -o pipefail
-#     grep -E "^$(date +%Y-%m-%d).+ (install|upgrade) " /var/log/dpkg.log |cut -d " " -f 3-5
-#   register: result
-
-# - name: Show Output
-#   debug: msg="{{ result.stdout_lines }}"
-
-- name: Updating using dietpi-update
-  shell: /boot/dietpi/dietpi-update 1
-  when: dietpi_updates.stat.exists
+  when: apt_updates.stat.exists
