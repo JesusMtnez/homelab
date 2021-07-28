@@ -18,8 +18,20 @@ My homelab k3s cluster configuration
 
 ### `main` playbook
 
-> TBD
+Install or upgrade k3s cluster deployment:
+
+- Apply pre-requirements.
+- Download `k3sup` to deploy k3s.
+- Install `k3s` in master node.
+- Install and join `k3s` cluster in the rest of the nodes.
 
 ### `update` playbook
 
 Update system using `apt` and `dietpi` upgrader.
+
+## Credits to:
+
+- [k3s](https://k3s.io) by [Rancher](https://rancher.com/)
+- [alexellis/k3sup](https://github.com/alexellis/k3sup)
+- [OmegaSquad82/ansible-k3sup](https://github.com/OmegaSquad82/ansible-k3sup)
+- [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
