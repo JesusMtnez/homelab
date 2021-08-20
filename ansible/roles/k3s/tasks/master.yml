@@ -1,6 +1,7 @@
 ---
 - name: Create master server with k3s "{{ k3s_version }}"
   command:
+  args:
     argv:
       - /tmp/k3sup
       - install
