@@ -4,7 +4,7 @@ let
   nixpkgs = sources.nixpkgs;
   pkgs = import nixpkgs {};
 
-  k8s.version = "v1.21.4";
+  k8s.version = "v1.21.5";
 
 in pkgs.mkShell rec {
   name = "k3s-shell";
