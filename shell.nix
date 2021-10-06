@@ -4,7 +4,7 @@ let
   nixpkgs = sources.nixpkgs;
   pkgs = import nixpkgs {};
 
-  k8s.version = "v1.21.5";
+  k8s.version = "v1.22.2";
 
 in pkgs.mkShell rec {
   name = "k3s-shell";
@@ -18,7 +18,7 @@ in pkgs.mkShell rec {
     ansible-lint
 
     # Local dev
-    (kube3d.override { k3sVersion = k8s.version + "+k3s1"; })
+    (kube3d.override { k3sVersion = k8s.version + "+k3s2"; })
   ];
 
   shellHook = ''
