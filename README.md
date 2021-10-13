@@ -12,7 +12,7 @@
 
 My homelab k3s cluster configuration
 
-- [`ansible/`](./ansible/) handles nodes configuration and k3s installation
+- [`provision/ansible`](./provision/ansible/) handles nodes configuration and k3s installation
 
 ## Playbooks
 

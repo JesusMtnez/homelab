@@ -13,6 +13,6 @@
       - "{{ k3s_version }}"
       - --k3s-extra-args
       - "{{ k3s_extra_args }}"
-    creates: "{{playbook_dir}}/kubeconfig"
+    # creates: "{{playbook_dir}}/kubeconfig"
   with_items: "{{ groups['masters'] }}"
   register: master_created
