@@ -16,6 +16,7 @@ in pkgs.mkShell rec {
     kubectl # TODO Use k8s.version
     ansible
     ansible-lint
+    go-task
 
     # Local dev
     (kube3d.override { k3sVersion = k8s.version + "+k3s2"; })

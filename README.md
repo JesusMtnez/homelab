@@ -35,3 +35,4 @@ Update system using `apt` and `dietpi` upgrader.
 - [alexellis/k3sup](https://github.com/alexellis/k3sup)
 - [OmegaSquad82/ansible-k3sup](https://github.com/OmegaSquad82/ansible-k3sup)
 - [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
+- [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s/)
