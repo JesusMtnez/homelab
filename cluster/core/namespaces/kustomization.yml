@@ -1,2 +1,3 @@
 resources:
+  - monitoring.yml
   - networking.yml
