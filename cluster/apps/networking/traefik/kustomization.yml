@@ -1,5 +1,4 @@
 ---
-namespace: networking
 commonLabels:
   app: traefik
 resources:
