@@ -11,3 +11,4 @@ env:
 
 includes:
   ansible: .taskfiles/ansible.yml
+  k8s: .taskfiles/kubernetes.yml

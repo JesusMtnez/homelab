@@ -1,0 +1,27 @@
+---
+version: "3"
+
+env:
+  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
+
+tasks:
+
+  list:
+    desc: List all in all namespaces
+    cmds:
+      - "kubectl get all --all-namespaces"
+
+  network:list:
+    desc: List all in network namespace
+    cmds:
+      - "kubectl get all --namespace=networking"
+
+  core:apply:
+    desc: Apply all in cluster/core
+    cmds:
+      - "kubectl apply --kustomize cluster/core/"
+
+  apps:apply:
+    desc: Apply all in cluster/apps
+    cmds:
+      - "kubectl apply --kustomize cluster/apps/"
