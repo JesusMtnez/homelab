@@ -16,11 +16,11 @@ tasks:
     cmds:
       - "ansible all --list-hosts"
 
-  playbook:upgrade:
+  playbook:dietpi-upgrade:
     desc: Upgrade all the k8s nodes operating system
     dir: provision/ansible
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/update.yml"
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-upgrade.yml"
 
   adhoc:ping:
     desc: Ping all the hosts
