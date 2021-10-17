@@ -1,0 +1,9 @@
+---
+namespace: networking
+commonLabels:
+  app: traefik
+resources:
+  - cluster-role.yml
+  - service-account.yml
+  - deployment.yml
+  - service.yml
