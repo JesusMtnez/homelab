@@ -4,7 +4,7 @@ let
   nixpkgs = sources.nixpkgs;
   pkgs = import nixpkgs {};
 
-  k8s.version = "v1.22.2";
+  k8s.version = "v1.22.3";
 
 in pkgs.mkShell rec {
   name = "k3s-shell";
@@ -19,10 +19,10 @@ in pkgs.mkShell rec {
     go-task
 
     # Local dev
-    (kube3d.override { k3sVersion = k8s.version + "+k3s2"; })
+    (kube3d.override { k3sVersion = k8s.version + "+k3s1"; })
   ];
 
   shellHook = ''
-    export NIX_PATH="nixpkgs=${nixpkgs}
+    export NIX_PATH="nixpkgs=${nixpkgs}"
   '';
 }
