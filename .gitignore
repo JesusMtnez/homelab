@@ -4,3 +4,6 @@ result
 
 # k8s
 kubeconfig
+
+# project
+**/env.secrets
