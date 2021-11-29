@@ -1,0 +1,30 @@
+---
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: firefly-iii
+spec:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  schedule: 0 4 * * *
+  suspend: false
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: firefly-recurrent-transactions
+            image: buildpack-deps:curl
+            imagePullPolicy: IfNotPresent
+            args:
+            - /bin/sh
+            - -c
+            - curl http://firefly-iii.applications.svc.cluster.local:8080/api/v1/cron/${TOKEN}
+            env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-secrets
+                  key: static-cron-token

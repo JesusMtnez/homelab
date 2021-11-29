@@ -9,3 +9,4 @@ resources:
   - deployment.yml
   - service.yml
   - ingress.yml
+  - cron-job.yml

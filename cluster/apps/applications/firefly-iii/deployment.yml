@@ -60,6 +60,11 @@ spec:
           value: Europe/MADRID
         - name: TRUSTED_PROXIES
           value: '**'
+        - name: STATIC_CRON_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: firefly-secrets
+              key: static-cron-token
         livenessProbe:
           failureThreshold: 3
           httpGet:
