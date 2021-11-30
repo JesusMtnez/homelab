@@ -15,7 +15,7 @@
       - --ip
       - "{{ hostvars[item].ansible_host}}"
       - --user
-      - "{{ ansible_user }}"
+      - "{{ hostvars[item].ansible_user }}"
       - --k3s-version
       - "{{ k3s_version }}"
       - --k3s-extra-args
