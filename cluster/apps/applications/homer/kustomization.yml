@@ -1,0 +1,13 @@
+---
+commonLabels:
+  app: homer
+
+configMapGenerator:
+  - name: homer-config
+    files:
+    - config.yml
+
+resources:
+  - deployment.yml
+  - service.yml
+  - ingress.yml
