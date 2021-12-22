@@ -20,7 +20,7 @@ spec:
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
-          image: traefik:v2.5.5
+          image: traefik:v2.5.6
           args:
             - --entrypoints.web.address=:80
             - --providers.kubernetesingress
