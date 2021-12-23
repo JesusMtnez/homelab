@@ -16,6 +16,16 @@ tasks:
     cmds:
       - "kubectl get all --namespace=networking"
 
+  applications:list:
+    desc: List all in applications namespace
+    cmds:
+      - "kubectl get all --namespace=applications"
+
+  monitoring:list:
+    desc: List all in monitoring namespace
+    cmds:
+      - "kubectl get all --namespace=monitoring"
+
   core:apply:
     desc: Apply all in cluster/core
     cmds:
