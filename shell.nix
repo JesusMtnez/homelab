@@ -16,11 +16,7 @@ in pkgs.mkShell rec {
     # Tools
     kubectl
     ansible
-    ansible-lint
     go-task
-
-    # Local dev
-    (kube3d.override { k3sVersion = k8s.version + "+k3s1"; })
   ];
 
   shellHook = ''
