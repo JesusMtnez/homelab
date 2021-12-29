@@ -2,6 +2,7 @@ let
 
   sources = import ./nix/sources.nix;
   nixpkgs = sources.nixpkgs;
+  niv = sources.niv;
   pkgs = import nixpkgs {};
 
   k8s.version = "v1.22.5";
@@ -10,10 +11,10 @@ in pkgs.mkShell rec {
   name = "k3s-shell";
 
   buildInputs = with pkgs; [
-    niv
+    (import niv { }).niv
 
     # Tools
-    kubectl # TODO Use k8s.version
+    kubectl
     ansible
     ansible-lint
     go-task
