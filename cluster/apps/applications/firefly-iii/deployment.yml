@@ -21,14 +21,14 @@ spec:
           protocol: TCP
         env:
         - name: APP_ENV
-          value: local
+          value: production
         - name: APP_KEY
           valueFrom:
             secretKeyRef:
               name: firefly-secrets
               key: app-key
         - name: APP_LOG_LEVEL
-          value: debug
+          value: info
         - name: DB_CONNECTION
           value: mysql
         - name: DB_DATABASE
