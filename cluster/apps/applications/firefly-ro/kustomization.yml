@@ -1,0 +1,11 @@
+---
+commonLabels:
+  app: firefly-ro
+secretGenerator:
+  - name: firefly-ro-secrets
+    envs:
+    - "env.secrets"
+resources:
+  - deployment.yml
+  - service.yml
+  - ingress.yml

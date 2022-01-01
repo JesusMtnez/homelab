@@ -1,4 +1,5 @@
 namespace: applications
 resources:
   - firefly-iii
+  - firefly-ro
   - homer
