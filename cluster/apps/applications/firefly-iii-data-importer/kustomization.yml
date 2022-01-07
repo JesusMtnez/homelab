@@ -1,0 +1,11 @@
+---
+commonLabels:
+  app: firefly-iii-data-importer
+secretGenerator:
+  - name: firefly-data-importer-secrets
+    envs:
+    - "env.secrets"
+resources:
+  - deployment.yml
+  - service.yml
+  - ingress.yml
