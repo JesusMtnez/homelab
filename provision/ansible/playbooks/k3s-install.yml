@@ -7,7 +7,7 @@
     - role: prereq
 
 - hosts: localhost
-  gather_facts: false
+  gather_facts: true
   roles:
     - k3sup
     - k3s
