@@ -10,18 +10,24 @@
     ],
     "ignorePaths": [
       "cluster/base/"
-    ],
+    ]
   },
   "packageRules": [
-    // global docker datasource settings
     {
-      "matchDatasources": ["docker"],
       "enabled": true,
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [ "fireflyiii/core", "fireflyiii/data-importer" ],
+      "versioning": "regex:^version-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
       "commitMessageTopic": "container image {{depName}}",
-      "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-      "matchUpdateTypes": ["major", "minor", "patch"],
+      "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
-    // add labels according to package and update types
+    {
+      "enabled": true,
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "commitMessageTopic": "container image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
