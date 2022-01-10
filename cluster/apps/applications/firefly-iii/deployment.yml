@@ -56,6 +56,29 @@ spec:
             secretKeyRef:
               name: firefly-secrets
               key: db-username
+        - name: MAIL_MAILER
+          value: smtp
+        - name: MAIL_HOST
+          value: smtp.gmail.com
+        - name: MAIL_PORT
+          value: "587"
+        - name: MAIL_ENCRYPTION
+          value: tls
+        - name: MAIL_FROM
+          valueFrom:
+            secretKeyRef:
+              name: firefly-secrets
+              key: mail-from
+        - name: MAIL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: firefly-secrets
+              key: mail-username
+        - name: MAIL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: firefly-secrets
+              key: mail-password
         - name: TZ
           value: Europe/MADRID
         - name: TRUSTED_PROXIES
