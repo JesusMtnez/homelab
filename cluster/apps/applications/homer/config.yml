@@ -28,6 +28,12 @@ services:
     tag: "money"
     url: "http://firefly.home.es/"
 
+  - name: "FiDI"
+    subtitle: "This tool will help you import data into Firefly III"
+    logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/firefly.png"
+    tag: "money"
+    url: "http://fidi.home.es/"
+
   - name: "Vikunja"
     subtitle: TODO App
     logo: "https://kolaente.dev/vikunja/theme/raw/branch/main/static/images/vikunja.png"
