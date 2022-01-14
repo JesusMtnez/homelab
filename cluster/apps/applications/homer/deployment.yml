@@ -5,6 +5,7 @@ metadata:
   name: homer
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   template:
     spec:
       restartPolicy: Always
