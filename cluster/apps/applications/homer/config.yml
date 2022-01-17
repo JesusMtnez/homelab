@@ -34,12 +34,6 @@ services:
     tag: "money"
     url: "http://fidi.home.es/"
 
-  - name: "Vikunja"
-    subtitle: TODO App
-    logo: "https://kolaente.dev/vikunja/theme/raw/branch/main/static/images/vikunja.png"
-    tag: "tasks"
-    url: "http://todo.home.es/"
-
 - name: "Tools"
   icon: "fas fa-network-wired"
   items:
