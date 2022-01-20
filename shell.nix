@@ -14,6 +14,7 @@ in pkgs.mkShell rec {
     # Tools
     kubectl
     ansible
+    ansible-lint
     go-task
   ];
 
