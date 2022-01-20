@@ -1,14 +1,15 @@
 ---
 - name: Check if docker is installed
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /boot/dietpi/.installed
     line: "aSOFTWARE_INSTALL_STATE[162]=2"
     state: present
   check_mode: true
   register: docker
 
-- name: Install docker
-  shell: /boot/dietpi/dietpi-software install 162
+- name: Install docker  # noqa no-handler
+  ansible.builtin.command:
+    cmd: /boot/dietpit/dietpi-software install 162
   when: docker is changed
 
 - name: Create docker-clean up periodic task
@@ -22,7 +23,7 @@
     - docker-cleanup.timer
   register: systemd
 
-- name: Enable docker-cleanup timer
+- name: Enable docker-cleanup timer  # noqa no-handler
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: restarted

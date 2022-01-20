@@ -1,8 +1,7 @@
 ---
 
-- name: Create agent and join {{ groups.masters.0 }} with k3s {{ k3s_version }}
-  command:
-  args:
+- name: Create agent and join {{ groups.masters.0 }} with k3s {{ k3s_version }}  # noqa no-handler
+  ansible.builtin.command:
     argv:
       - /tmp/k3sup
       - join

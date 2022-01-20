@@ -1,28 +1,28 @@
 ---
 
 - name: Register if there are dietpi updates
-  stat:
+  ansible.builtin.stat:
     path: /run/dietpi/.update_available
   register: dietpi_updates
 
 - name: Register if there are dietpi live patches
-  stat:
+  ansible.builtin.stat:
     path: /run/dietpi/.live_patches
   register: dietpi_live_patches
 
 - name: Updating using dietpi-update
-  shell:
+  ansible.builtin.command:
     cmd: /boot/dietpi/dietpi-update 1
     stdin: true
   when: dietpi_updates.stat.exists or dietpi_live_patches.stat.exists
 
 - name: Register if there are apt updates
-  stat:
+  ansible.builtin.stat:
     path: /run/dietpi/.apt_updates
   register: apt_updates
 
 - name: Update using apt
-  apt:
+  ansible.builtin.apt:
     upgrade: dist
     update_cache: true
     autoremove: true

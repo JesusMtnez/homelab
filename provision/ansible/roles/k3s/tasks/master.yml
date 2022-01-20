@@ -1,19 +1,18 @@
 ---
-- name: Get absolute path to this Git repository
-  delegate_to: localhost
+- name: Get absolute path to this Git repository  # noqa command-instead-of-module no-changed-when
   become: false
   run_once: true
-  ansible.builtin.command: "git rev-parse --show-toplevel"
+  ansible.builtin.command:
+    cmd: "git rev-parse --show-toplevel"
   register: repo_abs_path
 
-- name: Create master server with k3s "{{ k3s_version }}"
-  command:
-  args:
+- name: Create master server with k3s "{{ k3s_version }}"  # noqa no-changed-when
+  ansible.builtin.command:
     argv:
       - /tmp/k3sup
       - install
       - --ip
-      - "{{ hostvars[item].ansible_host}}"
+      - "{{ hostvars[item].ansible_host }}"
       - --user
       - "{{ hostvars[item].ansible_user }}"
       - --k3s-version
