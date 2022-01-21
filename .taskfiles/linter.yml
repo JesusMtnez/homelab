@@ -1,0 +1,20 @@
+---
+version: "3"
+
+tasks:
+  all:
+    - task: ansible
+    - task: yaml
+
+  ansible:
+    desc: Lint ansible
+    dir: provision/ansible
+    cmds:
+      - ansible-lint -c '{{.PROJECT_DIR}}/.github/linters/.ansible-lint'
+    ignore_error: true
+
+  yaml:
+    desc: Lint YAML
+    cmds:
+      - yamllint -c '.github/linters/.yamllint.yml' .
+    ignore_error: true

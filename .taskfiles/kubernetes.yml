@@ -5,7 +5,6 @@ env:
   KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
 
 tasks:
-
   list:
     desc: List all in all namespaces
     cmds:

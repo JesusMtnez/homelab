@@ -9,7 +9,6 @@ vars:
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
 
 tasks:
-
   list:
     desc: List all the hosts
     dir: provision/ansible

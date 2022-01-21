@@ -6,16 +6,18 @@ let
   pkgs = import nixpkgs {};
 
 in pkgs.mkShell rec {
-  name = "k3s-shell";
+  name = "homelab-shell";
 
   buildInputs = with pkgs; [
     (import niv { }).niv
 
     # Tools
-    kubectl
     ansible
     ansible-lint
     go-task
+    kubectl
+    nodePackages.prettier
+    yamllint
   ];
 
   shellHook = ''

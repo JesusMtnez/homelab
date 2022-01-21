@@ -1,9 +1,0 @@
----
-version: "3"
-
-tasks:
-  lint:
-    desc: Apply linters
-    dir: provision/ansible
-    cmds:
-      - "ansible-lint"
