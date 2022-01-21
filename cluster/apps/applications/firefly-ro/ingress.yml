@@ -5,13 +5,13 @@ metadata:
   name: firefly-ro
 spec:
   rules:
-  - host: firefly-ro.home.es
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: firefly-ro
-            port:
-              name: http
+    - host: firefly-ro.home.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: firefly-ro
+                port:
+                  name: http

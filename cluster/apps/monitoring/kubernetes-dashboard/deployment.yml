@@ -19,10 +19,10 @@ spec:
             - containerPort: 9090
               protocol: TCP
           args:
-            - '--enable-skip-login'
-            - '--disable-settings-authorizer'
-            - '--insecure-bind-address=0.0.0.0'
-            - '--namespace=monitoring'
+            - "--enable-skip-login"
+            - "--disable-settings-authorizer"
+            - "--insecure-bind-address=0.0.0.0"
+            - "--namespace=monitoring"
           volumeMounts:
             - name: kubernetes-dashboard-certs
               mountPath: /certs

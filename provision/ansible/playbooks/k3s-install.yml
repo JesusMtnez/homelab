@@ -1,5 +1,4 @@
 ---
-
 - hosts: masters:workers
   gather_facts: true
   become: true

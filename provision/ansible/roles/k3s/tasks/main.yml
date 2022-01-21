@@ -1,4 +1,3 @@
 ---
-
 - import_tasks: master.yml
 - import_tasks: nodes.yml

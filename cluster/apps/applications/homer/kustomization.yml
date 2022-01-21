@@ -5,7 +5,7 @@ commonLabels:
 configMapGenerator:
   - name: homer-config
     files:
-    - config.yml
+      - config.yml
 
 resources:
   - deployment.yml

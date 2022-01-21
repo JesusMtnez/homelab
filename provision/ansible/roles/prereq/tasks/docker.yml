@@ -7,7 +7,7 @@
   check_mode: true
   register: docker
 
-- name: Install docker  # noqa no-handler
+- name: Install docker # noqa no-handler
   ansible.builtin.command:
     cmd: /boot/dietpit/dietpi-software install 162
   when: docker is changed
@@ -23,7 +23,7 @@
     - docker-cleanup.timer
   register: systemd
 
-- name: Enable docker-cleanup timer  # noqa no-handler
+- name: Enable docker-cleanup timer # noqa no-handler
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: restarted

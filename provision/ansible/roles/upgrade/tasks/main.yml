@@ -1,5 +1,4 @@
 ---
-
 - name: Register if there are dietpi updates
   ansible.builtin.stat:
     path: /run/dietpi/.update_available

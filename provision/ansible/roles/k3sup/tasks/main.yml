@@ -1,5 +1,4 @@
 ---
-
 - name: Set facts for Linux
   ansible.builtin.set_fact:
     k3sup: k3sup

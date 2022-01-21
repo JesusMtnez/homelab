@@ -12,30 +12,30 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       containers:
-      - name: firefly-iii-data-importer
-        image: fireflyiii/data-importer:version-0.6.5
-        imagePullPolicy: IfNotPresent
-        ports:
-        - name: http
-          containerPort: 8080
-          protocol: TCP
-        env:
-        - name: FIREFLY_III_URL
-          value: http://firefly-iii.applications.svc.cluster.local:8080
-        - name: FIREFLY_III_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: firefly-data-importer-secrets
-              key: client-id
-        - name: VANITY_URL
-          value: http://firefly.home.es
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 120
-          periodSeconds: 300
-          successThreshold: 1
-          timeoutSeconds: 10
+        - name: firefly-iii-data-importer
+          image: fireflyiii/data-importer:version-0.6.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: FIREFLY_III_URL
+              value: http://firefly-iii.applications.svc.cluster.local:8080
+            - name: FIREFLY_III_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-data-importer-secrets
+                  key: client-id
+            - name: VANITY_URL
+              value: http://firefly.home.es
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 300
+            successThreshold: 1
+            timeoutSeconds: 10

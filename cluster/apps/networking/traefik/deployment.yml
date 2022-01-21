@@ -15,9 +15,9 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-role.kubernetes.io/master
-                operator: Exists
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik

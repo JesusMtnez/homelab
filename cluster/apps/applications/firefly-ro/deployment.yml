@@ -12,61 +12,61 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       containers:
-      - name: firefly-ro
-        image: fireflyiii/core:version-5.6.10
-        imagePullPolicy: IfNotPresent
-        ports:
-        - name: http
-          containerPort: 8080
-          protocol: TCP
-        env:
-        - name: APP_ENV
-          value: production
-        - name: APP_KEY
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: app-key
-        - name: APP_LOG_LEVEL
-          value: info
-        - name: DB_CONNECTION
-          value: mysql
-        - name: DB_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: db-database
-        - name: DB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: db-host
-        - name: DB_PORT
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: db-port
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: db-password
-        - name: DB_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: firefly-ro-secrets
-              key: db-username
-        - name: TZ
-          value: Europe/MADRID
-        - name: TRUSTED_PROXIES
-          value: '**'
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 120
-          periodSeconds: 300
-          successThreshold: 1
-          timeoutSeconds: 10
+        - name: firefly-ro
+          image: fireflyiii/core:version-5.6.10
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: APP_ENV
+              value: production
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: app-key
+            - name: APP_LOG_LEVEL
+              value: info
+            - name: DB_CONNECTION
+              value: mysql
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: db-database
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: db-host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: db-port
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: db-password
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: firefly-ro-secrets
+                  key: db-username
+            - name: TZ
+              value: Europe/MADRID
+            - name: TRUSTED_PROXIES
+              value: "**"
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 300
+            successThreshold: 1
+            timeoutSeconds: 10

@@ -11,29 +11,29 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       containers:
-      - name: homer
-        image: b4bz/homer:21.09.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
-        livenessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: http
-            scheme: HTTP
-          initialDelaySeconds: 10
-          periodSeconds: 300
-          successThreshold: 1
-          timeoutSeconds: 5
-        volumeMounts:
-        - name: config
-          mountPath: /www/config.yml
-          subPath: config.yml
+        - name: homer
+          image: b4bz/homer:21.09.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 300
+            successThreshold: 1
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: config
+              mountPath: /www/config.yml
+              subPath: config.yml
       volumes:
-      - name: config
-        configMap:
-          defaultMode: 420
-          name: homer-config
+        - name: config
+          configMap:
+            defaultMode: 420
+            name: homer-config

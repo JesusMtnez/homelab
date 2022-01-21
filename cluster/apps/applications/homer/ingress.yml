@@ -5,13 +5,13 @@ metadata:
   name: homer
 spec:
   rules:
-  - host: home.es
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: homer
-            port:
-              name: http
+    - host: home.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homer
+                port:
+                  name: http

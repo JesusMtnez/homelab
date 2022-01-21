@@ -4,7 +4,7 @@ commonLabels:
 secretGenerator:
   - name: firefly-secrets
     envs:
-    - "env.secrets"
+      - "env.secrets"
 resources:
   - deployment.yml
   - service.yml

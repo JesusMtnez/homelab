@@ -1,3 +1,4 @@
+---
 namespace: networking
 resources:
   - traefik

@@ -1,12 +1,12 @@
 ---
-- name: Get absolute path to this Git repository  # noqa command-instead-of-module no-changed-when
+- name: Get absolute path to this Git repository # noqa command-instead-of-module no-changed-when
   become: false
   run_once: true
   ansible.builtin.command:
     cmd: "git rev-parse --show-toplevel"
   register: repo_abs_path
 
-- name: Create master server with k3s "{{ k3s_version }}"  # noqa no-changed-when
+- name: Create master server with k3s "{{ k3s_version }}" # noqa no-changed-when
   ansible.builtin.command:
     argv:
       - /tmp/k3sup

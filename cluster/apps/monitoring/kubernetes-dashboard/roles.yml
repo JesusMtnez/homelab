@@ -7,7 +7,12 @@ rules:
   # Allow Dashboard to get, update and delete Dashboard exclusive secrets.
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["kubernetes-dashboard-key-holder", "kubernetes-dashboard-certs", "kubernetes-dashboard-csrf"]
+    resourceNames:
+      [
+        "kubernetes-dashboard-key-holder",
+        "kubernetes-dashboard-certs",
+        "kubernetes-dashboard-csrf",
+      ]
     verbs: ["get", "update", "delete"]
     # Allow Dashboard to get and update 'kubernetes-dashboard-settings' config map.
   - apiGroups: [""]
@@ -21,7 +26,14 @@ rules:
     verbs: ["proxy"]
   - apiGroups: [""]
     resources: ["services/proxy"]
-    resourceNames: ["heapster", "http:heapster:", "https:heapster:", "dashboard-metrics-scraper", "http:dashboard-metrics-scraper"]
+    resourceNames:
+      [
+        "heapster",
+        "http:heapster:",
+        "https:heapster:",
+        "dashboard-metrics-scraper",
+        "http:dashboard-metrics-scraper",
+      ]
     verbs: ["get"]
 ---
 kind: ClusterRole
@@ -47,7 +59,6 @@ subjects:
     name: kubernetes-dashboard
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:

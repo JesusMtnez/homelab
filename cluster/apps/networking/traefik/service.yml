@@ -13,4 +13,4 @@ spec:
       name: web
       targetPort: 80
   externalIPs:
-  - 192.168.1.201
+    - 192.168.1.201
