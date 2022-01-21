@@ -1,0 +1,25 @@
+---
+name: Lint
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+
+      - name: "Install Nix ❄️"
+        uses: cachix/install-nix-action@v16
+
+      - name: "Lint ANSIBLE files"
+        run: nix-shell --run "task linter:ansible"
+
+      - name: "Lint YAML files"
+        run: nix-shell --run "task linter:yaml"
