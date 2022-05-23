@@ -2,7 +2,7 @@
 commonLabels:
   app: traefik
 resources:
-  - cluster-role.yml
   - service-account.yml
+  - cluster-role.yml
   - deployment.yml
   - service.yml

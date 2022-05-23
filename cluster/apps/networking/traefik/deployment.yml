@@ -11,22 +11,21 @@ spec:
       app: traefik
   template:
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: node-role.kubernetes.io/master
-                    operator: Exists
+      nodeSelector:
+        node-role.kubernetes.io/master: "true"
       serviceAccountName: traefik-ingress-controller
       containers:
         - name: traefik
           image: traefik:v2.7.0
           args:
-            - --entrypoints.web.address=:80
-            - --providers.kubernetesingress
-            - --api
-            - --api.dashboard
+            - --entrypoints.web.address=:8000
+            - --entryPoints.traefik.address=:9000
+            - --providers.kubernetesingress=true
+            - --api.dashboard=true
+            - --api.insecure=true
+            - --log.level=INFO
           ports:
             - name: web
-              containerPort: 80
+              containerPort: 8000
+            - name: admin
+              containerPort: 9000

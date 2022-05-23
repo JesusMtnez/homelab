@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: traefik
 spec:
+  externalIPs:
+    - 192.168.1.201
   type: NodePort
   selector:
     app: traefik
@@ -11,6 +13,8 @@ spec:
     - protocol: TCP
       port: 80
       name: web
-      targetPort: 80
-  externalIPs:
-    - 192.168.1.201
+      targetPort: 8000
+    - protocol: TCP
+      port: 8000
+      name: admin
+      targetPort: 9000
