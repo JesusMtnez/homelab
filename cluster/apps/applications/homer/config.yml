@@ -5,7 +5,11 @@ logo: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/kubernetes-512.p
 # icon: "fas fa-paw"
 header: true
 footer: false
+columns: "auto"
 theme: default
+
+proxy:
+  useCredentials: false
 
 links:
   - name: "GitHub"

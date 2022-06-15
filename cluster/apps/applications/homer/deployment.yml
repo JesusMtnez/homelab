@@ -30,7 +30,7 @@ spec:
             timeoutSeconds: 5
           volumeMounts:
             - name: config
-              mountPath: /www/config.yml
+              mountPath: /www/assets/config.yml
               subPath: config.yml
       volumes:
         - name: config
