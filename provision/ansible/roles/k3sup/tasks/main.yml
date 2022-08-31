@@ -7,7 +7,12 @@
 - name: Set facts for MacOS
   ansible.builtin.set_fact:
     k3sup: k3sup-darwin
-  when: ansible_facts['system'] == 'Darwin'
+  when: ansible_facts['system'] == 'Darwin' and ansible_facts['machine'] == "x86_64"
+
+- name: Set facts for MacOS ARM
+  ansible.builtin.set_fact:
+    k3sup: k3sup-darwin-arm64
+  when: ansible_facts['system'] == 'Darwin' and ansible_facts['machine'] == "arm64"
 
 - name: Install k3sup binary
   ansible.builtin.get_url:
