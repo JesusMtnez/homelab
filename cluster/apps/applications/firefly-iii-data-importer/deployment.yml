@@ -13,7 +13,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: firefly-iii-data-importer
-          image: fireflyiii/data-importer:version-0.9.15
+          image: fireflyiii/data-importer:version-0.9.16
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
