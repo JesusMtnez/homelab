@@ -1,0 +1,11 @@
+---
+commonLabels:
+  app: babybuddy
+secretGenerator:
+  - name: babybuddy-secrets
+    envs:
+      - "env.secrets"
+resources:
+  - deployment.yml
+  - service.yml
+  - ingress.yml

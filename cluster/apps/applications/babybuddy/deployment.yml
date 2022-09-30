@@ -1,0 +1,83 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: babybuddy
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 0
+  template:
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: babybuddy
+          image: linuxserver/babybuddy:1.12.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: DEBUG
+              value: "true"
+            - name: TIME_ZONE
+              value: "Europe/Madrid"
+            - name: ALLOW_UPLOADS
+              value: "false"
+            - name: CSRF_TRUSTED_ORIGINS
+              value: "http://baby.home.es"
+            - name: DB_ENGINE
+              value: "django.db.backends.mysql"
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: db-database
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: db-host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: db-port
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: db-password
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: db-user
+            - name: EMAIL_HOST
+              value: smtp.gmail.com
+            - name: EMAIL_HOST_USER
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: mail-username
+            - name: EMAIL_HOST_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: babybuddy-secrets
+                  key: mail-password
+            - name: EMAIL_PORT
+              value: "587"
+            - name: EMAIL_USE_TLS
+              value: "true"
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 8000
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 300
+            successThreshold: 1
+            timeoutSeconds: 10

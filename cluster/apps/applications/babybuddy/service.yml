@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: babybuddy
+spec:
+  ports:
+    - name: http
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: babybuddy
