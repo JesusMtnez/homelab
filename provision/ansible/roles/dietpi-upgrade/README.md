@@ -1,6 +1,6 @@
-# upgrade
+# dietpi-upgrade
 
 Upgrade nodes, including
 
+- `dietpi` upgrade
 - `apt` software upgrade
-- TODO `dietpi` upgrade
