@@ -21,6 +21,12 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-install.yml"
 
+  playbook:entware-install:
+    desc: Install entware
+    dir: provision/ansible
+    cmds:
+      - "ansible-playbook -K {{.ANSIBLE_PLAYBOOK_DIR}}/entware-install.yml"
+
   playbook:upgrade:
     desc: Upgrade all the k8s nodes operating system
     dir: provision/ansible

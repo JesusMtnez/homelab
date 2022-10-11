@@ -1,0 +1,6 @@
+---
+- hosts: grimmauld
+  gather_facts: true
+  become: true
+  roles:
+    - entware

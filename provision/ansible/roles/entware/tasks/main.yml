@@ -1,0 +1,38 @@
+---
+- name: check if entware is already installed
+  ansible.builtin.stat:
+    path: "{{ entware_root }}/opt/etc/entware_release"
+  register: entware_release
+
+- name: create root folder
+  file:
+    path: "{{ entware_root }}/opt"
+    state: directory
+
+- name: mount to /opt
+  mount:
+    src: "{{ entware_root }}/opt"
+    path: /opt
+    opts: bind
+    state: mounted
+    fstype: none
+
+- name: download entware installer
+  when: not entware_release.stat.exists
+  ansible.builtin.get_url:
+    url: "http://bin.entware.net/{{ entware_arch }}-k{{ entware_version }}/installer/generic.sh"
+    dest: "/tmp/generic.sh"
+    mode: 0775
+
+- name: install entware
+  when: not entware_release.stat.exists
+  ansible.builtin.command:
+    cmd: /bin/sh /tmp/generic.sh
+    creates: "{{ entware_root }}/opt/etc/entware_release"
+
+- name: add entware profile to global profile
+  ansible.builtin.blockinfile:
+    path: /etc/profile
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - ENTWARE"
+    block: |
+      [ -r "/opt/etc/profile" ] && . /opt/etc/profile

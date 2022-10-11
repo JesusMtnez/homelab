@@ -1,0 +1,5 @@
+---
+entware_root: /volume1/@Entware
+entware_version: 3.2
+entware_force_install: False
+entware_arch: armv7sf
