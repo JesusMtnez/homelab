@@ -2,7 +2,7 @@
 namespace: applications
 
 resources:
-  - babybuddy
+  # - babybuddy
   - firefly-iii
   - firefly-iii-data-importer
   - firefly-ro
