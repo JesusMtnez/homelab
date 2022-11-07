@@ -17,4 +17,3 @@ tasks:
     desc: Lint YAML
     cmds:
       - yamllint -c '.github/linters/.yamllint.yml' .
-    ignore_error: true
