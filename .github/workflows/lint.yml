@@ -17,7 +17,7 @@ jobs:
         uses: cachix/install-nix-action@v18
 
       - name: "Lint ANSIBLE files"
-        run: nix develop -c task linter:ansible
+        run: nix develop .#ci -c task linter:ansible
 
       - name: "Lint YAML files"
-        run: nix develop -c task linter:yaml
+        run: nix develop .#ci -c task linter:yaml
