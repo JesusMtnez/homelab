@@ -2,6 +2,7 @@
 ignore: |
   .private/
   .vscode/
+  provision/ansible/roles/flexget/files/config.yml
 extends: default
 rules:
   truthy:
