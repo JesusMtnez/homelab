@@ -8,7 +8,7 @@
   ansible.builtin.file:
     path: "{{ entware_root }}/opt"
     state: directory
-    mode: 0755
+    mode: u=rwx,g=r-x,o=r-x
 
 - name: mount to /opt
   ansible.builtin.mount:
