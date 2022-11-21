@@ -1,0 +1,69 @@
+---
+- name: upgrade python installation
+  community.general.opkg:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - gcc
+    - python3
+    - python3-dev
+    - python3-pip
+  notify: restart flexget
+
+- name: pip self-update # noqa package-latest
+  ansible.builtin.pip:
+    name:
+      - pip
+      - setuptools
+    state: latest
+
+- name: upgrade flexget & plugins
+  ansible.builtin.pip:
+    name:
+      - flexget==3.5.5
+      - transmission-rpc==3.4.0
+    state: present
+  notify: restart flexget
+
+# - name: "ensure {{ flexget_system_user }} user exists"
+#   ansible.builtin.user:
+#     state: present
+#     name: "{{ flexget_system_user }}"
+#     groups:
+#       - "{{ flexget_system_user_group }}"
+#     system: yes
+
+
+- name: ensure config dir exists
+  ansible.builtin.file:
+    state: directory
+    path: "{{ flexget_config_dir }}"
+    mode: u=rwx,g=rwx,o=r-x
+    owner: "{{ flexget_system_user }}"
+    group: "{{ flexget_system_user_group }}"
+
+- name: ensure flexget config files are setup correctly
+  ansible.builtin.copy:
+    src: config.yml
+    dest: "{{ flexget_config_dir }}/config.yml"
+    mode: u=rw-,g=rw-,o=r--
+    owner: "{{ flexget_system_user }}"
+    group: "{{ flexget_system_user_group }}"
+  notify: restart flexget
+
+- name: ensure flexget service exists
+  ansible.builtin.copy:
+    src: flexget.service
+    dest: /etc/systemd/system/flexget.service
+    mode: u=rwx,g=--x,o=--x
+    owner: root
+    group: root
+  notify: restart flexget
+
+- name: enable flexget service
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    name: flexget
+  notify: restart flexget

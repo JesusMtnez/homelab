@@ -1,0 +1,6 @@
+---
+- name: restart flexget
+  # become: true
+  ansible.builtin.service:
+    name: flexget
+    state: restarted

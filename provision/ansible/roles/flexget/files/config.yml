@@ -1,0 +1,142 @@
+---
+
+schedules:
+  - tasks: clean-transmission
+    interval:
+      minutes: 14
+  - tasks:
+    # - download-showrss
+    - download-arch
+    interval:
+      days: 1
+  - tasks:
+    - sort-tv-shows
+    - sort-movies
+    interval:
+      hours: 12
+
+variables:
+  downloads: '/volume1/homes/downloader/flexget-downloads'
+  secrets:
+    transmission:
+      username: '<username>'
+      password: '<password>'
+
+tasks:
+  # Download TV Shows from ShowRSS
+  download-showrss:
+    priority: 1
+    rss: http://showrss.info/user/112019.rss?magnets=true&namespaces=false&name=null&quality=null&re=yes
+    all_series: yes
+    transmission:
+      host: localhost
+      port: 9091
+      username: '{? secrets.transmission.username ?}'
+      password: '{? secrets.transmission.password ?}'
+      path: '{? downloads ?}/tv-shows'
+      add_paused: no
+      skip_files:
+        - '*.nfo'
+        - '*.sfv'
+        - '*[sS]ample*'
+        - '*.txt'
+
+  # Download latest ArchLinux ISO
+  download-arch:
+    priority: 1
+    limit:
+      amount: 1
+      from:
+        rss:
+          url: https://www.archlinux.org/feeds/releases/
+          other_fields: [title]
+          all_entries: no
+    accept_all: yes
+    transmission:
+      host: localhost
+      port: 9091
+      username: '{? secrets.transmission.username ?}'
+      password: '{? secrets.transmission.password ?}'
+      path: '{? downloads ?}/seed'
+      add_paused: no
+
+  # Sort TV Shows
+  sort-tv-shows:
+    priority: 1
+    filesystem:
+      path: '{? downloads ?}/tv-shows'
+      regexp: '.*\.(mkv|mp4)$'
+      recursive: yes
+    seen: local
+    all_series:
+      parse_only: yes
+    no_entries_ok: yes
+    series:
+      - "Marvel's Agents of S.H.I.E.L.D.":
+          name_regexp:  ^marvel(')?s.agents.of.(s.h.i.e.l.d.?|shield)
+    metainfo_series: yes
+    thetvdb_lookup: yes
+    require_field:
+      - tvdb_series_name
+      - tvdb_season
+    accept_all: yes
+    move:
+      to: /volume1/tv-shows/{{ tvdb_series_name }}/Season {{ tvdb_season }}/
+      along:
+        extensions:
+          - sub
+          - srt
+        subdirs:
+          - Subs
+      clean_source: 100
+
+  # Sort Movies
+  sort-movies:
+    priority: 2
+    filesystem:
+      path: '{? downloads ?}/movies'
+      regexp: '.*\.(mkv|mp4)$'
+      recursive: yes
+    seen: local
+    metainfo_movie: yes
+    tmdb_lookup: yes
+    require_field:
+      - tmdb_year
+    accept_all: yes
+    no_entries_ok: yes
+    move:
+      to: '/volume1/movies/{{ tmdb_year }}/'
+      along:
+        extensions:
+          - sub
+          - srt
+        subdirs:
+          - Subs
+      clean_source: 500
+
+  # Delete downloaded torrents
+  clean-transmission:
+    priority: 10
+    disable:
+      - details
+      - seen
+      - seen_info_hash
+    from_transmission:
+      host: localhost
+      port: 9091
+      username: '{? secrets.transmission.username ?}'
+      password: '{? secrets.transmission.password ?}'
+    no_entries_ok: yes
+    if:
+      - transmission_progress == 100 and transmission_downloadDir != "{? downloads ?}/seed": accept
+    transmission:
+      host: localhost
+      port: 9091
+      username: '{? secrets.transmission.username ?}'
+      password: '{? secrets.transmission.password ?}'
+      action: remove
+
+web_server:
+  bind: 0.0.0.0 # IP V4
+  port: 5050 # Valid port number
+  web_ui: yes # Web-UI can optionally be disabeled, only API will run

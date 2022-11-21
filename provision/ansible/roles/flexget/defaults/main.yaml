@@ -1,0 +1,5 @@
+---
+flexget_system_user: downloader
+flexget_system_user_group: users
+
+flexget_config_dir: /volume1/homes/downloader/.flexget
