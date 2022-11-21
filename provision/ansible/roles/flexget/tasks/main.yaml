@@ -3,7 +3,7 @@
   community.general.opkg:
     name: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: true
   with_items:
     - gcc
     - python3
@@ -33,7 +33,6 @@
 #     groups:
 #       - "{{ flexget_system_user_group }}"
 #     system: yes
-
 
 - name: ensure config dir exists
   ansible.builtin.file:

@@ -3,7 +3,7 @@
   community.general.opkg:
     name: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: true
   with_items:
     - transmission-daemon
     - transmission-web
