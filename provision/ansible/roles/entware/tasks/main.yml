@@ -5,12 +5,13 @@
   register: entware_release
 
 - name: create root folder
-  file:
+  ansible.builtin.file:
     path: "{{ entware_root }}/opt"
     state: directory
+    mode: 0755
 
 - name: mount to /opt
-  mount:
+  ansible.builtin.mount:
     src: "{{ entware_root }}/opt"
     path: /opt
     opts: bind
