@@ -1,6 +1,5 @@
 ---
-- name: restart transmission
-  # become: true
+- name: Restart transmission
   ansible.builtin.service:
     name: transmission
     state: restarted

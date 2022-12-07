@@ -1,6 +1,9 @@
 ---
-- import_tasks: cgroup.yml
+- name: Setup cgroup options
+  ansible.builtin.import_tasks: cgroup.yml
   when: "ansible_architecture == 'armv7l'"
-- import_tasks: iptables.yml
+- name: Setup iptables
+  ansible.builtin.import_tasks: iptables.yml
   when: "ansible_architecture == 'armv7l'"
-- import_tasks: docker.yml
+- name: Setup docker
+  ansible.builtin.import_tasks: docker.yml

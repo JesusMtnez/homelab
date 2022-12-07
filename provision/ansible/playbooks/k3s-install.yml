@@ -1,11 +1,13 @@
 ---
-- hosts: masters:workers
+- name: Install k3s pre-requirements
+  hosts: masters:workers
   gather_facts: true
   become: true
   roles:
     - prereq
 
-- hosts: localhost
+- name: Install k3s using k3sup`
+  hosts: localhost
   gather_facts: true
   roles:
     - k3sup

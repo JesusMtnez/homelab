@@ -1,5 +1,5 @@
 ---
-- name: upgrade transmission packages
+- name: Upgrade transmission packages
   community.general.opkg:
     name: "{{ item }}"
     state: present
@@ -26,7 +26,7 @@
 #     group: "{{ transmission_system_user_group }}"
 #   notify: restart transmission
 
-- name: ensure transmission daemon service exists
+- name: Ensure transmission daemon service exists
   ansible.builtin.copy:
     src: transmission.service
     dest: /etc/systemd/system/transmission.service
@@ -35,7 +35,7 @@
     group: root
   notify: restart transmission
 
-- name: enable transmission daemon service
+- name: Enable transmission daemon service
   ansible.builtin.systemd:
     daemon_reload: true
     enabled: true

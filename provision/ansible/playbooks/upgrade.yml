@@ -1,5 +1,6 @@
 ---
-- hosts: masters:workers:dobby
+- name: Upgrade dietpi based nodes
+  hosts: masters:workers:dobby
   gather_facts: true
   become: true
   roles:
