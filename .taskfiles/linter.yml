@@ -11,6 +11,7 @@ tasks:
     dir: provision/ansible
     cmds:
       - ansible-lint -c '{{.PROJECT_DIR}}/.github/linters/.ansible-lint'
+    ignore_error: true
 
   yaml:
     desc: Lint YAML

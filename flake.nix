@@ -11,20 +11,14 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        devShells.default = pkgs.mkShell {
+        devShell = pkgs.mkShell {
           name = "homelab-shell";
+
           buildInputs = with pkgs; [
             ansible
-            go-task
-            kubectl
-          ];
-        };
-
-        devShells.ci = pkgs.mkShell {
-          name = "homelab-shell-ci";
-          buildInputs = with pkgs; [
             ansible-lint
             go-task
+            kubectl
             nodePackages.prettier
             yamllint
           ];
