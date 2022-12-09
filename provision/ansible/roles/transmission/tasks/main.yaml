@@ -7,7 +7,7 @@
   with_items:
     - transmission-daemon
     - transmission-web
-  notify: restart transmission
+  notify: Restart transmission
 
 # - name: ensure config dir exists
 #   file:
@@ -24,7 +24,7 @@
 #     mode: u=rw-,g=rw-,o=r--
 #     owner: "{{ transmission_system_user }}"
 #     group: "{{ transmission_system_user_group }}"
-#   notify: restart transmission
+#   notify: Restart transmission
 
 - name: Ensure transmission daemon service exists
   ansible.builtin.copy:
@@ -33,11 +33,11 @@
     mode: u=rwx,g=--x,o=--x
     owner: root
     group: root
-  notify: restart transmission
+  notify: Restart transmission
 
 - name: Enable transmission daemon service
   ansible.builtin.systemd:
     daemon_reload: true
     enabled: true
     name: transmission
-  notify: restart transmission
+  notify: Restart transmission
