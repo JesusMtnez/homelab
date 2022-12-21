@@ -1,0 +1,5 @@
+---
+namespace: internal
+
+resources:
+  - nfs-subdir-external-provisioner

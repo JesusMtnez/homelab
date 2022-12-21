@@ -1,0 +1,13 @@
+---
+commonLabels:
+  app: nfs-client-provisioner
+
+# secretGenerator:
+#   - name: firefly-secrets
+#     envs:
+#       - "env.secrets"
+
+resources:
+  - class.yml
+  - rbac.yml
+  - deployment.yml

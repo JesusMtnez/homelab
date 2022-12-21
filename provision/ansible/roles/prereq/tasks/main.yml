@@ -7,3 +7,5 @@
   when: "ansible_architecture == 'armv7l'"
 - name: Setup docker
   ansible.builtin.import_tasks: docker.yml
+- name: Setup nfs
+  ansible.builtin.import_tasks: nfs-common.yml
