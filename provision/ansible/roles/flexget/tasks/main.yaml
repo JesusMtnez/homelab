@@ -21,7 +21,7 @@
 - name: Upgrade flexget & plugins
   ansible.builtin.pip:
     name:
-      - flexget==3.5.11
+      - flexget==3.5.13
       - transmission-rpc==3.4.0
     state: present
   notify: Restart flexget
