@@ -13,7 +13,7 @@ schedules:
     - sort-tv-shows
     - sort-movies
     interval:
-      hours: 12
+      hours: 6
 
 variables:
   downloads: '/volume1/homes/downloader/flexget-downloads'
