@@ -29,7 +29,7 @@ tasks:
     rss: https://showrss.info/user/112019.rss?magnets=true&namespaces=false&name=null&quality=null&re=null
     all_series: yes
     transmission:
-      host: localhost
+      host: transmission.home.es
       port: 9091
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
