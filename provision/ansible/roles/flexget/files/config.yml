@@ -17,6 +17,9 @@ schedules:
 
 variables:
   downloads: '/volume1/homes/downloader/flexget-downloads'
+  transmission:
+    host: transmission.home.es
+    port: 80
   secrets:
     transmission:
       username: '<username>'
@@ -29,8 +32,8 @@ tasks:
     rss: https://showrss.info/user/112019.rss?magnets=true&namespaces=false&name=null&quality=null&re=null
     all_series: yes
     transmission:
-      host: transmission.home.es
-      port: 9091
+      host: '{? transmission.host ?}'
+      port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
       path: '{? downloads ?}/tv-shows'
@@ -53,8 +56,8 @@ tasks:
           all_entries: no
     accept_all: yes
     transmission:
-      host: localhost
-      port: 9091
+      host: '{? transmission.host ?}'
+      port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
       path: '{? downloads ?}/seed'
@@ -122,16 +125,16 @@ tasks:
       - seen
       - seen_info_hash
     from_transmission:
-      host: localhost
-      port: 9091
+      host: '{? transmission.host ?}'
+      port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
     no_entries_ok: yes
     if:
       - transmission_progress == 100 and transmission_downloadDir != "{? downloads ?}/seed": accept
     transmission:
-      host: localhost
-      port: 9091
+      host: '{? transmission.host ?}'
+      port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
       action: remove
