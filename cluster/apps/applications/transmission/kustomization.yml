@@ -1,0 +1,12 @@
+---
+commonLabels:
+  app: transmission
+secretGenerator:
+  - name: transmission-secrets
+    envs:
+      - "env.secrets"
+resources:
+  - pvc.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml

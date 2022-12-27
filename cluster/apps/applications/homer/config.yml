@@ -38,6 +38,12 @@ services:
         tag: "money"
         url: "http://fidi.home.es/"
 
+      - name: "Transmission"
+        subtitle: "A Fast, Easy and Free Bittorrent Client"
+        logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/transmission.png"
+        tag: "downloads"
+        url: "http://transmission.home.es/"
+
   - name: "Tools"
     icon: "fas fa-network-wired"
     items:

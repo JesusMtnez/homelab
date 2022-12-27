@@ -1,0 +1,42 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: transmission-downloads-claim
+  annotations:
+    nfs.io/storage-path: "transmission/downloads"
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: transmission-config-claim
+  annotations:
+    nfs.io/storage-path: "transmission/config"
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: transmission-watchdir-claim
+  annotations:
+    nfs.io/storage-path: "transmission/watchdir"
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

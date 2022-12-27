@@ -1,0 +1,62 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: transmission
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 0
+  template:
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: transmission
+          image: linuxserver/transmission:version-3.00-r6
+          imagePullPolicy: IfNotPresent
+          ports:
+              - name: http
+                containerPort: 9091
+                protocol: TCP
+              - name: torrent-tcp
+                containerPort: 51413
+                protocol: TCP
+              - name: torrent-udp
+                containerPort: 51413
+                protocol: UDP
+          env:
+            - name: PUID
+              value: "1029"
+            - name: PGID
+              value: "100"
+            - name: TZ
+              value: "Europe/Madrid"
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: transmission-secrets
+                  key: user
+            - name: PASS
+              valueFrom:
+                secretKeyRef:
+                  name: transmission-secrets
+                  key: password
+          volumeMounts:
+            - mountPath: /downloads
+              name: downloads
+            - mountPath: /config
+              name: config
+            - mountPath: /watch
+              name: watchdir
+
+      volumes:
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: transmission-downloads-claim
+        - name: config
+          persistentVolumeClaim:
+            claimName: transmission-config-claim
+        - name: watchdir
+          persistentVolumeClaim:
+            claimName: transmission-watchdir-claim
