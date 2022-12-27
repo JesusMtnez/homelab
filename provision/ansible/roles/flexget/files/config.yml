@@ -1,30 +1,29 @@
 ---
-
 schedules:
   - tasks: clean-transmission
     interval:
       minutes: 14
   - tasks:
-    - download-showrss
-    - download-arch
+      - download-showrss
+      - download-arch
     interval:
       hours: 4
   - tasks:
-    - sort-tv-shows
-    - sort-movies
+      - sort-tv-shows
+      - sort-movies
     interval:
       hours: 6
 
 variables:
-  downloads: '/volume1/fluffy/applications/transmission/downloads'
+  downloads: "/volume1/fluffy/applications/transmission/downloads"
   transmission:
     host: transmission.home.es
     port: 80
-    downloads: '/downloads'
+    downloads: "/downloads"
   secrets:
     transmission:
-      username: '<username>'
-      password: '<password>'
+      username: "<username>"
+      password: "<password>"
 
 tasks:
   # Download TV Shows from ShowRSS
@@ -33,17 +32,17 @@ tasks:
     rss: https://showrss.info/user/112019.rss?magnets=true&namespaces=false&name=null&quality=null&re=null
     all_series: yes
     transmission:
-      host: '{? transmission.host ?}'
-      port: '{? transmission.port ?}'
-      username: '{? secrets.transmission.username ?}'
-      password: '{? secrets.transmission.password ?}'
-      path: '{? transmission.downloads ?}/tv-shows'
+      host: "{? transmission.host ?}"
+      port: "{? transmission.port ?}"
+      username: "{? secrets.transmission.username ?}"
+      password: "{? secrets.transmission.password ?}"
+      path: "{? transmission.downloads ?}/tv-shows"
       add_paused: no
       skip_files:
-        - '*.nfo'
-        - '*.sfv'
-        - '*[sS]ample*'
-        - '*.txt'
+        - "*.nfo"
+        - "*.sfv"
+        - "*[sS]ample*"
+        - "*.txt"
 
   # Download latest ArchLinux ISO
   download-arch:
@@ -57,18 +56,18 @@ tasks:
           all_entries: no
     accept_all: yes
     transmission:
-      host: '{? transmission.host ?}'
-      port: '{? transmission.port ?}'
-      username: '{? secrets.transmission.username ?}'
-      password: '{? secrets.transmission.password ?}'
-      path: '{? transmission.downloads ?}/seed'
+      host: "{? transmission.host ?}"
+      port: "{? transmission.port ?}"
+      username: "{? secrets.transmission.username ?}"
+      password: "{? secrets.transmission.password ?}"
+      path: "{? transmission.downloads ?}/seed"
       add_paused: no
 
   # Sort TV Shows
   sort-tv-shows:
     priority: 1
     filesystem:
-      path: '{? downloads ?}/tv-shows'
+      path: "{? downloads ?}/tv-shows"
       regexp: '.*\.(mkv|mp4)$'
       recursive: yes
     seen: local
@@ -77,7 +76,7 @@ tasks:
     no_entries_ok: yes
     series:
       - "Marvel's Agents of S.H.I.E.L.D.":
-          name_regexp:  ^marvel(')?s.agents.of.(s.h.i.e.l.d.?|shield)
+          name_regexp: ^marvel(')?s.agents.of.(s.h.i.e.l.d.?|shield)
     metainfo_series: yes
     thetvdb_lookup: yes
     require_field:
@@ -98,7 +97,7 @@ tasks:
   sort-movies:
     priority: 2
     filesystem:
-      path: '{? downloads ?}/movies'
+      path: "{? downloads ?}/movies"
       regexp: '.*\.(mkv|mp4)$'
       recursive: yes
     seen: local
@@ -109,7 +108,7 @@ tasks:
     accept_all: yes
     no_entries_ok: yes
     move:
-      to: '/volume1/movies/{{ tmdb_year }}/'
+      to: "/volume1/movies/{{ tmdb_year }}/"
       along:
         extensions:
           - sub
@@ -126,18 +125,18 @@ tasks:
       - seen
       - seen_info_hash
     from_transmission:
-      host: '{? transmission.host ?}'
-      port: '{? transmission.port ?}'
-      username: '{? secrets.transmission.username ?}'
-      password: '{? secrets.transmission.password ?}'
+      host: "{? transmission.host ?}"
+      port: "{? transmission.port ?}"
+      username: "{? secrets.transmission.username ?}"
+      password: "{? secrets.transmission.password ?}"
     no_entries_ok: yes
     if:
       - transmission_progress == 100 and transmission_downloadDir != "{? transmission.downloads ?}/seed": accept
     transmission:
-      host: '{? transmission.host ?}'
-      port: '{? transmission.port ?}'
-      username: '{? secrets.transmission.username ?}'
-      password: '{? secrets.transmission.password ?}'
+      host: "{? transmission.host ?}"
+      port: "{? transmission.port ?}"
+      username: "{? secrets.transmission.username ?}"
+      password: "{? secrets.transmission.password ?}"
       action: remove
 
 web_server:

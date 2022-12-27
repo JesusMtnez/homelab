@@ -16,15 +16,15 @@ spec:
           image: linuxserver/transmission:version-3.00-r6
           imagePullPolicy: IfNotPresent
           ports:
-              - name: http
-                containerPort: 9091
-                protocol: TCP
-              - name: torrent-tcp
-                containerPort: 51413
-                protocol: TCP
-              - name: torrent-udp
-                containerPort: 51413
-                protocol: UDP
+            - name: http
+              containerPort: 9091
+              protocol: TCP
+            - name: torrent-tcp
+              containerPort: 51413
+              protocol: TCP
+            - name: torrent-udp
+              containerPort: 51413
+              protocol: UDP
           env:
             - name: PUID
               value: "1029"
