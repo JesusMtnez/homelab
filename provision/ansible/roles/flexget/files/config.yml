@@ -8,7 +8,7 @@ schedules:
     - download-showrss
     - download-arch
     interval:
-      days: 1
+      hours: 4
   - tasks:
     - sort-tv-shows
     - sort-movies
@@ -16,10 +16,11 @@ schedules:
       hours: 6
 
 variables:
-  downloads: '/volume1/homes/downloader/flexget-downloads'
+  downloads: '/volume1/fluffy/applications/transmission/downloads'
   transmission:
     host: transmission.home.es
     port: 80
+    downloads: '/downloads'
   secrets:
     transmission:
       username: '<username>'
@@ -36,7 +37,7 @@ tasks:
       port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
-      path: '{? downloads ?}/tv-shows'
+      path: '{? transmission.downloads ?}/tv-shows'
       add_paused: no
       skip_files:
         - '*.nfo'
@@ -60,7 +61,7 @@ tasks:
       port: '{? transmission.port ?}'
       username: '{? secrets.transmission.username ?}'
       password: '{? secrets.transmission.password ?}'
-      path: '{? downloads ?}/seed'
+      path: '{? transmission.downloads ?}/seed'
       add_paused: no
 
   # Sort TV Shows
@@ -131,7 +132,7 @@ tasks:
       password: '{? secrets.transmission.password ?}'
     no_entries_ok: yes
     if:
-      - transmission_progress == 100 and transmission_downloadDir != "{? downloads ?}/seed": accept
+      - transmission_progress == 100 and transmission_downloadDir != "{? transmission.downloads ?}/seed": accept
     transmission:
       host: '{? transmission.host ?}'
       port: '{? transmission.port ?}'
