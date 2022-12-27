@@ -1,4 +1,0 @@
----
-transmission_config_dir: /volume1/homes/downloader/.config/transmission-daemon
-transmission_system_user: downloader
-transmission_system_user_group: users

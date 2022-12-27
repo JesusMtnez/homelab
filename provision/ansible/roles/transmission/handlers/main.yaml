@@ -1,5 +1,0 @@
----
-- name: Restart transmission
-  ansible.builtin.service:
-    name: transmission
-    state: restarted
