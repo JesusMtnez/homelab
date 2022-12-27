@@ -2,7 +2,7 @@
 schedules:
   - tasks: clean-transmission
     interval:
-      minutes: 14
+      days: 2
   - tasks:
       - download-showrss
       - download-arch
@@ -12,7 +12,7 @@ schedules:
       - sort-tv-shows
       - sort-movies
     interval:
-      hours: 6
+      hours: 2
 
 variables:
   downloads: "/volume1/fluffy/applications/transmission/downloads"
