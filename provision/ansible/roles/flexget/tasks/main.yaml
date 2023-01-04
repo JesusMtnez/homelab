@@ -18,11 +18,14 @@
       - setuptools
     state: latest
 
+- name: Copy requirements files
+  ansible.builtin.copy:
+    src: requirements.txt
+    dest: "/tmp/requirements.txt"
+
 - name: Upgrade flexget & plugins
   ansible.builtin.pip:
-    name:
-      - flexget==3.5.15
-      - transmission-rpc==3.4.0
+    requirements: "/tmp/requirements.txt"
     state: present
   notify: Restart flexget
 
