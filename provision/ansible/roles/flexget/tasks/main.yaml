@@ -22,6 +22,7 @@
   ansible.builtin.copy:
     src: requirements.txt
     dest: "/tmp/requirements.txt"
+    mode: u=r--,g=r--,o=r--
 
 - name: Upgrade flexget & plugins
   ansible.builtin.pip:
