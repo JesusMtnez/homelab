@@ -1,0 +1,8 @@
+[Unit]
+Description=containerd cleanup timer
+
+[Timer]
+OnUnitInactiveSec=12h
+
+[Install]
+WantedBy=timers.target

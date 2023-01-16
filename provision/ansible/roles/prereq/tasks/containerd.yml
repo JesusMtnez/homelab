@@ -1,5 +1,5 @@
 ---
-- name: Check if docker is installed
+- name: Check if containerd (docker) is installed
   ansible.builtin.lineinfile:
     path: /boot/dietpi/.installed
     line: "aSOFTWARE_INSTALL_STATE[162]=2"
@@ -7,29 +7,28 @@
   check_mode: true
   register: docker
 
-- name: Install docker # noqa no-handler
+- name: Install containerd (docker) # noqa no-handler
   ansible.builtin.command:
     cmd: /boot/dietpit/dietpi-software install 162
   when: docker is changed
 
-- name: Create docker-clean up periodic task
+- name: Create containerd-clean up periodic task
   ansible.builtin.copy:
     src: "files/{{ item }}"
     dest: "/etc/systemd/system/{{ item }}"
     mode: 0644
     remote_src: false
   loop:
-    - docker-cleanup.service
-    - docker-cleanup.timer
+    - containerd-cleanup.service
+    - containerd-cleanup.timer
   register: systemd
 
-- name: Enable docker-cleanup timer # noqa no-handler
+- name: Enable timer # noqa no-handler
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: restarted
     enabled: true
     daemon_reload: true
   loop:
-    - docker-cleanup.service
-    - docker-cleanup.timer
-  when: systemd.changed
+    - containerd-cleanup.service
+    - containerd-cleanup.timer

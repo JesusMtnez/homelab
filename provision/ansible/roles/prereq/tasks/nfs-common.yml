@@ -2,5 +2,4 @@
 - name: Install nfs-common
   ansible.builtin.apt:
     name: nfs-common
-    update_cache: true
     state: present

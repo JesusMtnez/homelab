@@ -5,7 +5,7 @@
 - name: Setup iptables
   ansible.builtin.import_tasks: iptables.yml
   when: "ansible_architecture == 'armv7l'"
-- name: Setup docker
-  ansible.builtin.import_tasks: docker.yml
+- name: Setup containerd
+  ansible.builtin.import_tasks: containerd.yml
 - name: Setup nfs
   ansible.builtin.import_tasks: nfs-common.yml
