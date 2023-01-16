@@ -18,7 +18,7 @@
       - --k3s-version
       - "{{ k3s_version }}"
       - --k3s-extra-args
-      - "{{ k3s_extra_args }}"
+      - "{{ master_extra_args }}"
       - --local-path
       - "{{ repo_abs_path.stdout }}/provision/kubeconfig"
   with_items: "{{ groups['masters'] }}"
