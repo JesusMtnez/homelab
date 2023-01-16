@@ -1,3 +1,4 @@
 ---
+k3s_version: "v1.24.9+k3s2"
 master_extra_args: "--kubelet-arg=runtime-request-timeout=10m0s --no-deploy traefik --docker"
 node_extra_args: "--kubelet-arg=runtime-request-timeout=10m0s --docker"
