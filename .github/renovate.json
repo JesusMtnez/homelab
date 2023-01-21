@@ -24,6 +24,14 @@
     {
       "enabled": true,
       "matchDatasources": ["docker"],
+      "matchPackageNames": [ "linuxserver/transmission" ],
+      "versioning": "regex:^(?<major>\\d+)\\.0?(?<minor>\\d+).+-ls(?<patch>\\d+)$",
+      "commitMessageTopic": "container image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    },
+    {
+      "enabled": true,
+      "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "commitMessageTopic": "container image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
