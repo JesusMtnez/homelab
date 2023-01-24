@@ -1,2 +1,2 @@
-flexget==3.5.19
+flexget==3.5.20
 transmission-rpc==3.4.0
