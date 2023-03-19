@@ -3,4 +3,5 @@ namespace: internal
 
 resources:
   - namespace.yml
+  - cert-manager
   - nfs-subdir-external-provisioner
