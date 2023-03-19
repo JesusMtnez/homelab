@@ -25,11 +25,6 @@ tasks:
     cmds:
       - "kubectl get all --namespace=monitoring"
 
-  core:apply:
-    desc: Apply all in cluster/core
-    cmds:
-      - "kubectl apply --kustomize cluster/core/"
-
   apps:apply:
     desc: Apply all in cluster/apps
     cmds:

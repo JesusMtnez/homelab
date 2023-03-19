@@ -1,6 +1,0 @@
----
-resources:
-  - applications.yml
-  - internal.yml
-  - monitoring.yml
-  - networking.yml

@@ -2,4 +2,5 @@
 namespace: internal
 
 resources:
+  - namespace.yml
   - nfs-subdir-external-provisioner
