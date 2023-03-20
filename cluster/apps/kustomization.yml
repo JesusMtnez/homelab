@@ -1,6 +1,7 @@
 ---
 resources:
   - internal
+  - cert-manager.yml
   - applications
   - monitoring
   - networking
