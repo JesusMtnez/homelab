@@ -1,0 +1,7 @@
+commonLabels:
+  app.name: external-dns
+
+resources:
+  - service-account.yml
+  - cluster-role.yml
+  - deployment.yml
