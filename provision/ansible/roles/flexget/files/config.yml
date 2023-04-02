@@ -1,8 +1,8 @@
 ---
 schedules:
-  - tasks: clean-transmission
-    interval:
-      days: 2
+  # - tasks: clean-transmission
+  #   interval:
+  #     days: 2
   - tasks:
       - download-showrss
       - download-arch
