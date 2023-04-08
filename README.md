@@ -14,6 +14,14 @@ My homelab k3s cluster configuration
 
 - [`provision/ansible`](./provision/ansible/) handles nodes configuration and k3s installation
 
+## Hardware
+
+| Device           | Count | RAM    | Disks               | OS     |
+| ---------------- | ----- | ------ | ------------------- | ------ |
+| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  |
+| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi |
+| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi |
+
 ## Playbooks
 
 ### `main` playbook
