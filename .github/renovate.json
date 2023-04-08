@@ -1,15 +1,11 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":automergeBranch",
-    "github>JesusMtnez/homelab//.github/renovate/labels.json5"
-  ],
+  "enabled": true,
+
   "semanticCommits": "enabled",
+
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
+
   "rebaseWhen": "conflicted",
 
   "kubernetes": {
@@ -29,9 +25,10 @@
         "fireflyiii/data-importer"
       ],
       "versioning": "regex:^version-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
-      "commitMessageTopic": "container image {{depName}}",
+      "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
+
     {
       "enabled": true,
       "matchDatasources": [
@@ -41,7 +38,7 @@
         "linuxserver/transmission"
       ],
       "versioning": "regex:^(?<major>\\d+)\\.0?(?<minor>\\d+).+-ls(?<patch>\\d+)$",
-      "commitMessageTopic": "container image {{depName}}",
+      "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
     {
@@ -54,8 +51,76 @@
         "minor",
         "patch"
       ],
-      "commitMessageTopic": "container image {{depName}}",
+      "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    },
+
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "labels": [
+        "renovate/container"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "addLabels": [
+        "renovate/helm"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "galaxy",
+        "galaxy-collection"
+      ],
+      "addLabels": [
+        "renovate/ansible"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "github-releases",
+        "github-tags"
+      ],
+      "addLabels": [
+        "renovate/github-release"
+      ]
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "addLabels": [
+        "renovate/github-action"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "labels": [
+        "dep/major"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "labels": [
+        "dep/minor"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "labels": [
+        "dep/patch"
+      ],
+      "automerge": true
     }
   ]
 }
