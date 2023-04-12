@@ -14,7 +14,7 @@ My homelab k3s cluster configuration
 
 - [`provision/ansible`](./provision/ansible/) handles nodes configuration and k3s installation
 
-## Hardware
+## 💻 Hardware
 
 | Device           | Count | RAM    | Disks               | OS     |
 | ---------------- | ----- | ------ | ------------------- | ------ |
@@ -22,20 +22,39 @@ My homelab k3s cluster configuration
 | Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi |
 | Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi |
 
+## 📂 Repository structure
+
+The Git repository contains the following directories:
+
+```sh
+📁 cluster       # Kubernetes cluster defined as code
+├─📁 bootstrap   # not used yet
+└─📁 apps        # Apps deployed into the cluster grouped by namespace
+📁 provision     # Infrastructure setup defined as code
+└─📁 ansible     # Ansible playbooks / roles to setup all the infrastructure
+```
+
 ## Playbooks
 
-### `main` playbook
+### `entware-install` playbook
 
-Install or upgrade k3s cluster deployment:
+Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
 
-- Apply pre-requirements.
-- Download `k3sup` to deploy k3s.
-- Install `k3s` in master node.
-- Install and join `k3s` cluster in the rest of the nodes.
 
-### `update` playbook
+  [entware]: https://github.com/Entware/Entware/
+  [entware-dsm]: https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS
 
-Update system using `apt` and `dietpi` upgrader.
+### `k3s-install` playbook
+
+Install or upgrade k3s cluster deployment using k3sup.
+
+### `nas` playbook
+
+Install and upgrade flexget setup in Synology DSM, along with minor requirements.
+
+### `upgrade` playbook
+
+Upgrad DietPi systems using `apt` and `dietpi` upgrader.
 
 ## Credits to:
 
@@ -44,3 +63,4 @@ Update system using `apt` and `dietpi` upgrader.
 - [OmegaSquad82/ansible-k3sup](https://github.com/OmegaSquad82/ansible-k3sup)
 - [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
 - [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s/)
+- [onedr0p/flux-cluster-template](https://github.com/onedr0p/flux-cluster-template)
