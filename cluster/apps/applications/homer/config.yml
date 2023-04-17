@@ -35,6 +35,12 @@ services:
         tag: "money"
         url: "http://firefly.home.es/"
 
+      - name: "Traggo"
+        subtitle: "A tag-based time tracking tool"
+        logo: "https://raw.githubusercontent.com/traggo/logo/master/logo_small.png"
+        tag: "organization"
+        url: "http://traggo.home.es/"
+
       - name: "FiDI"
         subtitle: "This tool will help you import data into Firefly III"
         logo: "https://raw.githubusercontent.com/NX211/homer-icons/master/png/firefly.png"
