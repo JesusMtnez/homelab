@@ -8,4 +8,5 @@ resources:
   - firefly-iii-data-importer
   - firefly-ro
   - homer
+  - traggo
   - transmission

@@ -1,0 +1,13 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traggo
+spec:
+  ports:
+    - name: http
+      port: 3030
+      protocol: TCP
+      targetPort: 3030
+  selector:
+    app: traggo

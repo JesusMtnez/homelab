@@ -1,0 +1,17 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: traggo
+spec:
+  rules:
+    - host: traggo.home.es
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: traggo
+                port:
+                  name: http
