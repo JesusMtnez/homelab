@@ -13,13 +13,15 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: traggo
-          image: traggo/server:0.3.0
+          image: traggo/server:arm-7-0.3.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 3030
               protocol: TCP
           env:
+            - name: TRAGGO_PORT
+              value: "3030"
             - name: TRAGGO_LOG_LEVEL
               value: info
             - name: TRAGGO_DATABASE_DIALECT
