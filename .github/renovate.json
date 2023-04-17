@@ -28,7 +28,18 @@
       "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
-
+    {
+      "enabled": true,
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "traggo/server"
+      ],
+      "versioning": "regex:^arm-7-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
+      "commitMessageTopic": "image {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
+    },
     {
       "enabled": true,
       "matchDatasources": [
