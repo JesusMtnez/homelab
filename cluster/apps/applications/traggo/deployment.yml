@@ -1,0 +1,46 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: traggo
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 0
+  template:
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: traggo
+          image: traggo/server:0.3.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3030
+              protocol: TCP
+          env:
+            - name: TRAGGO_LOG_LEVEL
+              value: info
+            - name: TRAGGO_DATABASE_DIALECT
+              value: sqlite3
+            - name: TRAGGO_DATABASE_CONNECTION
+              value: data/traggo.db
+            - name: TRAGGO_DEFAULT_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: traggo-secrets
+                  key: user
+            - name: TRAGGO_DEFAULT_USER_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: traggo-secrets
+                  key: password
+          volumeMounts:
+            - mountPath: /data
+              name: traggo-data
+
+      volumes:
+        - name: traggo-data
+          persistentVolumeClaim:
+            claimName: traggo-data-claim

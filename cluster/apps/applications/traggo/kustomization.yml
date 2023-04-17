@@ -1,0 +1,12 @@
+---
+commonLabels:
+  app: traggo
+secretGenerator:
+  - name: traggo-secrets
+    envs:
+      - "env.secrets"
+resources:
+  - pvc.yml
+  - deployment.yml
+  - service.yml
+  - ingress.yml
