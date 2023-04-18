@@ -3,6 +3,9 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: transmission
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: transmission.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
 spec:
   rules:
     - host: transmission.home.es

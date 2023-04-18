@@ -5,6 +5,8 @@ metadata:
   name: kubernetes-dashboard
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
+    external-dns.alpha.kubernetes.io/hostname: k3s.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
 spec:
   rules:
     - host: k3s.home.es

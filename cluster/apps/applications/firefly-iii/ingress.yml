@@ -3,6 +3,9 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: firefly-iii
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: firefly.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
 spec:
   rules:
     - host: firefly.home.es
