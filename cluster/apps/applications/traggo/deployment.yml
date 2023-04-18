@@ -39,7 +39,7 @@ spec:
                   name: traggo-secrets
                   key: password
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /opt/traggo/data
               name: traggo-data
 
       volumes:
