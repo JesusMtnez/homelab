@@ -1,7 +1,7 @@
 ---
 resources:
   - internal
-  - cert-manager.yml
+  - https://github.com/cert-manager/cert-manager/releases/download/v1.11.1/cert-manager.yaml
   - applications
   - monitoring
   - networking
