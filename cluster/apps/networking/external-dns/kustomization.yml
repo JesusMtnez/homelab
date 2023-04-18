@@ -2,6 +2,11 @@
 commonLabels:
   app.name: external-dns
 
+secretGenerator:
+  - name: external-dns-secrets
+    envs:
+      - "env.secrets"
+
 resources:
   - service-account.yml
   - cluster-role.yml
