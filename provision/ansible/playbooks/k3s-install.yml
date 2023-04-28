@@ -6,7 +6,7 @@
   roles:
     - prereq
 
-- name: Install k3s using k3sup`
+- name: Install k3s using k3sup
   hosts: localhost
   gather_facts: true
   roles:

@@ -12,5 +12,7 @@
       - "{{ hostvars[item].ansible_user }}"
       - --k3s-version
       - "{{ k3s_version }}"
+      - --k3s-extra-args
+      - "{{ common_extra_args }}"
   with_items: "{{ groups['workers'] }}"
   when: master_created is succeeded
