@@ -13,7 +13,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: babybuddy
-          image: linuxserver/babybuddy:1.15.1
+          image: linuxserver/babybuddy:1.16.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
