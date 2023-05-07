@@ -13,7 +13,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: transmission
-          image: linuxserver/transmission:4.0.3-r0-ls171
+          image: linuxserver/transmission:4.0.3-r1-ls172
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
