@@ -1,19 +1,25 @@
 {
   "enabled": true,
-
   "semanticCommits": "enabled",
-
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
-
   "rebaseWhen": "conflicted",
-
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yml$"
     ]
   },
-
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "cluster/.+/kustomization.yml$"
+      ],
+      "matchStrings": [
+        "https://github.com/(?<depName>.*/.*?)/releases/download/(?<currentValue>.*?)/"
+      ],
+      "datasourceTemplate": "github-releases"
+    }
+  ],
   "packageRules": [
     {
       "enabled": true,
@@ -65,7 +71,6 @@
       "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
-
     {
       "matchDatasources": [
         "docker"
