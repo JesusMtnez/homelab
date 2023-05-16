@@ -71,12 +71,6 @@ services:
         tag: "money"
         url: "http://firefly.home.es/"
 
-      - name: "Traggo"
-        subtitle: "A tag-based time tracking tool"
-        logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/traggo.png"
-        tag: "organization"
-        url: "http://traggo.home.es/"
-
       - name: "FiDI"
         subtitle: "This tool will help you import data into Firefly III"
         logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefly.png"

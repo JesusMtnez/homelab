@@ -27,6 +27,7 @@ My homelab k3s cluster configuration
 The Git repository contains the following directories:
 
 ```sh
+📁 archive       # unused / old applications
 📁 cluster       # Kubernetes cluster defined as code
 ├─📁 bootstrap   # not used yet
 └─📁 apps        # Apps deployed into the cluster grouped by namespace

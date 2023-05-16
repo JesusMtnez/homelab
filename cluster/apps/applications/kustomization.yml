@@ -3,10 +3,8 @@ namespace: applications
 
 resources:
   - namespace.yml
-  # - babybuddy
   - firefly-iii
   - firefly-iii-data-importer
   - firefly-ro
   - homer
-  - traggo
   - transmission
