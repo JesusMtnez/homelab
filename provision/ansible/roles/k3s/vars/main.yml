@@ -1,4 +1,4 @@
 ---
 k3s_version: "v1.27.1+k3s1"
 common_extra_args: "--prefer-bundled-bin"
-master_extra_args: "--disable traefik"
+master_extra_args: "--disable traefik --disable servicelb"
