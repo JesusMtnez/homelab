@@ -6,11 +6,5 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.3.1-192.168.3.50
+  - 192.168.1.100-192.168.1.149
   autoAssign: true
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: default
-  namespace: metallb-system

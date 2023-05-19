@@ -1,8 +1,7 @@
 ---
 resources:
   - internal
-  - github.com/metallb/metallb/config/native?ref=v0.13.9
-  - metallb-config.yml
+  - metallb-system
   - https://github.com/cert-manager/cert-manager/releases/download/v1.11.2/cert-manager.yaml
   - applications
   - monitoring
