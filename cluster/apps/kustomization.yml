@@ -1,6 +1,7 @@
 ---
 resources:
   - internal
+  - metallb-system
   - https://github.com/cert-manager/cert-manager/releases/download/v1.11.2/cert-manager.yaml
   - applications
   - monitoring
