@@ -21,8 +21,6 @@ spec:
           env:
             - name: ADMINER_DESIGN
               value: hydra
-            - name: ADMINER_DEFAULT_SERVER
-              value: "192.168.1.20"
           livenessProbe:
             failureThreshold: 3
             httpGet:
