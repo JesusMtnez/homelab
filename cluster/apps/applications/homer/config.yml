@@ -102,6 +102,12 @@ services:
         tag: "dashboard"
         url: "http://k3s.home.es"
 
+      - name: "Adminer"
+        subtitle: "Adminer is a full-featured database management tool written in PHP"
+        logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adminer.png"
+        tag: "storage"
+        url: "http://adminer.home.es"
+
   - name: "Storage"
     icon: "fas fa-server"
     items:
