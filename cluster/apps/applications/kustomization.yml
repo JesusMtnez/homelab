@@ -3,6 +3,7 @@ namespace: applications
 
 resources:
   - namespace.yml
+  - adminer
   - firefly-iii
   - firefly-iii-data-importer
   - firefly-ro

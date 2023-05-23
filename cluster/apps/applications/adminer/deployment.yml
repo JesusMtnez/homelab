@@ -1,0 +1,33 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: adminer
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  template:
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: adminer
+          image: adminer:4.8.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: ADMINER_DESIGN
+              value: hydra
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 300
+            successThreshold: 1
+            timeoutSeconds: 5
