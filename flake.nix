@@ -3,26 +3,32 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/release-23.05;
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShell = pkgs.mkShell {
-          name = "homelab-shell";
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    systems = [
+      "x86_64-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
+    ];
 
-          buildInputs = with pkgs; [
-            ansible
-            ansible-lint
-            go-task
-            kubectl
-            nodePackages.prettier
-            yamllint
-          ];
-        };
-      }
-    );
+    perSystem = { pkgs, ... }: {
+      devShells.default = pkgs.mkShell {
+        name = "homelab-shell";
+
+        packages = with pkgs; [
+          ansible
+          ansible-lint
+          go-task
+          kubectl
+          nodePackages.prettier
+          yamllint
+        ];
+      };
+    };
+  };
 }
