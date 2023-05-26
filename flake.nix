@@ -28,6 +28,10 @@
           nodePackages.prettier
           yamllint
         ];
+
+        shellHook = ''
+          export KUBECONFIG=provision/kubeconfig
+        '';
       };
     };
   };
