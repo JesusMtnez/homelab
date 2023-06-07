@@ -5,3 +5,14 @@
   become: true
   roles:
     - dietpi_upgrade
+
+- name: Upgrade synology nas
+  hosts: grimmauld
+  gather_facts: true
+  become: true
+  environment:
+    PATH: "/opt/bin:{{ ansible_env.PATH }}"
+  vars:
+    ansible_python_interpreter: "/opt/bin/python3"
+  roles:
+    - entware_python
