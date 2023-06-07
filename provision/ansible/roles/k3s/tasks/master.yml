@@ -4,7 +4,7 @@
   run_once: true
   ansible.builtin.command:
     cmd: "git rev-parse --show-toplevel"
-  register: repo_abs_path
+  register: k3s_repo_abs_path
 
 - name: "Create master server with k3s {{ k3s_version }}" # noqa no-changed-when
   ansible.builtin.command:
@@ -20,6 +20,6 @@
       - --k3s-extra-args
       - "{{ master_extra_args }} {{ common_extra_args }}"
       - --local-path
-      - "{{ repo_abs_path.stdout }}/provision/kubeconfig"
+      - "{{ k3s_repo_abs_path.stdout }}/provision/kubeconfig"
   with_items: "{{ groups['masters'] }}"
-  register: master_created
+  register: k3s_master_created

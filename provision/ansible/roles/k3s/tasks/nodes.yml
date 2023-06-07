@@ -1,5 +1,5 @@
 ---
-- name: "Create agent and join {{ groups.masters.0 }} with k3s {{ k3s_version }}" # noqa no-handler
+- name: "Create agent and join {{ groups.masters.0 }} with k3s {{ k3s_version }}" # noqa no-handler no-changed-when name[template]
   ansible.builtin.command:
     argv:
       - /tmp/k3sup
@@ -15,4 +15,4 @@
       - --k3s-extra-args
       - "{{ common_extra_args }}"
   with_items: "{{ groups['workers'] }}"
-  when: master_created is succeeded
+  when: k3s_master_created is succeeded

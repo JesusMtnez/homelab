@@ -23,7 +23,7 @@
   ansible.builtin.get_url:
     url: "http://bin.entware.net/{{ entware_arch }}-k{{ entware_version }}/installer/generic.sh"
     dest: "/tmp/generic.sh"
-    mode: 0775
+    mode: "0775"
 
 - name: Install entware
   when: not entware_release.stat.exists

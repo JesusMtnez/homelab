@@ -10,7 +10,7 @@ tasks:
     desc: Lint ansible
     dir: provision/ansible
     cmds:
-      - ansible-lint -c '{{.PROJECT_DIR}}/.github/linters/.ansible-lint'
+      - ansible-lint --offline
     ignore_error: true
 
   yaml:

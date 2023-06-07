@@ -1,5 +1,0 @@
-offline: true
-
-skip_list:
-  - name[template]
-  - yaml
