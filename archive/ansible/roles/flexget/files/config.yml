@@ -22,8 +22,8 @@ variables:
     downloads: "/downloads"
   secrets:
     transmission:
-      username: "<username>"
-      password: "<password>"
+      username: "user"
+      password: "pass"
 
 tasks:
   # Download TV Shows from ShowRSS
