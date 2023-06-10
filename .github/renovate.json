@@ -4,6 +4,7 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
+  "ignorePaths": [ "**/archive/**" ],
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yml$"
