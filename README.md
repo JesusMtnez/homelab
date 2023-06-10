@@ -12,15 +12,13 @@
 
 My homelab k3s cluster configuration
 
-- [`provision/ansible`](./provision/ansible/) handles nodes configuration and k3s installation
-
 ## 💻 Hardware
 
-| Device           | Count | RAM    | Disks               | OS     |
-| ---------------- | ----- | ------ | ------------------- | ------ |
-| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  |
-| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi |
-| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi |
+| Device           | Count | RAM    | Disks               | OS     | Arch  |
+| ---------------- | ----- | ------ | ------------------- | ------ | ----- |
+| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 |
+| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi | armv6 |
+| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi | armv7 |
 
 ## 📂 Repository structure
 
@@ -41,7 +39,6 @@ The Git repository contains the following directories:
 
 Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
 
-
   [entware]: https://github.com/Entware/Entware/
   [entware-dsm]: https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS
 
@@ -49,13 +46,9 @@ Install and configure [Entware][entware] for Synology DSM following [this instru
 
 Install or upgrade k3s cluster deployment using k3sup.
 
-### `nas` playbook
-
-Install and upgrade flexget setup in Synology DSM, along with minor requirements.
-
 ### `upgrade` playbook
 
-Upgrad DietPi systems using `apt` and `dietpi` upgrader.
+Upgrade DietPi systems using `apt` and `dietpi` upgrader. Upgrade DSM python installatio in Synology.
 
 ## Credits to:
 
