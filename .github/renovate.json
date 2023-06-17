@@ -5,6 +5,7 @@
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
   "ignorePaths": [ "**/archive/**" ],
+  "ignoreDeps": [ "linuxserver/transmission" ],
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yml$"
