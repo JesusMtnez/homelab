@@ -26,4 +26,4 @@
     update_cache: true
     autoremove: true
     autoclean: true
-  when: dietpi_upgrade_updates.stat.exists
+  when: dietpi_upgrade_apt_updates.stat.exists
