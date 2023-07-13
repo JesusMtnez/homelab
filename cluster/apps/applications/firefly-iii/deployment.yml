@@ -88,9 +88,6 @@ spec:
                 secretKeyRef:
                   name: firefly-secrets
                   key: static-cron-token
-          volumeMounts:
-            - mountPath: "/var/www/html/storage/upload"
-              name: firefly-iii-upload
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -101,7 +98,3 @@ spec:
             periodSeconds: 300
             successThreshold: 1
             timeoutSeconds: 10
-      volumes:
-        - name: firefly-iii-upload
-          persistentVolumeClaim:
-            claimName: firefly-iii-upload-claim
