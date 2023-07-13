@@ -6,7 +6,7 @@ secretGenerator:
     envs:
       - "env.secrets"
 resources:
-  - pvc.yml
+  - persistentVolume.yml
   - deployment.yml
   - service.yml
   - ingress.yml

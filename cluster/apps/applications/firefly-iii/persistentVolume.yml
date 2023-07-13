@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: firefly-iii-upload-storage
+  labels:
+    directory: firefly
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow
+  nfs:
+    server: 192.168.1.20
+    path: /volume1/fluffy/applications/firefly_uploads
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firefly-iii-upload-claim
+spec:
+  storageClassName: slow
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      directory: firefly
