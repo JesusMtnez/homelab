@@ -6,7 +6,7 @@
     cmd: "git rev-parse --show-toplevel"
   register: k3s_repo_abs_path
 
-- name: "Create master server with k3s {{ k3s_version }}" # noqa no-changed-when
+- name: "Create server with k3s {{ k3s_version }}" # noqa no-changed-when
   ansible.builtin.command:
     argv:
       - /tmp/k3sup
@@ -18,8 +18,8 @@
       - --k3s-version
       - "{{ k3s_version }}"
       - --k3s-extra-args
-      - "{{ master_extra_args }} {{ common_extra_args }}"
+      - "{{ servers_extra_args }} {{ common_extra_args }}"
       - --local-path
       - "{{ k3s_repo_abs_path.stdout }}/provision/kubeconfig"
-  with_items: "{{ groups['masters'] }}"
-  register: k3s_master_created
+  with_items: "{{ groups['servers'] }}"
+  register: k3s_server_created

@@ -1,5 +1,5 @@
 ---
-- name: Master tasks
-  ansible.builtin.import_tasks: master.yml
-- name: Nodes tasks
-  ansible.builtin.import_tasks: nodes.yml
+- name: Server tasks
+  ansible.builtin.import_tasks: servers.yml
+- name: Agent tasks
+  ansible.builtin.import_tasks: agents.yml

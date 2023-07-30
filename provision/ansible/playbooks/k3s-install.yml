@@ -1,6 +1,6 @@
 ---
 - name: Install k3s pre-requirements
-  hosts: masters:workers
+  hosts: servers:agents
   gather_facts: true
   become: true
   roles:
