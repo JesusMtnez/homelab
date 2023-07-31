@@ -1,5 +1,6 @@
 ---
 name: update-flake
+
 on:
   workflow_dispatch: # allows manual triggering
   schedule:
@@ -22,3 +23,8 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@v19
         with:
           token: ${{ secrets.NIX_FLAKES_UPDATE_TOKEN }}
+          pr-title: "chore(flakes): update flake.lock"
+          git-author-name: "JesusMtnez[bot]"
+          git-author-email: "github-actions[bot]@users.noreply.github.com"
+          git-committer-name: "JesusMtnez[bot]"
+          git-committer-email: "github-actions[bot]@users.noreply.github.com"
