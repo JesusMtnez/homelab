@@ -20,11 +20,21 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
 
       - name: update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v19
         with:
           token: ${{ secrets.NIX_FLAKES_UPDATE_TOKEN }}
-          pr-title: "chore(flakes): update flake.lock"
+          pr-title: "chore(flake): update flake.lock"
+          commit-msg: "chore(flake): update flake.lock"
+          branch: "update_flake"
           git-author-name: "JesusMtnez[bot]"
           git-author-email: "github-actions[bot]@users.noreply.github.com"
           git-committer-name: "JesusMtnez[bot]"
           git-committer-email: "github-actions[bot]@users.noreply.github.com"
+
+      - name: set automerge for the pr
+        if: ${{ steps.update.outputs.pull-request-operation }} == 'created'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ steps.update.outputs.pull-request-number }}
+        run: gh pr merge --auto --squash --delete-branch $PR
