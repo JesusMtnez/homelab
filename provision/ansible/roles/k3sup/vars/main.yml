@@ -1,3 +1,3 @@
 ---
 # renovat: datasource=github-releases depName=alexellis/k3sup
-k3sup_version: 0.12.14
+k3sup_version: "0.12.14"
