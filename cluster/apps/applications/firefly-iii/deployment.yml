@@ -20,6 +20,8 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
+            - name: FIREFLY_III_LAYOUT
+              value: v2
             - name: APP_ENV
               value: production
             - name: APP_KEY
