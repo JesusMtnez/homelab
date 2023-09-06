@@ -2,15 +2,13 @@
 version: "3"
 
 vars:
-  PROJECT_DIR:
-    sh: "git rev-parse --show-toplevel"
   ANSIBLE_DIR: "{{.ROOT_DIR}/provision/ansible"
-
-env:
-  KUBECONFIG: "{{.PROJECT_DIR}}/provision/kubeconfig"
 
 includes:
   ansible: .taskfiles/ansible.yml
   k8s: .taskfiles/kubernetes.yml
   linter: .taskfiles/linter.yml
   format: .taskfiles/formatter.yml
+
+tasks:
+  default: task -l
