@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}/provision/ansible"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/provision/ansible"
 
 includes:
   ansible: .taskfiles/ansible.yml
