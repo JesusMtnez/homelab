@@ -12,3 +12,8 @@ includes:
 
 tasks:
   default: task -l
+
+  deps:
+    desc: Install required packages
+    cmds:
+      - ansible-galaxy install --role-file "{{.ROOT_DIR}}/provision/ansible/requirements.yml" --force
