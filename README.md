@@ -1,24 +1,30 @@
-[![MIT LICENSE][LICENSE-badge]][LICENSE-link]
-[![Built with nix][NIX-badge]][NIX-link]
+<div align="center">
 
+<img src="https://camo.githubusercontent.com/5b298bf6b0596795602bd771c5bddbb963e83e0f/68747470733a2f2f692e696d6775722e636f6d2f7031527a586a512e706e67" align="center" width="144px" height="144px"/>
+
+# Homelab
+
+_my home infrastructure and Kubernetes cluster_
+
+[![Built with nix][NIX-badge]][NIX-link]
+![K3S Version][k3s-badge]
+[![MIT LICENSE][LICENSE-badge]][LICENSE-link]
+
+</div>
 
   [LICENSE-badge]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square
   [LICENSE-link]: /LICENSE
   [NIX-badge]: https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5&style=flat-square
   [NIX-link]: https://builtwithnix.org
-
-
-# HomeLab Cluster
-
-My homelab k3s cluster configuration
+  [k3s-badge]: https://img.shields.io/badge/k3s-v1.27-blue?style=flat-square&logo=k3s&logoColor=yellow
 
 ## 💻 Hardware
 
-| Device           | Count | RAM    | Disks               | OS     | Arch  |
-| ---------------- | ----- | ------ | ------------------- | ------ | ----- |
-| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 |
-| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi | armv6 |
-| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi | armv7 |
+| Device           | Count | RAM    | Disks               | OS     | Arch  | Purpose      |
+| ---------------- | ----- | ------ | ------------------- | ------ | ----- | ------------ |
+| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 | NFS + NAS    |
+| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi | armv6 | DNS (PiHole) |
+| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi | armv7 | Kubernetes   |
 
 ## 📂 Repository structure
 
@@ -57,4 +63,5 @@ Upgrade DietPi systems using `apt` and `dietpi` upgrader. Upgrade DSM python ins
 - [OmegaSquad82/ansible-k3sup](https://github.com/OmegaSquad82/ansible-k3sup)
 - [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
 - [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s/)
+- [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
 - [onedr0p/flux-cluster-template](https://github.com/onedr0p/flux-cluster-template)
