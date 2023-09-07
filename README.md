@@ -32,12 +32,11 @@ _my home infrastructure and Kubernetes cluster_
 The Git repository contains the following directories:
 
 ```sh
+📁 ansible     # Ansible playbooks / roles to setup all the infrastructure
 📁 archive       # unused / old applications
 📁 kubernetes    # Kubernetes cluster defined as code
-├─📁 bootstrap   # not used yet
-└─📁 apps        # Apps deployed into the cluster grouped by namespace
-📁 provision     # Infrastructure setup defined as code
-└─📁 ansible     # Ansible playbooks / roles to setup all the infrastructure
+├─📁 apps        # Apps deployed into the cluster grouped by namespace
+└─📁 bootstrap   # not used yet
 ```
 
 ## Playbooks

@@ -2,7 +2,7 @@
 version: "3"
 
 env:
-  KUBECONFIG: "{{.ROOT_DIR}}/provision/kubeconfig"
+  KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
 
 tasks:
   list:

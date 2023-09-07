@@ -8,7 +8,7 @@ tasks:
 
   ansible:
     desc: Lint ansible
-    dir: provision/ansible
+    dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - ansible-lint --offline
     ignore_error: true

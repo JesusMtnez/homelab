@@ -31,7 +31,7 @@
         ];
 
         shellHook = ''
-          export KUBECONFIG=provision/kubeconfig
+          export KUBECONFIG=kubeconfig
         '';
       };
     };

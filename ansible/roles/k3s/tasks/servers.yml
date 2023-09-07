@@ -20,6 +20,6 @@
       - --k3s-extra-args
       - "{{ servers_extra_args }} {{ common_extra_args }}"
       - --local-path
-      - "{{ k3s_repo_abs_path.stdout }}/provision/kubeconfig"
+      - "{{ k3s_repo_abs_path.stdout }}/kubeconfig"
   with_items: "{{ groups['servers'] }}"
   register: k3s_server_created

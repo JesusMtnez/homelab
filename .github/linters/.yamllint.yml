@@ -3,7 +3,7 @@ ignore: |
   .private/
   .vscode/
   .direnv/
-  provision/ansible/roles/flexget/files/config.yml
+  archive/
 extends: default
 rules:
   truthy:

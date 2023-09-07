@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/provision/ansible"
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
 
 includes:
   ansible: .taskfiles/ansible.yml
@@ -16,4 +16,4 @@ tasks:
   deps:
     desc: Install required packages
     cmds:
-      - ansible-galaxy install --role-file "{{.ROOT_DIR}}/provision/ansible/requirements.yml" --force
+      - ansible-galaxy install --role-file "{{.ANSIBLE_DIR}}/requirements.yml" --force
