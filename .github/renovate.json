@@ -8,7 +8,7 @@
   "ignoreDeps": [ "linuxserver/transmission" ],
   "kubernetes": {
     "fileMatch": [
-      "cluster/.+\\.yml$"
+      "kubernetes/.+\\.yml$"
     ]
   },
   "regexManagers": [

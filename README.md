@@ -33,7 +33,7 @@ The Git repository contains the following directories:
 
 ```sh
 📁 archive       # unused / old applications
-📁 cluster       # Kubernetes cluster defined as code
+📁 kubernetes    # Kubernetes cluster defined as code
 ├─📁 bootstrap   # not used yet
 └─📁 apps        # Apps deployed into the cluster grouped by namespace
 📁 provision     # Infrastructure setup defined as code

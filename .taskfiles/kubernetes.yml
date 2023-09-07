@@ -26,6 +26,6 @@ tasks:
       - "kubectl get all --namespace=monitoring"
 
   apps:apply:
-    desc: Apply all in cluster/apps
+    desc: Apply all in kubernetes/apps
     cmds:
-      - "kubectl apply --kustomize cluster/apps/"
+      - "kubectl apply --kustomize kubernetes/apps/"
