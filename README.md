@@ -16,7 +16,7 @@ _my home infrastructure and Kubernetes cluster_
   [LICENSE-link]: /LICENSE
   [NIX-badge]: https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5&style=flat-square
   [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/k3s-v1.27-blue?style=flat-square&logo=k3s&logoColor=yellow
+  [K3S-badge]: https://img.shields.io/badge/k3s-v1.28-blue?style=flat-square&logo=k3s&logoColor=yellow
   [K3S-link]: https://k3s.io
 
 ## 💻 Hardware
