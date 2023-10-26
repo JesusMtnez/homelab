@@ -1,0 +1,29 @@
+site_name: Homelab
+site_url: https://jesusmtnez.es/homelab
+repo_url: https://github.com/JesusMtnez/homelab\
+
+site_description: my home infrastructure and Kubernetes cluster
+site_author: https://jesusmtnez.es/homelab
+copyright: Copyright (c) 2021-2023 JesusMtnez
+
+nav:
+  - Overview: index.md
+
+theme:
+  name: material
+
+  palette:
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+markdown_extensions:
+  - attr_list
