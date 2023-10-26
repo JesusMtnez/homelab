@@ -7,3 +7,6 @@ kubeconfig
 
 # project
 **/env.secrets
+
+# mkdocs
+site/

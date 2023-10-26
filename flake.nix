@@ -3,10 +3,12 @@
 
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/release-23.05;
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -34,6 +36,24 @@
           export KUBECONFIG=kubeconfig
         '';
       };
+
+      packages.site = pkgs.stdenv.mkDerivation {
+        name = "homelab-site";
+        src = ./.;
+        nativeBuildInputs = [ (pkgs.python311.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
+        buildPhase = "mkdocs build --site-dir $out";
+        dontInstal = true;
+      };
+
+      devShells.site = pkgs.mkShell {
+        name = "docs-shell";
+
+        packages = [
+          (pkgs.python311.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
+        ];
+      };
     };
+
+
   };
 }
