@@ -2,9 +2,6 @@
 - name: Setup cgroup options
   ansible.builtin.import_tasks: cgroup.yml
   when: "ansible_architecture == 'armv7l'"
-# - name: Setup iptables
-#   ansible.builtin.import_tasks: iptables.yml
-#   when: "ansible_architecture == 'armv7l'"
 - name: Setup containerd
   ansible.builtin.import_tasks: containerd.yml
 - name: Setup nfs
