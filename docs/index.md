@@ -8,16 +8,16 @@ _my home infrastructure and Kubernetes cluster_
 
 [![Built with nix][NIX-badge]][NIX-link]
 [![K3S Version][K3S-badge]][K3S-link]
-[![MIT LICENSE][LICENSE-badge]][LICENSE-link]
+[![Renovate][renovate-badge]][renovate-link]
 {: align='center'}
 
 
-  [LICENSE-badge]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square
-  [LICENSE-link]: /LICENSE
-  [NIX-badge]: https://img.shields.io/badge/Built_With-Nix-5277C3.svg?logo=nixos&labelColor=73C3D5&style=flat-square
+  [NIX-badge]: https://img.shields.io/badge/nix-blue.svg?logo=nixos&labelColor=73C3D5&style=for-the-badge
   [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/k3s-v1.28-blue?style=flat-square&logo=k3s&logoColor=yellow
+  [K3S-badge]: https://img.shields.io/badge/v1.28-blue?&logo=k3s&logoColor=white&style=for-the-badge
   [K3S-link]: https://k3s.io
+  [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovatebot&style=for-the-badge
+  [renovate-link]: https://developer.mend.io/[platform]/JesusMtnez/homelab
 
 ## 💻 Hardware
 
