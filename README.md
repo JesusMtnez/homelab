@@ -18,6 +18,7 @@ _my home infrastructure and Kubernetes cluster_
   [K3S-link]: https://k3s.io
   [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovatebot&style=for-the-badge
   [renovate-link]: https://developer.mend.io/[platform]/JesusMtnez/homelab
+  [homelab]: https://jesusmtnez.es/homelab
 
 
 **Find all the information at**: https://jesusmtnez.es/homelab
