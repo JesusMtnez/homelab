@@ -25,7 +25,7 @@ _my home infrastructure and Kubernetes cluster_
 | ---------------- | ----- | ------ | ------------------- | ------ | ----- | ------------ |
 | Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 | NFS + NAS    |
 | Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi | armv6 | DNS (PiHole) |
-| Raspberry Pi 3   | 5     | 1 GB   | SD 32GB             | DietPi | armv7 | Kubernetes   |
+| Raspberry Pi 3B  | 5     | 1 GB   | SD 32GB             | DietPi | armv7 | Kubernetes   |
 
 ## 📂 Repository structure
 
