@@ -1,5 +1,5 @@
 ---
 # renovate: datasource=github-releases depName=k3s-io/k3s
 k3s_version: "v1.29.0+k3s1"
-common_extra_args: "--prefer-bundled-bin"
-servers_extra_args: "--write-kubeconfig-mode=0644  --disable-helm-controller --disable=traefik --disable=servicelb"
+k3s_common_extra_args: "--prefer-bundled-bin"
+k3s_servers_extra_args: "--write-kubeconfig-mode=0644  --disable-helm-controller --disable=traefik --disable=servicelb"

@@ -18,7 +18,7 @@
       - --k3s-version
       - "{{ k3s_version }}"
       - --k3s-extra-args
-      - "{{ servers_extra_args }} {{ common_extra_args }}"
+      - "{{ k3s_servers_extra_args }} {{ k3s_common_extra_args }}"
       - --local-path
       - "{{ k3s_repo_abs_path.stdout }}/kubeconfig"
   with_items: "{{ groups['servers'] }}"

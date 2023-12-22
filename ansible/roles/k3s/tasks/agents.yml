@@ -13,6 +13,6 @@
       - --k3s-version
       - "{{ k3s_version }}"
       - --k3s-extra-args
-      - "{{ common_extra_args }}"
+      - "{{ k3s_common_extra_args }}"
   with_items: "{{ groups['agents'] }}"
   when: k3s_server_created is succeeded
