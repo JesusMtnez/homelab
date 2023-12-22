@@ -14,7 +14,7 @@ _my home infrastructure and Kubernetes cluster_
 
   [NIX-badge]: https://img.shields.io/badge/nix-blue.svg?logo=nixos&labelColor=73C3D5&style=for-the-badge
   [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/v1.28-blue?&logo=k3s&logoColor=white&style=for-the-badge
+  [K3S-badge]: https://img.shields.io/badge/v1.29-blue?&logo=k3s&logoColor=white&style=for-the-badge
   [K3S-link]: https://k3s.io
   [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovatebot&style=for-the-badge
   [renovate-link]: https://developer.mend.io/[platform]/JesusMtnez/homelab
