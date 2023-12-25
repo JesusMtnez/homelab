@@ -9,9 +9,12 @@ copyright: Copyright (c) 2021-2023 JesusMtnez
 
 nav:
   - Overview: index.md
+  - Local environment: local-env.md
 
 theme:
   name: material
+  features:
+    - content.code.copy
 
   palette:
     - scheme: slate
@@ -28,3 +31,12 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
