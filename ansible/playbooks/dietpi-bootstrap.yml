@@ -1,0 +1,11 @@
+---
+- name: DietPi bootstrap config generator
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: dietpi.txt file
+      ansible.builtin.template:
+        src: templates/dietpi.txt.j2
+        dest: "../dietpi_{{ item }}.txt"
+      loop: "{{ groups['kubernetes'] }}"
