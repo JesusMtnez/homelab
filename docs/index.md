@@ -41,6 +41,12 @@ The Git repository contains the following directories:
 
 ## Playbooks
 
+### `dietpi-bootstrap` playbook
+
+Bootstrap `dietpi.txt` file to run an [_unattended base installion_][dietpi-unattended].
+
+  [dietpi-unattended]: https://dietpi.com/docs/usage/#how-to-do-an-automatic-base-installation-at-first-boot-dietpi-automation
+
 ### `entware-install` playbook
 
 Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
