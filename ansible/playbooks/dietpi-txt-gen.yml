@@ -3,8 +3,10 @@
   hosts: localhost
   gather_facts: false
 
+  # TODO: Install python (id: 130)
+
   tasks:
-    - name: dietpi.txt file
+    - name: Generate dietpi.txt file
       ansible.builtin.template:
         src: templates/dietpi.txt.j2
         dest: "../dietpi_{{ item }}.txt"

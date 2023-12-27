@@ -15,11 +15,11 @@ tasks:
     cmds:
       - "ansible all --list-hosts"
 
-  playbook:dietpi-bootstrap:
+  playbook:dietpi-txt-gen:
     desc: Generate DiePi first boot configuration files
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-bootstrap.yml"
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-txt-gen.yml"
 
   playbook:k3s-install:
     desc: Install Kubernetes on the nodes
