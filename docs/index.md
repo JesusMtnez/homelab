@@ -41,7 +41,7 @@ The Git repository contains the following directories:
 
 ## Playbooks
 
-### `dietpi-bootstrap` playbook
+### `dietpi-txt-gen` playbook
 
 Bootstrap `dietpi.txt` file to run an [_unattended base installion_][dietpi-unattended].
 

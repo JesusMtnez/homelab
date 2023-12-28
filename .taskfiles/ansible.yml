@@ -19,6 +19,7 @@ tasks:
     desc: Generate DiePi first boot configuration files
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
+      - "rm dietpi_*.txt"
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-txt-gen.yml"
 
   playbook:bootstrap:
