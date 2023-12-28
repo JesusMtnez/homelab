@@ -7,6 +7,7 @@ kubeconfig
 
 # project
 **/env.secrets
+ansible/dietpi_*.txt
 
 # mkdocs
 site/
