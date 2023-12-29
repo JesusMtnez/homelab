@@ -19,13 +19,14 @@ tasks:
     desc: Generate DiePi first boot configuration files
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "rm dietpi_*.txt"
+      - "rm -f dietpi_*.txt"
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-txt-gen.yml"
 
-  playbook:bootstrap:
+  playbook:k3s-bootstrap:
+    desc: Configure k3s cluster nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/bootstrap.yml"
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-bootstrap.yml"
 
   playbook:k3s-install:
     desc: Install Kubernetes on the nodes

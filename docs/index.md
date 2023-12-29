@@ -47,6 +47,15 @@ Bootstrap `dietpi.txt` file to run an [_unattended base installion_][dietpi-unat
 
   [dietpi-unattended]: https://dietpi.com/docs/usage/#how-to-do-an-automatic-base-installation-at-first-boot-dietpi-automation
 
+### `k3s-bootstrap` playbook
+
+Configure and setup k3s cluster nodes.
+
+- Secure OpenSSH server
+- Enable cgroup support
+- Enable containerd (docker) with cleanup job
+- Enable nfs support
+
 ### `entware-install` playbook
 
 Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].

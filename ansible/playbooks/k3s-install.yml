@@ -1,11 +1,4 @@
 ---
-- name: Install k3s pre-requirements
-  hosts: servers:agents
-  gather_facts: true
-  become: true
-  roles:
-    - prereq
-
 - name: Install k3s using k3sup
   hosts: localhost
   gather_facts: true

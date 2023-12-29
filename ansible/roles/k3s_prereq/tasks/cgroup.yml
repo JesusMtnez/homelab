@@ -1,0 +1,19 @@
+---
+- name: Check if cgropup support is already active
+  ansible.builtin.lineinfile:
+    path: /boot/cmdline.txt
+    regexp: '^.*(\ systemd\.unified_cgroup_hierarchy=0 cgroup_memory=1 cgroup_enable=memory)$'
+    state: absent
+  check_mode: true
+  changed_when: false
+  register: check_cgroups
+  notify: Reboot
+
+- name: Activating cgroup support
+  ansible.builtin.lineinfile:
+    path: /boot/cmdline.txt
+    regexp: '^.*(?!\ systemd\.unified_cgroup_hierarchy=0 cgroup_memory=1 cgroup_enable=memory)$'
+    line: '\1 systemd.unified_cgroup_hierarchy=0 cgroup_memory=1 cgroup_enable=memory'
+    backrefs: true
+  shen: check.found == 0
+  notify: Reboot
