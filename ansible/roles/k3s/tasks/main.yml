@@ -1,5 +1,0 @@
----
-- name: Server tasks
-  ansible.builtin.import_tasks: servers.yml
-- name: Agent tasks
-  ansible.builtin.import_tasks: agents.yml

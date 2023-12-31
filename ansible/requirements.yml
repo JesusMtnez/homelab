@@ -4,3 +4,7 @@ collections:
     version: 1.5.4
   - name: community.general
     version: 8.1.0
+roles:
+  - name: xanmanning.k3s
+    src: https://github.com/PyratLabs/ansible-role-k3s
+    version: v3.4.3

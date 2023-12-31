@@ -65,7 +65,9 @@ Install and configure [Entware][entware] for Synology DSM following [this instru
 
 ### `k3s-install` playbook
 
-Install or upgrade k3s cluster deployment using k3sup.
+Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
+
+  [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
 
 ### `upgrade` playbook
 

@@ -1,0 +1,9 @@
+---
+k3s_control_node: true
+k3s_server:
+  prefer-bundled-bin: true
+  disable:
+    - traefik
+    - servicelb
+  disable_helm_controller: true
+  write-kubeconfig-mode: '0644'
