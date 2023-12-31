@@ -34,6 +34,12 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-install.yml"
 
+  playbook:k3s-nuke:
+    desc: Remove Kubernetes from nodes
+    dir: "{{.ANSIBLE_DIR}}"
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
+
   playbook:entware-install:
     desc: Install entware
     dir: "{{.ANSIBLE_DIR}}"
