@@ -1,0 +1,13 @@
+---
+kubernetes:
+  vars:
+    ansible_connection: ssh
+    ansible_user: dietpi
+    ssh_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgjymAtk9hHNEGyWBgpWtMf5Jn2JfRcnZJFR4Fix040 jesus@albus"
+  children:
+    servers:
+      hosts:
+        fluffyvm:
+          ansible_host: localhost
+          ansible_ssh_port: 2222
