@@ -8,6 +8,7 @@ kubeconfig
 # project
 **/env.secrets
 ansible/dietpi_*.txt
+ansible/roles/xanmanning.k3s
 
 # mkdocs
 site/

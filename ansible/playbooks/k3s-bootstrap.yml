@@ -3,6 +3,51 @@
   hosts: kubernetes
   gather_facts: true
   become: true
+
   roles:
     - openssh # secure openssh
-    - k3s_prereq
+
+  tasks:
+    - name: Setup cgroup
+      block:
+        - name: Check if cgropup support is already active
+          ansible.builtin.lineinfile:
+            dest: /boot/cmdline.txt
+            regexp: '^.*(\ systemd\.unified_cgroup_hierarchy=0 cgroup_enable=memory)$'
+            state: absent
+          check_mode: true
+          changed_when: false
+          register: check_cgroups
+
+        - name: Activating cgroup support
+          ansible.builtin.lineinfile:
+            dest: /boot/cmdline.txt
+            regexp: '^(.*)$'
+            line: '\1 systemd.unified_cgroup_hierarchy=0 cgroup_enable=memory'
+            backrefs: true
+          when: check_cgroups.found == 0
+
+    - name: Setup containerd
+      block:
+        - name: Check if containerd (docker) is installed
+          ansible.builtin.lineinfile:
+            path: /boot/dietpi/.installed
+            line: "aSOFTWARE_INSTALL_STATE[162]=2"
+            state: present
+          check_mode: true
+          register: prereq_docker
+
+        - name: Install containerd (docker) # noqa no-handler no-changed-when
+          ansible.builtin.command:
+            cmd: /boot/dietpi/dietpi-software install 162
+          when: prereq_docker is changed
+
+    - name: Setup nfs
+      ansible.builtin.apt:
+        name: nfs-common
+        state: present
+
+  handlers:
+    - name: Reboot
+      ansible.builtin.reboot:
+        reboot_command: '/bin/systemctl reboot'
