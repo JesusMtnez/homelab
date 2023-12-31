@@ -28,9 +28,10 @@
         - name: Enable timer # noqa no-handler
           ansible.builtin.systemd:
             name: "{{ item }}"
-            state: restarted
             enabled: true
             daemon_reload: true
+            masked: false
+            state: started
           loop:
             - containerd-cleanup.timer
 

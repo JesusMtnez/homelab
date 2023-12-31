@@ -1,0 +1,36 @@
+---
+- name: Cluster Nuke
+  hosts: kubernetes
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+
+  tasks:
+    - name: Stop Kubernetes # noqa: ignore-errors
+      ignore_errors: true
+      block:
+        - name: Stop Kubernetes
+          ansible.builtin.include_role:
+            name: xanmanning.k3s
+            public: true
+          vars:
+            k3s_state: stopped
+
+    - name: Uninstall Kubernetes
+      ansible.builtin.include_role:
+        name: xanmanning.k3s
+        public: true
+      vars:
+        k3s_state: uninstalled
+
+    - name: Disable Containerd Clean
+      block:
+        - name: Mask the systemd timer
+          ansible.builtin.systemd:
+            name: containerd-cleanup.timer
+            masked: true
+
+    - name: Reboot
+      ansible.builtin.reboot:
+        msg: Rebooting nodes
+        reboot_command: '/bin/systemctl reboot'

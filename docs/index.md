@@ -69,6 +69,12 @@ Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s]
 
   [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
 
+### `k3s-nuke` playbook
+
+Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
+
+  [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
+
 ### `upgrade` playbook
 
 Upgrade DietPi systems using `apt` and `dietpi` upgrader. Upgrade DSM python installatio in Synology.
