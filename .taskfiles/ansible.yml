@@ -44,7 +44,7 @@ tasks:
     desc: Upgrade all the k8s nodes operating system
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook -K {{.ANSIBLE_PLAYBOOK_DIR}}/upgrade.yml"
+      - "ansible-playbook -K {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-upgrade.yml"
 
   adhoc:ping:
     desc: Ping all the hosts
