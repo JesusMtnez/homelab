@@ -53,7 +53,7 @@ Configure and setup k3s cluster nodes.
 
 - Secure OpenSSH server
 - Enable cgroup support
-- Enable containerd (docker) with cleanup job
+- Enable containerd (docker)
 - Enable nfs support
 
 ### `entware-install` playbook
@@ -75,9 +75,11 @@ Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
 
   [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
 
-### `upgrade` playbook
+### `dietpi-upgrade` playbook
 
-Upgrade DietPi systems using `apt` and `dietpi` upgrader. Upgrade DSM python installatio in Synology.
+Upgrade DietPi systems using `apt` and `dietpi` upgrader.
+
+> (Disabled) Upgrade DSM python installatio in Synology.
 
 ## Credits
 
