@@ -43,7 +43,7 @@
           when: prereq_docker is changed
 
     - name: Setup nfs
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name: nfs-common
         state: present
 
