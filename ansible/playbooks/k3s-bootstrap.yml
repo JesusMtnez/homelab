@@ -27,21 +27,8 @@
             backrefs: true
           when: check_cgroups.found == 0
 
-    - name: Setup containerd
-      block:
-        - name: Check if containerd (docker) is installed
-          ansible.builtin.lineinfile:
-            path: /boot/dietpi/.installed
-            line: "aSOFTWARE_INSTALL_STATE[162]=2"
-            state: absent
-          check_mode: true
-          changed_when: false
-          register: prereq_docker
-
-        - name: Install containerd (docker) # noqa no-handler no-changed-when
-          ansible.builtin.command:
-            cmd: /boot/dietpi/dietpi-software install 162
-          when: not prereq_docker.found
+    - name: Setup docker
+      ansible.builtin.include_tasks: ./tasks/docker.yml
 
     - name: Setup nfs
       ansible.builtin.package:
