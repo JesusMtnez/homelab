@@ -33,14 +33,15 @@
           ansible.builtin.lineinfile:
             path: /boot/dietpi/.installed
             line: "aSOFTWARE_INSTALL_STATE[162]=2"
-            state: present
+            state: absent
           check_mode: true
+          changed_when: false
           register: prereq_docker
 
         - name: Install containerd (docker) # noqa no-handler no-changed-when
           ansible.builtin.command:
             cmd: /boot/dietpi/dietpi-software install 162
-          when: prereq_docker is changed
+          when: not prereq_docker.found
 
     - name: Setup nfs
       ansible.builtin.package:
