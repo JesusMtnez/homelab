@@ -98,7 +98,7 @@
       ansible.builtin.lineinfile:
         dest: "../dietpi_{{ item }}.txt"
         regexp: '^AUTO_SETUP_NET_HOSTNAME'
-        line: 'AUTO_SETUP_NET_HOSTNAME= {{ item }}'
+        line: 'AUTO_SETUP_NET_HOSTNAME={{ item }}'
       loop: "{{ groups['kubernetes'] }}"
 
     - name: Enable static ip
