@@ -1,0 +1,12 @@
+---
+when:
+  branch: main
+  event: [push, pull_request]
+
+steps:
+  build:
+    image: nixos/nix:2.19.2
+    commands:
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - nix develop -c task linter:ansible
+      - nix develop -c task linter:yaml

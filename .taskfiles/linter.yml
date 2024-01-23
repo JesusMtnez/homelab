@@ -16,4 +16,4 @@ tasks:
   yaml:
     desc: Lint YAML
     cmds:
-      - yamllint -c '.github/linters/.yamllint.yml' .
+      - yamllint -c '.woodpecker/linters/.yamllint.yml' .

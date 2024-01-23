@@ -10,8 +10,8 @@ tasks:
     cmds:
       - >-
         prettier
-        --ignore-path '.github/linters/.prettierignore'
-        --config '.github/linters/.prettierrc.yml'
+        --ignore-path '.woodpecker/linters/.prettierignore'
+        --config '.woodpecker/linters/.prettierrc.yml'
         --list-different
         --ignore-unknown
         --parser=yaml
