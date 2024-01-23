@@ -5,7 +5,7 @@ repo_url: https://codeberg.org/JesusMtnez/homelab
 
 site_description: my home infrastructure and Kubernetes cluster
 site_author: https://jesusmtnez.es/homelab
-copyright: Copyright (c) 2021-2023 JesusMtnez
+copyright: Copyright (c) 2021-2024 JesusMtnez
 
 nav:
   - Overview: index.md
