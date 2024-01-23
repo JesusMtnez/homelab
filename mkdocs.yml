@@ -1,7 +1,7 @@
 ---
 site_name: Homelab
 site_url: https://jesusmtnez.es/homelab
-repo_url: https://github.com/JesusMtnez/homelab\
+repo_url: https://codeberg.org/JesusMtnez/homelab
 
 site_description: my home infrastructure and Kubernetes cluster
 site_author: https://jesusmtnez.es/homelab
