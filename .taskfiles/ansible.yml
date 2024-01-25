@@ -5,7 +5,6 @@ env:
   ANSIBLE_CONFIG: "{{.ANSIBLE_DIR}}/ansible.cfg"
 
 vars:
-  ANSIBLE_PLAYBOOK_DIR: "{{.ANSIBLE_DIR}}/playbooks"
   ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
 
 tasks:
@@ -20,37 +19,37 @@ tasks:
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "rm -f dietpi_*.txt"
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-txt-gen.yml"
+      - "ansible-playbook dietpi-txt-gen.yml"
 
   playbook:k3s-bootstrap:
     desc: Configure k3s cluster nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-bootstrap.yml"
+      - "ansible-playbook k3s-bootstrap.yml"
 
   playbook:k3s-install:
     desc: Install Kubernetes on the nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-install.yml"
+      - "ansible-playbook k3s-install.yml"
 
   playbook:k3s-nuke:
     desc: Remove Kubernetes from nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k3s-nuke.yml"
+      - "ansible-playbook k3s-nuke.yml"
 
   playbook:entware-install:
     desc: Install entware
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook -K {{.ANSIBLE_PLAYBOOK_DIR}}/entware-install.yml"
+      - "ansible-playbook -K entware-install.yml"
 
   playbook:upgrade:
     desc: Upgrade all the k8s nodes operating system
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/dietpi-upgrade.yml"
+      - "ansible-playbook dietpi-upgrade.yml"
 
   adhoc:ping:
     desc: Ping all the hosts

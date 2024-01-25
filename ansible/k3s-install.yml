@@ -13,28 +13,6 @@
       vars:
         k3s_state: installed
 
-    - name: Containerd clenup
-      block:
-        - name: Create containerd-clean up periodic task
-          ansible.builtin.copy:
-            src: "files/{{ item }}"
-            dest: "/etc/systemd/system/{{ item }}"
-            mode: "0644"
-            remote_src: false
-          loop:
-            - containerd-cleanup.service
-            - containerd-cleanup.timer
-
-        - name: Enable timer # noqa no-handler
-          ansible.builtin.systemd:
-            name: "{{ item }}"
-            enabled: true
-            daemon_reload: true
-            masked: false
-            state: started
-          loop:
-            - containerd-cleanup.timer
-
     - name: Kubeconfig
       vars:
         repository_base: "{{ lookup('ansible.builtin.pipe', 'git rev-parse --show-toplevel') }}"

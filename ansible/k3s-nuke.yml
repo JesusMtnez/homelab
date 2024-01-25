@@ -30,6 +30,13 @@
             name: containerd-cleanup.timer
             masked: true
 
+    - name: Disable Docker Clean
+      block:
+        - name: Mask the systemd timer
+          ansible.builtin.systemd:
+            name: docker-cleanup.timer
+            masked: true
+
     - name: Reboot
       ansible.builtin.reboot:
         msg: Rebooting nodes

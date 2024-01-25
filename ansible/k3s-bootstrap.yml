@@ -6,6 +6,7 @@
 
   roles:
     - openssh # secure openssh
+    - dietpi_docker # setup docker using dietpi-software
 
   tasks:
     - name: Setup cgroup
@@ -26,9 +27,6 @@
             line: '\1 systemd.unified_cgroup_hierarchy=0 cgroup_enable=memory'
             backrefs: true
           when: check_cgroups.found == 0
-
-    - name: Setup docker
-      ansible.builtin.include_tasks: ./tasks/docker.yml
 
     - name: Setup nfs
       ansible.builtin.package:
