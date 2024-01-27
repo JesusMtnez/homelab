@@ -24,13 +24,13 @@
         name = "homelab-shell";
 
         packages = with pkgs; [
-          ansible
-          ansible-lint
-          sshpass
+          ansible sshpass
           go-task
+
           kubectl
+
+          ansible-lint yamllint
           nodePackages.prettier
-          yamllint
         ];
 
         shellHook = ''

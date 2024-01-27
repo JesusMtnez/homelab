@@ -14,12 +14,12 @@ tasks:
     cmds:
       - "ansible all --list-hosts"
 
-  playbook:dietpi-txt-gen:
-    desc: Generate DiePi first boot configuration files
+  playbook:dietpi-gen:
+    desc: Generate DietPi images for all hosts
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "rm -f dietpi_*.txt"
-      - "ansible-playbook dietpi-txt-gen.yml"
+      - "rm -rf /tmp/dietpi"
+      - "ansible-playbook -K dietpi-gen.yml"
 
   playbook:k3s-bootstrap:
     desc: Configure k3s cluster nodes

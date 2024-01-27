@@ -44,11 +44,17 @@ The Git repository contains the following directories:
 
 ## Playbooks
 
-### `dietpi-txt-gen` playbook
+### `dietpi-gen` playbook
 
-Bootstrap `dietpi.txt` file to run an [_unattended base installion_][dietpi-unattended].
+Bootstrap a DietPi image with `dietpi.txt` file to run an [_unattended base installion_][dietpi-unattended].
 
   [dietpi-unattended]: https://dietpi.com/docs/usage/#how-to-do-an-automatic-base-installation-at-first-boot-dietpi-automation
+
+### `dietpi-upgrade` playbook
+
+Upgrade DietPi systems using `apt` and `dietpi` upgrader.
+
+> (Disabled) Upgrade DSM python installatio in Synology.
 
 ### `k3s-bootstrap` playbook
 
@@ -77,12 +83,6 @@ Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s]
 Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
 
   [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
-
-### `dietpi-upgrade` playbook
-
-Upgrade DietPi systems using `apt` and `dietpi` upgrader.
-
-> (Disabled) Upgrade DSM python installatio in Synology.
 
 ## Credits
 
