@@ -15,7 +15,25 @@
         cmd: /boot/dietpi/dietpi-software install 162
       when: not check_docker.found
 
+- name: Docker Compose install
+  when: dietpi_docker_compose
+  block:
+    - name: Docker Compose | check if it is installed
+      ansible.builtin.lineinfile:
+        path: /boot/dietpi/.installed
+        line: "aSOFTWARE_INSTALL_STATE[134]=2"
+        state: absent
+      check_mode: true
+      changed_when: false
+      register: check_docker_compose
+
+    - name: Docker Compose | install # noqa no-handler no-changed-when
+      ansible.builtin.command:
+        cmd: /boot/dietpi/dietpi-software install 134
+      when: not check_docker_compose.found
+
 - name: Containerd clenup
+  when: dietpi_docker_cleanup
   block:
     - name: Containerd | Create containerd-clean up periodic task
       ansible.builtin.copy:
@@ -38,6 +56,7 @@
         - containerd-cleanup.timer
 
 - name: Docker clenup
+  when: dietpi_docker_cleanup
   block:
     - name: Docker | Create docker-clean up periodic task
       ansible.builtin.copy:

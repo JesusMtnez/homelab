@@ -39,6 +39,12 @@ tasks:
     cmds:
       - "ansible-playbook k3s-nuke.yml"
 
+  playbook:pihole:
+    desc: Pi Hole setup
+    dir: "{{.ANSIBLE_DIR}}"
+    cmds:
+      - "ansible-playbook pihole.yml"
+
   playbook:entware-install:
     desc: Install entware
     dir: "{{.ANSIBLE_DIR}}"

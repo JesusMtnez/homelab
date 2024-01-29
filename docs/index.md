@@ -65,13 +65,6 @@ Configure and setup k3s cluster nodes.
 - Enable containerd (docker)
 - Enable nfs support
 
-### `entware-install` playbook
-
-Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
-
-  [entware]: https://github.com/Entware/Entware/
-  [entware-dsm]: https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS
-
 ### `k3s-install` playbook
 
 Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
@@ -83,6 +76,19 @@ Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s]
 Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
 
   [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
+
+### `pihole` playbook
+
+Setup everything to run [PiHole][pihole] using docker-compose.
+
+  [pihole]: https://pi-hole.net/
+
+### `entware-install` playbook
+
+Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
+
+  [entware]: https://github.com/Entware/Entware/
+  [entware-dsm]: https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS
 
 ## Credits
 

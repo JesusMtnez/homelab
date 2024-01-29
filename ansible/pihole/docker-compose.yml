@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  pihole:
+    container_name: pihole
+    restart: unless-stopped
+    image: pihole/pihole:2024.01.0
+    secrets:
+      - pihole_web_password
+    environment:
+      DHCP_ACTIVE: true
+      DHCP_END: 192.168.1.199
+      DHCP_IPv6: true
+      DHCP_LEASETIME: 12
+      DHCP_rapid_commit: false
+      DHCP_ROUTER: 192.168.1.1
+      DHCP_START: 192.168.1.150
+      DNS_BOGUS_PRIV: true
+      DNS_FQDN_REQUITED: true
+      DNSMASQ_LISTENING: all
+      DNSSEC: "true"
+      IPv6: true
+      PIHOLE_DNS_: "8.8.8.8;8.8.4.4;2001:4860:4860:0:0:0:0:8888;2001:4860:4860:0:0:0:0:8844;9.9.9.9;149.112.112.112;2620:fe::fe;2620:fe::9;1.1.1.1;1.0.0.1;2606:4700:4700::1111;2606:4700:4700::1001"
+      PIHOLE_DOMAIN: lan
+      PIHOLE_GID: 1000 # dietpi(1000)
+      PIHOLE_UID: 1000 # dietpi(1000)
+      QUERY_LOGGING: false
+      REV_SERVER: false
+      TEMPERATUREUNIT: c
+      TZ: "Europe/Madrid"
+      WEBPASSWORD_FILE: /run/secrets/pihole_web_password
+      WEBTHEME: default-darker
+      WEBUIBOXEDLAYOUT: boxed
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server
+    healthcheck:
+      test: ["CMD", "dig", "+norecurse", "+retry=0", "@127.0.0.1", "pi.hole"]
+
+secrets:
+  pihole_web_password:
+    file: .pihole_web_password

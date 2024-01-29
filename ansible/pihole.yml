@@ -1,0 +1,50 @@
+---
+- name: Pi-Hole Setup
+  hosts: pihole
+  gather_facts: false
+
+  roles:
+    - role: openssh # secure openssh
+    - role: dietpi_docker
+      become: true
+      vars:
+        dietpi_docker_compose: true
+        dietpi_docker_cleanup: false
+
+  tasks:
+    - name: Create pihole dir
+      ansible.builtin.file:
+        path: "/home/dietpi/pihole"
+        state: directory
+        mode: u=rwx,g=rw,o=r
+      register: pihole_dir
+
+    - name: Create data dirs
+      ansible.builtin.file:
+        path: "{{ pihole_dir.path }}/{{ item }}"
+        owner: dietpi
+        group: dietpi
+        state: directory
+        mode: u=rwx,g=rx,o=rx
+      loop:
+        - "etc-pihole"
+        - "etc-dnsmasq.d"
+
+    - name: Copy docker compose project
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/pihole/"
+        dest: "{{ pihole_dir.path }}"
+        mode: u=rw,g=r,o=r
+
+    - name: Pi-Hole image pull
+      become: true
+      community.docker.docker_compose_v2_pull:
+        project_src: "{{ pihole_dir.path }}"
+
+    - name: Pi-Hole start
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ pihole_dir.path }}"
+        state: present
+        recreate: always
+        pull: policy
