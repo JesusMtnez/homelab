@@ -96,3 +96,15 @@
     dest: "{{ file.dest }}"
     regexp: '^AUTO_SETUP_NET_STATIC_IP'
     line: 'AUTO_SETUP_NET_STATIC_IP={{ hostvars[item].ansible_host }}'
+
+- name: Set static gateway
+  ansible.builtin.lineinfile:
+    dest: "{{ file.dest }}"
+    regexp: '^AUTO_SETUP_NET_STATIC_GATEWAY'
+    line: 'AUTO_SETUP_NET_STATIC_GATEWAY=192.168.1.1'
+
+- name: Set static dns
+  ansible.builtin.lineinfile:
+    dest: "{{ file.dest }}"
+    regexp: '^AUTO_SETUP_NET_STATIC_DNS'
+    line: 'AUTO_SETUP_NET_STATIC_DNS=192.168.1.250'
