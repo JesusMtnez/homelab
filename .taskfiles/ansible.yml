@@ -25,7 +25,7 @@ tasks:
     desc: Configure k3s cluster nodes
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
-      - "ansible-playbook k3s-bootstrap.yml"
+      - "ansible-playbook --ask-pass k3s-bootstrap.yml"
 
   playbook:k3s-install:
     desc: Install Kubernetes on the nodes
