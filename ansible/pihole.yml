@@ -32,7 +32,7 @@
 
     - name: Copy docker compose project
       ansible.builtin.copy:
-        src: "{{ playbook_dir }}/pihole/"
+        src: "{{ playbook_dir }}/compose/pihole/"
         dest: "{{ pihole_dir.path }}"
         mode: u=rw,g=r,o=r
 
