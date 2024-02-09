@@ -1,7 +1,7 @@
 ---
 when:
   branch: main
-  path: ["docs/**", "mkdocs.yml", "flake.*", ".woodpecker/.docs.yml"]
+  path: ["docs/**", "mkdocs.yml", "flake.*", ".woodpecker/.site.yml"]
 
 steps:
   build:
