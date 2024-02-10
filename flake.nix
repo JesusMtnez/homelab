@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/release-23.11;
 
+    nixpkgs-latest.url = github:NixOS/nixpkgs;
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -27,7 +29,8 @@
           ansible sshpass
           go-task
 
-          kubectl
+          kubectl k3d
+          inputs.nixpkgs-latest.legacyPackages.${system}.fluxcd
 
           ansible-lint yamllint
           nodePackages.prettier
