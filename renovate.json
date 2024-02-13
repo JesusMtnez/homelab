@@ -1,12 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["JesusMtnez/automation"],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
   "ignorePaths": [ "**/archive/**" ],
   "ignoreDeps": [ "linuxserver/transmission" ],
-  "enabledManagers": ["woodpecker"],
   "kubernetes": {
     "fileMatch": [
       "kubernetes/.+\\.yml$"
