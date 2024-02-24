@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  bootstrap:
+    desc: Bootstrap Flux into Kubernetes cluster
+    vars:
+      cluster: '{{.cluster | default "fluffy"}}'
+    summary: |
+      Args
+        cluster: Cluster to run command against (default: fluffy)
+    prompt: Bootstrap Flux into the '{{.cluster}}' cluster... continue?
+    cmds:
+      # Install Flux
+      - echo "Installing flux"
+      - kubectl apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux
+      # Install secrets and configmaps
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yml | kubectl apply -f -
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/git-ssh-key.secret.sops.yml | kubectl  apply -f -
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yml | kubectl apply -f -
+      - kubectl apply --server-side -f {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-settings.yml
+      # Install Flux Kustomization resources
+      - kubectl apply --server-side --kustomize {{.KUBERNETES_DIR}}/{{.cluster}}/flux/config
+    preconditions:
+      - test -f {{.ROOT_DIR}}/age.key
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/git-ssh-key.secret.sops.yml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-settings.yml
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yml
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/age-key.secret.sops.yml
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/flux/git-ssh-key.secret.sops.yml
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/flux/vars/cluster-secrets.secret.sops.yml

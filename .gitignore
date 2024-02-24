@@ -10,3 +10,13 @@ kubeconfig
 
 # mkdocs
 site/
+
+# secrets (sops and age)
+.decrypted~*
+*.secret.env
+*.secret.yml
+*.agekey
+*.pub
+*.key
+*.pem
+*.age

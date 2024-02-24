@@ -30,6 +30,7 @@
           go-task
 
           kubectl k3d
+          sops age
           inputs.nixpkgs-latest.legacyPackages.${system}.fluxcd
 
           ansible-lint yamllint
