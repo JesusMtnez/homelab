@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
   # Pre Flux-Kustomizations
   - ./namespace.yml
+  # FLux-kustomizations
+  - ./echo-server/ks.yml
