@@ -15,5 +15,13 @@ spec:
         kind: HelmRepository
         name: metallb
         namespace: flux-system
+  values:
+    prometheus:
+      scrapeAnnotations: false
+      rbacPrometheus: false
+      podMonitor.enabled: false
+      serviceMonitor.enabled: false
+      prometheusRule.enabled: false
+    speaker.frr.enabled: false
   uninstall:
     keepHistory: false
