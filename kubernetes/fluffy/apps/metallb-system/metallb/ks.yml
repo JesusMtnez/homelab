@@ -6,7 +6,7 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
-  targetNamespace: metallb-sytem
+  targetNamespace: metallb-system
   path: ./kubernetes/fluffy/apps/metallb-system/metallb/app
   prune: false
   sourceRef:
@@ -24,12 +24,13 @@ metadata:
   name: metallb-config
   namespace: flux-system
 spec:
-  targetNamespace: metallb-sytem
+  targetNamespace: metallb-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: metallb
   dependsOn:
-    - name: metallb
+    - namespace: metallb-system
+      name: metallb
   path: ./kubernetes/fluffy/apps/metallb-system/metallb/config
   prune: true
   sourceRef:
