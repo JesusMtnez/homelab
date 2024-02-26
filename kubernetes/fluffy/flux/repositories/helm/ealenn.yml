@@ -3,9 +3,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: bjw-s
+  name: ealenn
   namespace: flux-system
 spec:
-  type: oci
   interval: 5m
-  url: oci://ghcr.io/bjw-s/helm
+  url: https://ealenn.github.io/charts
