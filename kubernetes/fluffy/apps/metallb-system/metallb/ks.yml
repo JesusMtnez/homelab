@@ -29,8 +29,7 @@ spec:
     labels:
       app.kubernetes.io/name: metallb
   dependsOn:
-    - namespace: metallb-system
-      name: metallb
+    - name: metallb
   path: ./kubernetes/fluffy/apps/metallb-system/metallb/config
   prune: true
   sourceRef:
