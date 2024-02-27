@@ -3,10 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: metallb
+  name: &app metallb
   namespace: flux-system
 spec:
   targetNamespace: metallb-system
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   path: ./kubernetes/fluffy/apps/metallb-system/metallb/app
   prune: false
   sourceRef:
@@ -21,13 +24,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: metallb-config
+  name: &app metallb-config
   namespace: flux-system
 spec:
   targetNamespace: metallb-system
   commonMetadata:
     labels:
-      app.kubernetes.io/name: metallb
+      app.kubernetes.io/name: *app
   dependsOn:
     - name: metallb
   path: ./kubernetes/fluffy/apps/metallb-system/metallb/config
