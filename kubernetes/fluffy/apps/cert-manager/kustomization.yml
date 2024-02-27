@@ -3,5 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./jetstack.yml
-  - ./metallb.yml
+  # Pre Flux-Kustomizations
+  - ./namespace.yml
+  # Flux-Kustomizations
+  - ./cert-manager/ks.yml
