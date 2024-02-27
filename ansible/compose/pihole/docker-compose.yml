@@ -5,7 +5,7 @@ services:
   pihole:
     container_name: pihole
     restart: unless-stopped
-    image: pihole/pihole:2024.02.0
+    image: pihole/pihole:2024.02.2
     secrets:
       - pihole_web_password
     environment:
