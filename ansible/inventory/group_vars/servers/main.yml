@@ -5,5 +5,7 @@ k3s_server:
   disable:
     - traefik
     - servicelb
+    - metrics-server
+    - local-storage
   disable_helm_controller: true
   write-kubeconfig-mode: '0644'
