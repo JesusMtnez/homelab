@@ -4,8 +4,25 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources:
-  - github.com/fluxcd/flux2/manifests/install?ref=v2.2.3
+helmCharts:
+  - name: flux2
+    repo: oci://ghcr.io/fluxcd-community/charts/flux2
+    version: 2.12.3
+    releaseName: flux
+    namespace: flux-system
+    valuesInline:
+      imageAutomationController:
+        create: false
+        serviceAccount:
+          create: false
+      imageReflectionController:
+        create: false
+        serviceAccount:
+          create: false
+      notificationController:
+        create: false
+        serviceAccount:
+          create: false
 patches:
   # Remove the network policies that does not work with k3s
   - patch: |
