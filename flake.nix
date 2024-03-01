@@ -29,9 +29,10 @@
           ansible sshpass
           go-task
 
-          kubectl k3d
-          sops age
+          inputs.nixpkgs-latest.legacyPackages.${system}.kubectl
+          inputs.nixpkgs-latest.legacyPackages.${system}.kubernetes-helm
           inputs.nixpkgs-latest.legacyPackages.${system}.fluxcd
+          sops age
 
           ansible-lint yamllint
           nodePackages.prettier
