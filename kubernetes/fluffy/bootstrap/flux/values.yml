@@ -1,0 +1,13 @@
+---
+imageAutomationController:
+  create: false
+  serviceAccount:
+    create: false
+imageReflectionController:
+  create: false
+  serviceAccount:
+    create: false
+notificationController:
+  create: false
+  serviceAccount:
+    create: false
