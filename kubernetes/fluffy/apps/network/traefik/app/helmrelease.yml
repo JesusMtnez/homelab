@@ -14,5 +14,15 @@ spec:
         kind: HelmRepository
         name: traefik
         namespace: flux-system
+  values:
+    ports:
+      web:
+        nodePort: 80
+    service:
+      type: NodePort
+      externalIPs:
+        - 192.168.1.201
+    nodeSelector:
+      node-role.kubernetes.io/master: "true"
   uninstall:
     keepHistory: false
