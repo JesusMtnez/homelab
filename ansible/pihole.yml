@@ -5,6 +5,7 @@
 
   roles:
     - role: openssh # secure openssh
+      become: true
     - role: dietpi_docker
       become: true
       vars:
