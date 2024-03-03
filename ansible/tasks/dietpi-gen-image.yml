@@ -1,8 +1,8 @@
 ---
 - name: Generate dietpi image
   ansible.builtin.copy:
-    src: "{{ dietpi_image }}"
-    dest: "{{ output_dir.path }}/DietPi_RPi-ARMv8_{{ item }}.img"
+    src: "{{ output_dir.path }}/{{ img }}"
+    dest: "{{ output_dir.path }}/DietPi_{{ item }}.img"
     mode: u=rw,g=r,o=r
   register: image
 

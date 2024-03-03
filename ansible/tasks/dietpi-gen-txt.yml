@@ -1,7 +1,7 @@
 ---
 - name: Generate dietpi file
   ansible.builtin.copy:
-    src: "{{ dietpi_txt }}"
+    src: "{{ output_dir.path }}/dietpi.txt"
     dest: "/tmp/dietpi/dietpi_{{ item }}.txt"
     mode: u=rw,g=r,o=r
   register: file

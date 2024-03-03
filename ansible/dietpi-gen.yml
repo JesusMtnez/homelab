@@ -4,12 +4,10 @@
   gather_facts: false
 
   vars:
-    dietpi_txt: /tmp/dietpi/dietpi.txt
-    dietpi_image: /tmp/dietpi/DietPi_RPi-ARMv8-Bookworm.img
     img: DietPi_RPi-ARMv8-Bookworm.img
+    # img: DietPi_RPi-ARMv6-Bookworm.img
 
   tasks:
-
     - name: Create output dir
       ansible.builtin.file:
         path: /tmp/dietpi
@@ -20,7 +18,7 @@
     - name: Dietpi.txt | Download dietpi.txt from MichaIng/DietPi
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/MichaIng/DietPi/master/dietpi.txt
-        dest: "{{ dietpi_txt }}"
+        dest: "{{ output_dir.path }}/dietpi.txt"
         checksum: sha256:341e3d505fc7612d34b5ca27269d665193b1f4d2c264af6bfda32004528af32f
         mode: u=rw,g=r,o=r
 
@@ -31,7 +29,7 @@
     - name: Dietpi IMG | Download {{ img }}
       ansible.builtin.get_url:
         url: https://dietpi.com/downloads/images/{{ img }}.xz
-        dest: "{{ dietpi_image }}.xz"
+        dest: "{{ output_dir.path }}/{{ img }}.xz"
         checksum: "sha256:https://dietpi.com/downloads/images/{{ img }}.xz.sha256"
         mode: u=rw,g=r,o=r
 
@@ -43,7 +41,7 @@
 
     - name: Dietpi IMG | Delete compressed image
       ansible.builtin.file:
-        path: "{{ dietpi_image }}.xz"
+        path: "{{ output_dir.path }}/{{ img }}.xz"
         state: absent
 
     - name: Dietpi IMG | Create temporary mount dir
@@ -60,5 +58,5 @@
         path: "{{ item }}"
         state: absent
       loop:
-        - "{{ dietpi_txt }}"
-        - "{{ dietpi_image }}"
+        - "{{ output_dir.path }}/dietpi.txt"
+        - "{{ output_dir.path }}/{{ img }}"
