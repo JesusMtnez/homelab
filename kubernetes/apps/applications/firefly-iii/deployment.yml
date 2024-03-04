@@ -13,7 +13,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: firefly-iii
-          image: fireflyiii/core:version-6.1.9@sha256:3b2060abc3ea30fe21f942e170ca8d8067b74ca8b822e74745ffb685d1ae90c2
+          image: fireflyiii/core:version-6.1.10@sha256:c268cc2030ce6983f8ed820c9ee4510a0693bc1d9552fec81ed715b0f7fd113c
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
