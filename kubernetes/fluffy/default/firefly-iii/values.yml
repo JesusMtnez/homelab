@@ -1,0 +1,47 @@
+image:
+  tag: version-6.1.10
+
+persistence:
+  enabled: false
+
+config:
+  env:
+    APP_ENV: production
+    APP_LOG_LEVEL: info
+    TZ: Europe/MADRID
+    TRUSTED_PROXIES: "**"
+
+secrets:
+  env:
+    APP_KEY: ref+sops://secrets.sops.yml#/app-key
+    DB_CONNECTION: ref+sops://secrets.sops.yml#/db/connection
+    DB_DATABASE: ref+sops://secrets.sops.yml#/db/database
+    DB_HOST: ref+sops://secrets.sops.yml#/db/host
+    DB_PORT: ref+sops://secrets.sops.yml#/db/port
+    DB_USERNAME: ref+sops://secrets.sops.yml#/db/username
+    DB_PASSWORD: ref+sops://secrets.sops.yml#/db/password
+    MAIL_MAILER: ref+sops://secrets.sops.yml#/mail/mailer
+    MAIL_HOST: ref+sops://secrets.sops.yml#/mail/host
+    MAIL_PORT: ref+sops://secrets.sops.yml#/mail/port
+    MAIL_ENCRYPTION: ref+sops://secrets.sops.yml#/mail/encryption
+    MAIL_FROM: ref+sops://secrets.sops.yml#/mail/from
+    MAIL_USERNAME: ref+sops://secrets.sops.yml#/mail/username
+    MAIL_PASSWORD: ref+sops://secrets.sops.yml#/mail/password
+    STATIC_CRON_TOKEN: ref+sops://secrets.sops.yml#/static-cron-token
+
+ingress:
+  enabled: true
+  hosts:
+    - "firefly.home.es"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: firefly.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
+
+cronjob:
+  enabled: true
+  auth:
+    token: ref+sops://secrets.sops.yml#/static-cron-token
+  schedule: "0 4 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  restartPolicy: Never

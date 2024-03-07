@@ -1,0 +1,13 @@
+---
+repositories:
+ - name: firefly-iii
+   url: https://firefly-iii.github.io/kubernetes
+
+releases:
+- name: firefly-iii
+  namespace: default
+  chart: firefly-iii/firefly-iii
+  version: 1.8.0
+  values:
+    - ./values.yml
+  historyMax: 1
