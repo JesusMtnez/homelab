@@ -1,0 +1,13 @@
+---
+repositories:
+ - name: metallb
+   url: https://metallb.github.io/metallb
+
+releases:
+- name: metallb
+  namespace: metallb-system
+  chart: metallb/metallb
+  version: 0.14.3
+  values:
+    - ./values.yml
+  historyMax: 1

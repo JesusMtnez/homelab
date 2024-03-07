@@ -1,0 +1,14 @@
+prometheus:
+  scrapeAnnotations: false
+  rbacPrometheus: false
+  podMonitor:
+    enabled: false
+  serviceMonitor:
+    enabled: false
+  prometheusRule:
+    enabled: false
+frrk8s:
+  enabled: false
+speaker:
+  frr:
+    enabled: false
