@@ -6,7 +6,7 @@ when:
 
 steps:
   update-lockfile:
-    image: nixos/nix:2.20.4
+    image: nixos/nix:2.20.5
     secrets:
       - codeberg_token
       - bot_email
