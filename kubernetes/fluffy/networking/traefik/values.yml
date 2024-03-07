@@ -1,0 +1,8 @@
+service:
+  enabled: true
+  type: NodePort
+  externalIPs:
+    - 192.168.1.201
+
+nodeSelector:
+  node-role.kubernetes.io/master: "true"

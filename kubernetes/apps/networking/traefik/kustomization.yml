@@ -1,9 +1,0 @@
----
-commonLabels:
-  app: traefik
-resources:
-  - service-account.yml
-  - cluster-role.yml
-  - deployment.yml
-  - service.yml
-# source: https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/#configuration-example

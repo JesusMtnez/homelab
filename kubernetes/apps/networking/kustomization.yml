@@ -1,7 +1,5 @@
 ---
 namespace: networking
-
 resources:
   - namespace.yml
   - external-dns
-  - traefik
