@@ -17,6 +17,7 @@ env:
 includes:
   ansible: .taskfiles/ansible.yml
   k8s: .taskfiles/kubernetes.yml
+  kubectl: .taskfiles/kubectl.yml
   linter: .taskfiles/linter.yml
   format: .taskfiles/formatter.yml
 
