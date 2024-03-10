@@ -83,7 +83,7 @@ tasks:
     vars:
       playbook: "{{.playbook}}"
     requires:
-      vars: [ "playbook" ]
+      vars: ["playbook"]
     # deps: [ "deps" ]
     dir: "{{.ANSIBLE_DIR}}"
     cmd: |

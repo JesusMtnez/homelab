@@ -1,3 +1,4 @@
+---
 prometheus:
   scrapeAnnotations: false
   rbacPrometheus: false

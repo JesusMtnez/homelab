@@ -11,7 +11,7 @@ tasks:
   preview:
     desc: Preview
     requires:
-      vars: [ "app" ]
+      vars: ["app"]
     summary: |
       Args
         namespace: namespace of the application (default: default)
@@ -26,13 +26,13 @@ tasks:
   apply:
     desc: Apply
     requires:
-      vars: [ "app" ]
+      vars: ["app"]
     summary: |
       Args
         namespace: namespace of the application (default: default)
         app: application
     cmds:
-      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f -
+      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f -
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
       - defer: { task: cleanup }
     preconditions:
