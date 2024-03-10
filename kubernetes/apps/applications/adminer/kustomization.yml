@@ -1,8 +1,0 @@
----
-commonLabels:
-  app: adminer
-
-resources:
-  - deployment.yml
-  - service.yml
-  - ingress.yml
