@@ -1,0 +1,39 @@
+controllers:
+  main:
+    strategy: Recreate
+
+    containers:
+      main:
+        image:
+          repository: docker.io/b4bz/homer
+          tag: v23.10.1
+          pullPolicy: IfNotPresent
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: home.es
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              name: main
+              port: http
+
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: homer-config
+    globalMounts:
+      - path: /www/assets/config.yml
+        subPath: config.yml
+        readOnly: true
