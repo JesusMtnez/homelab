@@ -74,3 +74,22 @@ tasks:
     dir: "{{.ANSIBLE_DIR}}"
     cmds:
       - "ansible all -a '/bin/systemctl reboot' --become"
+
+  run:
+    desc: Run an Ansible Playbook
+    summary: |
+      Args:
+        playbook: Playbook to run (required)
+    vars:
+      playbook: "{{.playbook}}"
+    requires:
+      vars: [ "playbook" ]
+    # deps: [ "deps" ]
+    dir: "{{.ANSIBLE_DIR}}"
+    cmd: |
+       ansible-playbook  \
+        --inventory {{.ANSIBLE_DIR}}/inventory/hosts.yml \
+        {{.ANSIBLE_DIR}}/{{.playbook}}.yml {{.CLI_ARGS}}
+    preconditions:
+      - test -f {{.ANSIBLE_DIR}}/inventory/hosts.yml
+      - test -f {{.ANSIBLE_DIR}}/{{.playbook}}.yml
