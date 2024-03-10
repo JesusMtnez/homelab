@@ -32,8 +32,8 @@ tasks:
         namespace: namespace of the application (default: default)
         app: application
     cmds:
-      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secrests.sops.yml
-      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}
+      - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f -
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
       - defer: { task: cleanup }
     preconditions:
       - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
