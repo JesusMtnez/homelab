@@ -31,7 +31,6 @@
 
           inputs.nixpkgs-latest.legacyPackages.${system}.kubectl
           inputs.nixpkgs-latest.legacyPackages.${system}.kubernetes-helm
-          inputs.nixpkgs-latest.legacyPackages.${system}.helmfile
           sops age
 
           ansible-lint yamllint
