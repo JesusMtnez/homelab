@@ -1,31 +1,65 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
+
+vars:
+  cluster: fluffy
+  ns: '{{.ns | default "default"}}'
+  app: '{{ .app }}'
 
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
 
 tasks:
-  list:
+  preview:
+    desc: Preview
+    requires:
+      vars: ["app"]
+    summary: |
+      Args
+        namespace: namespace of the application (default: default)
+        app: application to preview
+    cmds:
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}
+      - defer: { task: cleanup }
+    preconditions:
+      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
+      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+
+  apply:
+    desc: Apply
+    requires:
+      vars: ["app"]
+    summary: |
+      Args
+        namespace: namespace of the application (default: default)
+        app: application
+    cmds:
+      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f -
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
+      - defer: { task: cleanup }
+    preconditions:
+      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
+      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+
+  get:
+    desc: Get resource from namespace
+    summary: |
+      Args:
+        ns: namespace of the application (default: default)
+        rs: resource to retrieve (default: pods)
+    vars:
+      rs: '{{.resource | default "pods"}}'
+    cmd: |
+       kubectl get --namespace={{.ns}} {{.rs}}
+
+  getAll:
     desc: List all in all namespaces
     cmds:
       - "kubectl get all --all-namespaces"
 
-  network:list:
-    desc: List all in network namespace
+  cleanup:
+    internal: true
+    silent: true
     cmds:
-      - "kubectl get all --namespace=networking"
-
-  applications:list:
-    desc: List all in applications namespace
-    cmds:
-      - "kubectl get all --namespace=applications"
-
-  monitoring:list:
-    desc: List all in monitoring namespace
-    cmds:
-      - "kubectl get all --namespace=monitoring"
-
-  apps:apply:
-    desc: Apply all in kubernetes/apps
-    cmds:
-      - "kubectl apply --kustomize kubernetes/apps/"
+      - rm -rf {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/charts
