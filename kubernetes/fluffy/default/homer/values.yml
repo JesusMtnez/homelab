@@ -27,7 +27,7 @@ ingress:
             pathType: Prefix
             service:
               name: main
-              port: http
+              port: 8080
 
 persistence:
   config:
