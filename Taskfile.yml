@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 vars:
@@ -33,6 +34,6 @@ tasks:
 
   age:
     desc: Initialize Age Key for Sops
-    cmd: age-keygen --output {{.AGE_KEY_FILE}}
+    cmd: age-keygen --output {{.AGE_FILE}}
     status:
-      - test -f "{{.AGE_KEY_FILE}}"
+      - test -f "{{.AGE_FILE}}"
