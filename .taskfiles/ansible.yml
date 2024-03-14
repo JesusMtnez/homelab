@@ -1,61 +1,16 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 env:
   ANSIBLE_CONFIG: "{{.ANSIBLE_DIR}}/ansible.cfg"
 
-vars:
-  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
-
 tasks:
-  list:
+  hosts:
     desc: List all the hosts
     dir: ansible
     cmds:
       - "ansible all --list-hosts"
-
-  playbook:dietpi-gen:
-    desc: Generate DietPi images for all hosts
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "rm -rf /tmp/dietpi"
-      - "ansible-playbook -K dietpi-gen.yml"
-
-  playbook:k3s-bootstrap:
-    desc: Configure k3s cluster nodes
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook --ask-pass k3s-bootstrap.yml"
-
-  playbook:k3s-install:
-    desc: Install Kubernetes on the nodes
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook k3s-install.yml"
-
-  playbook:k3s-nuke:
-    desc: Remove Kubernetes from nodes
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook k3s-nuke.yml"
-
-  playbook:pihole:
-    desc: Pi Hole setup
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook pihole.yml"
-
-  playbook:entware-install:
-    desc: Install entware
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook -K entware-install.yml"
-
-  playbook:upgrade:
-    desc: Upgrade all the k8s nodes operating system
-    dir: "{{.ANSIBLE_DIR}}"
-    cmds:
-      - "ansible-playbook dietpi-upgrade.yml"
 
   adhoc:ping:
     desc: Ping all the hosts
@@ -79,17 +34,16 @@ tasks:
     desc: Run an Ansible Playbook
     summary: |
       Args:
-        playbook: Playbook to run (required)
+        play: Playbook to run (required)
     vars:
-      playbook: "{{.playbook}}"
+      play: "{{.play}}"
     requires:
-      vars: ["playbook"]
-    # deps: [ "deps" ]
+      vars: ["play"]
     dir: "{{.ANSIBLE_DIR}}"
     cmd: |
        ansible-playbook  \
         --inventory {{.ANSIBLE_DIR}}/inventory/hosts.yml \
-        {{.ANSIBLE_DIR}}/{{.playbook}}.yml {{.CLI_ARGS}}
+        {{.ANSIBLE_DIR}}/{{.play}}.yml {{.CLI_ARGS}}
     preconditions:
       - test -f {{.ANSIBLE_DIR}}/inventory/hosts.yml
-      - test -f {{.ANSIBLE_DIR}}/{{.playbook}}.yml
+      - test -f {{.ANSIBLE_DIR}}/{{.play}}.yml
