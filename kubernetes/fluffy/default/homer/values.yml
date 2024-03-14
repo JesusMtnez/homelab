@@ -1,24 +1,29 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.3/charts/library/common/values.schema.json
 controllers:
   main:
     strategy: Recreate
-
     containers:
-      main:
+      app:
         image:
           repository: docker.io/b4bz/homer
           tag: v23.10.1
           pullPolicy: IfNotPresent
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
 
 service:
-  main:
+  app:
     controller: main
     ports:
       http:
         port: 8080
 
 ingress:
-  main:
+  homer:
     enabled: true
     hosts:
       - host: home.es
@@ -26,8 +31,8 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              name: main
-              port: 8080
+              identifier: app
+              port: http
 
 persistence:
   config:

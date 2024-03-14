@@ -1,26 +1,31 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.3/charts/library/common/values.schema.json
 controllers:
   main:
     strategy: Recreate
-
     containers:
-      main:
+      app:
         image:
           repository: docker.io/adminer
           tag: 4.8.1
           pullPolicy: IfNotPresent
         env:
           ADMINER_DESIGN: hydra
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
 
 service:
-  main:
+  app:
     controller: main
     ports:
       http:
         port: 8080
 
 ingress:
-  main:
+  adminer:
     enabled: true
     hosts:
       - host: adminer.home.es
@@ -28,5 +33,5 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              name: main
-              port: 8080
+              identifier: app
+              port: http
