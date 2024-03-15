@@ -26,7 +26,9 @@ service:
 
 ingress:
   adminer:
-    enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: adminer.home.es.
+      external-dns.alpha.kubernetes.io/target: home.es.
     hosts:
       - host: adminer.home.es
         paths:

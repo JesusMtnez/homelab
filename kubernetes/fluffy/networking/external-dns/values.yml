@@ -1,0 +1,57 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.3/charts/library/common/values.schema.json
+controllers:
+  external-dns-pihole:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: registry.k8s.io/external-dns/external-dns
+          tag: v0.14.0
+          pullPolicy: IfNotPresent
+        env:
+          EXTERNAL_DNS_PIHOLE_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: external-dns-secret
+                key: pihole-webpassword
+        args:
+          - --source=ingress
+          - --registry=noop
+          - --policy=upsert-only
+          - --provider=pihole
+          - --pihole-server=http://192.168.1.250
+          - --pihole-tls-skip-verify
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthz
+                port: &port 7979
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 64Mi
+
+serviceAccount:
+  create: true
+  name: external-dns-pihole
+
+service:
+  app:
+    controller: external-dns-pihole
+    ports:
+      http:
+        port: *port
