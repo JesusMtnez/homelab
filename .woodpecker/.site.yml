@@ -13,7 +13,7 @@ steps:
       - cp -ar result/. public/
 
   deploy:
-    image: alpine/git:v2.43.4
+    image: alpine/git:v2.45.1
     secrets:
       - codeberg_token
       - bot_email
