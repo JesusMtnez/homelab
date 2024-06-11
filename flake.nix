@@ -2,9 +2,9 @@
   description = "homelab";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/release-23.11;
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
 
-    nixpkgs-latest.url = github:NixOS/nixpkgs;
+    nixpkgs-latest.url = "github:NixOS/nixpkgs";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -26,14 +26,17 @@
         name = "homelab-shell";
 
         packages = with pkgs; [
-          ansible sshpass
+          ansible
+          sshpass
           go-task
 
           inputs.nixpkgs-latest.legacyPackages.${system}.kubectl
           inputs.nixpkgs-latest.legacyPackages.${system}.kubernetes-helm
-          sops age
+          sops
+          age
 
-          ansible-lint yamllint
+          ansible-lint
+          yamllint
           nodePackages.prettier
         ];
 
@@ -58,7 +61,5 @@
         ];
       };
     };
-
-
   };
 }
