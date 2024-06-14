@@ -5,7 +5,7 @@ helmCharts:
   - name: traefik
     includeCRDs: true
     repo: https://traefik.github.io/charts
-    version: 28.2.0
+    version: 28.3.0
     releaseName: &releaseName traefik
     namespace: &releaseNamespace networking
     valuesFile: values.yml
