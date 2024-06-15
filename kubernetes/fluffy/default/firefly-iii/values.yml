@@ -1,7 +1,7 @@
 ---
 image:
   # renovate: datasource=docker depName=fireflyiii/core
-  tag: version-6.1.16
+  tag: version-6.1.17
 
 persistence:
   enabled: false
