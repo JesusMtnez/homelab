@@ -15,7 +15,7 @@ steps:
       - git config user.name "JesusMtnez-bot"
       - git config user.email "$BOT_EMAIL"
       - git switch -c update_flake
-      - nix flake update --commit-lock-file --commit-lockfile-summary "update flake.lock"
+      - nix --option commit-lockfile-summary "update flake.lock" flake update --commit-lock-file
       - git push --force https://$CODEBERG_TOKEN@codeberg.org/$CI_REPO update_flake
 
   create-pr:
