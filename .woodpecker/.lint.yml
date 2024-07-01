@@ -5,7 +5,7 @@ when:
 
 steps:
   build:
-    image: python:3.12-slim
+    image: python:3.12
     commands:
       # Install go-task/task
       - sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
