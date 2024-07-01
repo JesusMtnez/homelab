@@ -13,5 +13,6 @@ steps:
       - pip3 install ansible-lint yamllint
 
       # Run lint
+      - bin/task deps
       - bin/task linter:ansible
       - bin/task linter:yaml
