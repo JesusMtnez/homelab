@@ -11,5 +11,6 @@ helmCharts:
 commonAnnotations:
   meta.helm.sh/release-name: *releaseName
   meta.helm.sh/release-namespace: *releaseNamespace
+  nfs.io/storage-path: "firefly_uploads"
 commonLabels:
   app.kubernetes.io/managed-by: Helm

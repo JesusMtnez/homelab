@@ -4,7 +4,10 @@ image:
   tag: version-6.1.18
 
 persistence:
-  enabled: false
+  enabled: true
+  storageClassName: "nfs-client"
+  accessModes: ReadWriteOnce
+  storage: 50Gi
 
 config:
   existingSecret: "firefly-iii-secret"
