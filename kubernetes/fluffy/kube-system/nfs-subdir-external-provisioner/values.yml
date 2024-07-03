@@ -1,0 +1,14 @@
+---
+nfs:
+  server: 192.168.1.20
+  path: /volume1/fluffy
+  mountOptions:
+    - nfsvers=4
+
+storageClass:
+  reclaimPolicy: Retain
+  onDelete: 'retain'
+  pathPattern: "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
+
+leaderElection:
+  enabled: false
