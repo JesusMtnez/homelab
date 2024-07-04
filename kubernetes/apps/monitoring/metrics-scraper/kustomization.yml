@@ -1,6 +1,0 @@
----
-commonLabels:
-  app: dashboard-metrics-scraper
-resources:
-  - deployment.yml
-  - service.yml

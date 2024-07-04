@@ -1,7 +1,0 @@
----
-namespace: monitoring
-
-resources:
-  - namespace.yml
-  - metrics-scraper
-  - kubernetes-dashboard

@@ -1,4 +1,0 @@
----
-namespace: networking
-resources:
-  - namespace.yml
