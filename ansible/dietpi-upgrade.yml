@@ -1,6 +1,6 @@
 ---
 - name: Upgrade dietpi based nodes
-  hosts: kubernetes:dobby
+  hosts: kubernetes:fluffy05:dobby
   gather_facts: true
   become: true
   tasks:
