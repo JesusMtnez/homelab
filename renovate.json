@@ -3,7 +3,7 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
-  "ignorePaths": [ "**/archive/**", "**/kubernetes/apps/**"],
+  "ignorePaths": [ "**/archive/**", "**/kubernetes/apps/**", "**/*.sops.*"],
   "ignoreDeps": [ "linuxserver/transmission" ],
   "kubernetes": {
     "fileMatch": [
