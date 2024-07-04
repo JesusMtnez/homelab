@@ -15,7 +15,7 @@ _my home infrastructure and Kubernetes cluster_
 
   [NIX-badge]: https://img.shields.io/badge/nix-blue.svg?logo=nixos&labelColor=73C3D5
   [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/v1.29-blue?&logo=k3s&logoColor=white
+  [K3S-badge]: https://img.shields.io/badge/v1.30-blue?&logo=k3s&logoColor=white
   [K3S-link]: https://k3s.io
   [woodpecker-badge]: https://ci.codeberg.org/api/badges/13013/status.svg
   [woodpecker-link]: https://ci.codeberg.org/repos/13013
@@ -76,12 +76,6 @@ Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s]
 Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
 
   [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
-
-### `pihole` playbook
-
-Setup everything to run [PiHole][pihole] using docker-compose.
-
-  [pihole]: https://pi-hole.net/
 
 ### `entware-install` playbook
 
