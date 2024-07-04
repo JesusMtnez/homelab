@@ -1,0 +1,23 @@
+---
+image:
+  # renovate: datasource=docker depName=fireflyiii/data-importer
+  tag: version-1.5.2
+
+fireflyiii:
+  url: http://firefly-iii
+  vanityUrl: http://firefly.home.es
+config:
+  existingSecret: "firefly-iii-data-importer-secret"
+  env:
+    APP_ENV: production
+    APP_LOG_LEVEL: info
+    TZ: Europe/MADRID
+    TRUSTED_PROXIES: "**"
+
+ingress:
+  enabled: true
+  hosts:
+    - "fidi.home.es"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: fidi.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
