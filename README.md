@@ -11,6 +11,8 @@ _my home infrastructure and Kubernetes cluster_
 [![Woodpecker CI][woodpecker-badge]][woodpecker-link]
 [![Renovate][renovate-badge]][renovate-link]
 
+**Find all the information at**: https://jesusmtnez.es/homelab
+
 </div>
 
   [NIX-badge]: https://img.shields.io/badge/nix-blue.svg?logo=nixos&labelColor=73C3D5
@@ -22,6 +24,3 @@ _my home infrastructure and Kubernetes cluster_
   [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovatebot
   [renovate-link]: https://developer.mend.io/[platform]/JesusMtnez/homelab
   [homelab]: https://jesusmtnez.es/homelab
-
-
-**Find all the information at**: https://jesusmtnez.es/homelab
