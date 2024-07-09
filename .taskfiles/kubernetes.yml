@@ -42,6 +42,22 @@ tasks:
       - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
       - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
 
+  delete:
+    desc: Delete
+    requires:
+      vars: ["app"]
+    summary: |
+      Args
+        namespace: namespace of the application (default: default)
+        app: application
+    cmds:
+      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl delete -f -
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl delete -f -
+      - defer: { task: cleanup }
+    preconditions:
+      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
+      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+
   get:
     desc: Get resource from namespace
     summary: |
