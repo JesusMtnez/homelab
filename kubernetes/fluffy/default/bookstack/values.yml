@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.2.1/charts/library/common/values.schema.json
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: lscr.io/linuxserver/bookstack
+          tag: 24.05.2
+          pullPolicy: IfNotPresent
+        env:
+          PUID: 1024 # admin
+          PGID: 100 # users
+          TZ: Europe/Madrid
+        envFrom:
+          - secretRef:
+              name: bookstack-secret
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+
+persistence:
+  data:
+    enabled: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    retain: true
+
+    advancedMounts:
+      main:
+        app:
+          - path: /config
+            readOnly: false
+
+service:
+  app:
+    controller: main
+    ports:
+      http:
+        port: 80
+
+ingress:
+  vikunja:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: bookstack.home.es.
+      external-dns.alpha.kubernetes.io/target: home.es.
+    hosts:
+      - host: bookstack.home.es
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
