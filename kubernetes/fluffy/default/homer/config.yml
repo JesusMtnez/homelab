@@ -65,6 +65,12 @@ services:
         tag: "money"
         url: "http://firefly.home.es/"
 
+      - name: "Vikunja"
+        subtitle: "The fluffy, open-source, self-hostable to-do app. "
+        logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vikunja.png"
+        tag: "tasks"
+        url: "http://todo.home.es/"
+
   - name: "Tools"
     icon: "fas fa-network-wired"
     items:
