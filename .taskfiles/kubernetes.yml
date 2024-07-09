@@ -35,7 +35,7 @@ tasks:
         namespace: namespace of the application (default: default)
         app: application
     cmds:
-      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f -
+      - task: create-secret
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
       - defer: { task: cleanup }
     preconditions:
@@ -51,7 +51,7 @@ tasks:
         namespace: namespace of the application (default: default)
         app: application
     cmds:
-      # - sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl delete -f -
+      - task: delete-secret
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl delete -f -
       - defer: { task: cleanup }
     preconditions:
@@ -66,13 +66,26 @@ tasks:
         rs: resource to retrieve (default: pods)
     vars:
       rs: '{{.resource | default "pods"}}'
-    cmd: |
-       kubectl get --namespace={{.ns}} {{.rs}}
+    cmd: kubectl get --namespace={{.ns}} {{.rs}}
 
   getAll:
     desc: List all in all namespaces
     cmds:
       - "kubectl get all --all-namespaces"
+
+  create-secret:
+    internal: true
+    cmd: |
+      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml ] &&
+        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f - ||
+        echo "No secret to apply for {{.ns}}/{{.app}}"
+
+  delete-secret:
+    internal: true
+    cmd: |
+      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml ] &&
+        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl delete -f - ||
+        echo "No secret to delete for {{.ns}}/{{.app}}"
 
   cleanup:
     internal: true
