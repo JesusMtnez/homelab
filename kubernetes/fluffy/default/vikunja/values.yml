@@ -42,10 +42,10 @@ service:
 ingress:
   vikunja:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: vikunja.home.es.
+      external-dns.alpha.kubernetes.io/hostname: todo.home.es.
       external-dns.alpha.kubernetes.io/target: home.es.
     hosts:
-      - host: vikunja.home.es
+      - host: todo.home.es
         paths:
           - path: /
             pathType: Prefix
