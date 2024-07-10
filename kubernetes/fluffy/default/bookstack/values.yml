@@ -6,8 +6,8 @@ controllers:
     containers:
       app:
         image:
-          repository: lscr.io/linuxserver/bookstack
-          tag: 24.05.20240520
+          repository: ghcr.io/linuxserver/bookstack
+          tag: 24.05.2
           pullPolicy: IfNotPresent
         env:
           PUID: 1024 # admin
