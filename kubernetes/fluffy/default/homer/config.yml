@@ -77,6 +77,12 @@ services:
         tag: "docs"
         url: "http://bookstack.home.es/"
 
+      - name: "DailyTXT"
+        subtitle: "An encrypted Diary Web-App to write down your stories of the day and to find them again easily"
+        logo: "https://github.com/PhiTux/DailyTxT/blob/master/client/public/img/icons/favicon-96x96.png?raw=true"
+        tag: "notes"
+        url: "http://diary.home.es/"
+
       - name: "FiDI"
         subtitle: "This tool will help you import data into Firefly III"
         logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefly.png"

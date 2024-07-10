@@ -1,0 +1,60 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.2.1/charts/library/common/values.schema.json
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: docker.io/phitux/dailytxt
+          tag: 1.0.15
+          pullPolicy: IfNotPresent
+        env:
+          PORT: 8765
+          ALLOW_REGISTRATION: true
+          TZ: Europe/Madrid
+          JWT_EXP_DAYS: 60
+          ENABLE_UPDATE_CHECK: true
+        envFrom:
+          - secretRef:
+              name: dailytxt-secret
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+
+persistence:
+  data:
+    enabled: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    retain: true
+
+    advancedMounts:
+      main:
+        app:
+          - path: /app/data
+            readOnly: false
+
+service:
+  app:
+    controller: main
+    ports:
+      http:
+        port: 8765
+
+ingress:
+  dailytxt:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: diary.home.es.
+      external-dns.alpha.kubernetes.io/target: home.es.
+    hosts:
+      - host: diary.home.es
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
