@@ -56,9 +56,9 @@
         "docker"
       ],
       "matchPackageNames": [
-        "linuxserver/transmission"
+        "ghcr.io/linuxserver/bookstack"
       ],
-      "versioning": "regex:^(?<major>\\d+)\\.0?(?<minor>\\d+).+-ls(?<patch>\\d+)$",
+      "versioning": "regex:^(?<compatibility>[a-z]*-|v)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:[\\.-]?(?<build>.*))?$",
       "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
