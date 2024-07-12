@@ -37,9 +37,8 @@ The Git repository contains the following directories:
 ```sh
 📁 ansible     # Ansible playbooks / roles to setup all the infrastructure
 📁 archive     # unused / old applications
-📁 kubernetes  # Kubernetes cluster defined as code
-├─📁 apps      # Apps deployed into the cluster grouped by namespace
-└─📁 bootstrap # not used yet
+📁 kubernetes  # Kubernetes clusters
+└─📁 fluffy    # Cluster 'fluffy' organized by namespaces
 ```
 
 ## Playbooks
