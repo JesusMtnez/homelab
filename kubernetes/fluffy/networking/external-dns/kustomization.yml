@@ -11,8 +11,10 @@ helmCharts:
 commonAnnotations:
   meta.helm.sh/release-name: *releaseName
   meta.helm.sh/release-namespace: *releaseNamespace
-commonLabels:
-  app.kubernetes.io/managed-by: Helm
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/managed-by: Helm
 namespace: *releaseNamespace
 resources:
   - ./rbac.yml
