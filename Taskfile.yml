@@ -22,7 +22,6 @@ includes:
   format: .taskfiles/formatter.yml
 
 tasks:
-
   default:
     silent: true
     cmd: task -l

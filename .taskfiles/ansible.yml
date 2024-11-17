@@ -41,9 +41,9 @@ tasks:
       vars: ["play"]
     dir: "{{.ANSIBLE_DIR}}"
     cmd: |
-       ansible-playbook  \
-        --inventory {{.ANSIBLE_DIR}}/inventory/hosts.yml \
-        {{.ANSIBLE_DIR}}/{{.play}}.yml {{.CLI_ARGS}}
+      ansible-playbook  \
+       --inventory {{.ANSIBLE_DIR}}/inventory/hosts.yml \
+       {{.ANSIBLE_DIR}}/{{.play}}.yml {{.CLI_ARGS}}
     preconditions:
       - test -f {{.ANSIBLE_DIR}}/inventory/hosts.yml
       - test -f {{.ANSIBLE_DIR}}/{{.play}}.yml

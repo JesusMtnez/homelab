@@ -23,7 +23,7 @@
         - name: Activating cgroup support
           ansible.builtin.lineinfile:
             dest: /boot/cmdline.txt
-            regexp: '^(.*)$'
+            regexp: "^(.*)$"
             line: '\1 systemd.unified_cgroup_hierarchy=0 cgroup_enable=memory'
             backrefs: true
           when: check_cgroups.found == 0
@@ -36,4 +36,4 @@
   handlers:
     - name: Reboot
       ansible.builtin.reboot:
-        reboot_command: '/bin/systemctl reboot'
+        reboot_command: "/bin/systemctl reboot"

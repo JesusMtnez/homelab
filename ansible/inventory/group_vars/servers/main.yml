@@ -7,4 +7,4 @@ k3s_server:
     - metrics-server
     - local-storage
   disable_helm_controller: true
-  write-kubeconfig-mode: '0644'
+  write-kubeconfig-mode: "0644"

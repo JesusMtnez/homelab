@@ -43,4 +43,4 @@
     - name: Reboot
       ansible.builtin.reboot:
         msg: Rebooting nodes
-        reboot_command: '/bin/systemctl reboot'
+        reboot_command: "/bin/systemctl reboot"

@@ -10,22 +10,22 @@
 - name: Disable empty password login
   ansible.builtin.lineinfile:
     dest: "{{ openssh_config }}"
-    regexp: '^#?PermitEmptyPasswords'
-    line: 'PermitEmptyPasswords no'
+    regexp: "^#?PermitEmptyPasswords"
+    line: "PermitEmptyPasswords no"
   notify: Restart sshd
 
 - name: Disable remote root login
   ansible.builtin.lineinfile:
     dest: "{{ openssh_config }}"
-    regexp: '^#?PermitRootLogin'
-    line: 'PermitRootLogin no'
+    regexp: "^#?PermitRootLogin"
+    line: "PermitRootLogin no"
   notify: Restart sshd
 
 - name: Disable password login
   ansible.builtin.lineinfile:
     dest: "{{ openssh_config }}"
     regexp: '^(#\s*)?PasswordAuthentication '
-    line: 'PasswordAuthentication no'
+    line: "PasswordAuthentication no"
   when:
     - bootstrap_add_identity_keys is succeeded
     - not bootstrap_add_identity_keys is skipped

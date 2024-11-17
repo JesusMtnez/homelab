@@ -5,7 +5,7 @@ version: "3"
 vars:
   cluster: fluffy
   ns: '{{.ns | default "default"}}'
-  app: '{{ .app }}'
+  app: "{{ .app }}"
 
 env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
@@ -21,7 +21,7 @@ tasks:
         app: application to preview
     cmds:
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}
-      - defer: { task: cleanup }
+      - defer: {task: cleanup}
     preconditions:
       - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
       - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
@@ -37,7 +37,7 @@ tasks:
     cmds:
       - task: create-secret
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
-      - defer: { task: cleanup }
+      - defer: {task: cleanup}
     preconditions:
       - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
       - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
@@ -53,7 +53,7 @@ tasks:
     cmds:
       - task: delete-secret
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl delete -f -
-      - defer: { task: cleanup }
+      - defer: {task: cleanup}
     preconditions:
       - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
       - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
