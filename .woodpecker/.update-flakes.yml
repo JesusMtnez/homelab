@@ -1,8 +1,8 @@
 ---
 when:
-  event: [cron, manual]
-  branch: main
-  cron: update_flakes
+  - branch: main
+    event: [cron, manual]
+    cron: update_flakes
 
 steps:
   update-lockfile:
