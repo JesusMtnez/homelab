@@ -1,7 +1,7 @@
 ---
 when:
-  branch: main
-  event: [push, pull_request]
+  - branch: main
+    event: [push, pull_request]
 
 steps:
   build:
