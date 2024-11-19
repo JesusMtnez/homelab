@@ -31,5 +31,5 @@ steps:
       - git commit --message "Deploy pages"
       - git push --force https://$CODEBERG_TOKEN@codeberg.org/$CI_REPO pages
     when:
-      event: push
-      branch: main
+      - event: push
+        branch: main
