@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: docker.io/b4bz/homer
-          tag: v24.11.5
+          tag: v24.12.1
           pullPolicy: IfNotPresent
         probes:
           liveness:
