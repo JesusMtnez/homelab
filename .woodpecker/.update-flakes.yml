@@ -7,16 +7,18 @@ when:
 steps:
   update-lockfile:
     image: nixos/nix:2.25.3
-    secrets:
-      - codeberg_token
-      - bot_email
+    environment:
+      BOT_EMAIL:
+        from_secret: bot_email
+      CODEBERG_TOKEN:
+        from_secret: codeberg_token
     commands:
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
       - git config user.name "JesusMtnez-bot"
-      - git config user.email "$BOT_EMAIL"
+      - git config user.email "$${BOT_EMAIL}"
       - git switch -c update_flake
       - nix --option commit-lockfile-summary "update flake.lock" flake update --commit-lock-file
-      - git push --force https://$CODEBERG_TOKEN@codeberg.org/$CI_REPO update_flake
+      - git push --force https://$${CODEBERG_TOKEN}@codeberg.org/$CI_REPO update_flake
 
   create-pr:
     image: johnwalkerx/gitea-pull-request-create-plugin:latest
