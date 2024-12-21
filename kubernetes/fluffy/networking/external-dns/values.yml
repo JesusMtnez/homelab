@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: registry.k8s.io/external-dns/external-dns
-          tag: v0.15.0
+          tag: v0.15.1
           pullPolicy: IfNotPresent
         env:
           EXTERNAL_DNS_PIHOLE_PASSWORD:
