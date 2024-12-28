@@ -83,12 +83,6 @@ services:
         tag: "notes"
         url: "http://diary.home.es/"
 
-      - name: "FiDI"
-        subtitle: "This tool will help you import data into Firefly III"
-        logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefly.png"
-        tag: "money"
-        url: "http://fidi.home.es/"
-
 
   - name: "Tools"
     icon: "fas fa-network-wired"
