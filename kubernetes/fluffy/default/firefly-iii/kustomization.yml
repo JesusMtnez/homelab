@@ -11,7 +11,7 @@ helmCharts:
 commonAnnotations:
   meta.helm.sh/release-name: *releaseName
   meta.helm.sh/release-namespace: *releaseNamespace
-  nfs.io/storage-path: "firefly_uploads"
+  nfs.io/storage-path: "firefly_iii_uploads"
 labels:
   - includeSelectors: true
     pairs:
