@@ -1,0 +1,26 @@
+---
+image:
+  # renovate: datasource=docker depName=fireflyiii/core
+  tag: version-6.1.25
+
+persistence:
+  enabled: true
+  storageClassName: "nfs-client"
+  accessModes: ReadWriteOnce
+  storage: 50Gi
+
+config:
+  existingSecret: "firefly-iii-ro-secret"
+  env:
+    APP_ENV: production
+    APP_LOG_LEVEL: info
+    TZ: Europe/MADRID
+    TRUSTED_PROXIES: "**"
+
+ingress:
+  enabled: true
+  hosts:
+    - "fireflyro.home.es"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: fireflyro.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
