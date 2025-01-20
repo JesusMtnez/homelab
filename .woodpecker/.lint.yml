@@ -4,7 +4,7 @@ when:
     event: [push, pull_request]
 
 steps:
-  build:
+  - name: Lint files
     image: python:3.13
     commands:
       # Install go-task/task

@@ -5,7 +5,7 @@ when:
     cron: update_flakes
 
 steps:
-  update-lockfile:
+  - name: Update lockfile
     image: nixos/nix:2.25.4
     environment:
       BOT_EMAIL:
@@ -20,7 +20,7 @@ steps:
       - nix --option commit-lockfile-summary "update flake.lock" flake update --commit-lock-file
       - git push --force https://$${CODEBERG_TOKEN}@codeberg.org/$CI_REPO update_flake
 
-  create-pr:
+  - name: Create PR
     image: johnwalkerx/gitea-pull-request-create-plugin:latest
     settings:
       gitea_address: https://codeberg.org

@@ -5,7 +5,7 @@ when:
     path: ["docs/**", "mkdocs.yml", "flake.*", ".woodpecker/.site.yml"]
 
 steps:
-  build:
+  - name: build
     image: nixos/nix:2.25.4
     commands:
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
@@ -13,7 +13,7 @@ steps:
       - mkdir public
       - cp -ar result/. public/
 
-  deploy:
+  - name: deploy
     image: alpine/git:v2.47.1
     environment:
       BOT_EMAIL:
