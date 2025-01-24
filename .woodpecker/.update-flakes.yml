@@ -6,7 +6,7 @@ when:
 
 steps:
   - name: Update lockfile
-    image: nixos/nix:2.25.5
+    image: nixos/nix:2.26.0
     environment:
       BOT_EMAIL:
         from_secret: bot_email
