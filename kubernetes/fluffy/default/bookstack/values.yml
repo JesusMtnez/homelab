@@ -44,7 +44,7 @@ service:
         port: 80
 
 ingress:
-  vikunja:
+  bookstack:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: bookstack.home.es.
       external-dns.alpha.kubernetes.io/target: home.es.
