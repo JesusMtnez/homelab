@@ -1,36 +1,98 @@
 ---
-image:
-  # renovate: datasource=docker depName=fireflyiii/core
-  tag: version-6.2.2
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.6.1/charts/library/common/values.schema.json
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: docker.io/fireflyiii/core
+          # renovate: datasource=docker depName=fireflyiii/core
+          tag: version-6.2.2
+          pullPolicy: IfNotPresent
+        env:
+          APP_ENV: production
+          APP_LOG_LEVEL: info
+          TZ: Europe/Madrid
+          TRUSTED_PROXIES: "**"
+        envFrom:
+          - secretRef:
+              name: firefly-iii-secret
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: 8080
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: 8080
+          startup:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: 8080
+              failureThreshold: 30
+              periodSeconds: 10
+  trigger:
+    type: cronjob
+    containers:
+      curl:
+        image:
+          repository: curlimages/curl
+          tag: latest
+          pullPolicy: IfNotPresent
+        env:
+          FIREFLY_III_TOKEN:
+            valueFrom:
+              secretKeyRef:
+                name: firefly-iii-secret
+                key: STATIC_CRON_TOKEN
+    cronjob:
+      schedule: "0 4 * * *"
+      successfulJobsHistory: 1
+      failedJobsHistory: 2
+      backoffLimit: 0
 
 persistence:
-  enabled: true
-  storageClassName: "nfs-client"
-  accessModes: ReadWriteOnce
-  storage: 50Gi
+  upload:
+    enabled: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    retain: true
 
-config:
-  existingSecret: "firefly-iii-secret"
-  env:
-    APP_ENV: production
-    APP_LOG_LEVEL: info
-    TZ: Europe/MADRID
-    TRUSTED_PROXIES: "**"
+    advancedMounts:
+      main:
+        app:
+          - path: "/var/www/html/storage/upload"
+            readOnly: false
+
+service:
+  app:
+    controller: main
+    ports:
+      http:
+        port: 8080
 
 ingress:
-  enabled: true
-  hosts:
-    - "firefly.home.es"
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: firefly.home.es.
-    external-dns.alpha.kubernetes.io/target: home.es.
-
-cronjob:
-  enabled: true
-  auth:
-    existingSecret: "firefly-iii-secret"
-    secretKey: STATIC_CRON_TOKEN
-  schedule: "0 4 * * *"
-  successfulJobsHistoryLimit: 1
-  failedJobsHistoryLimit: 2
-  restartPolicy: Never
+  firefly-iii:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: firefly.home.es.
+      external-dns.alpha.kubernetes.io/target: home.es.
+    hosts:
+      - host: firefly.home.es
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: app
+              port: http
