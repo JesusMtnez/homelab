@@ -1,3 +1,4 @@
-.private/
 .vscode/
 .direnv/
+archive/
+**/*.sops.yml

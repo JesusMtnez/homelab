@@ -32,7 +32,6 @@
         autoremove: true
         autoclean: true
       when: dietpi_upgrade_apt_updates.stat.exists
-
 # - name: Upgrade synology nas
 #   hosts: grimmauld
 #   gather_facts: true

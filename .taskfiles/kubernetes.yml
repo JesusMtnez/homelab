@@ -23,8 +23,14 @@ tasks:
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}
       - defer: {task: cleanup}
     preconditions:
-      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
-      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+      - {
+          msg: "Missing namespace",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}",
+        }
+      - {
+          msg: "Missing application",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}",
+        }
 
   apply:
     desc: Apply
@@ -39,8 +45,14 @@ tasks:
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
       - defer: {task: cleanup}
     preconditions:
-      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
-      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+      - {
+          msg: "Missing namespace",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}",
+        }
+      - {
+          msg: "Missing application",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}",
+        }
 
   delete:
     desc: Delete
@@ -55,8 +67,14 @@ tasks:
       - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl delete -f -
       - defer: {task: cleanup}
     preconditions:
-      - { msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}" }
-      - { msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}" }
+      - {
+          msg: "Missing namespace",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}",
+        }
+      - {
+          msg: "Missing application",
+          sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}",
+        }
 
   get:
     desc: Get resource from namespace

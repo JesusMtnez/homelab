@@ -83,7 +83,6 @@ services:
         tag: "notes"
         url: "http://diary.home.es/"
 
-
   - name: "Tools"
     icon: "fas fa-network-wired"
     items:
