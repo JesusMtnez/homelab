@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: firefly-iii
     repo: https://firefly-iii.github.io/kubernetes
-    version: 1.9.0
+    version: 1.9.1
     releaseName: &releaseName firefly-iii
     namespace: &releaseNamespace default
     valuesFile: values.yml
