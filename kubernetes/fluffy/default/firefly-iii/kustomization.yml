@@ -16,3 +16,8 @@ labels:
   - includeSelectors: true
     pairs:
       app.kubernetes.io/managed-by: Helm
+patches:
+  - target:
+      kind: Deployment
+      name: firefly-iii
+    path: patch.yml
