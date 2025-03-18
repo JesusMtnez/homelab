@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: docker.io/adminer
-          tag: 5.0.5
+          tag: 5.0.6
           pullPolicy: IfNotPresent
         env:
           ADMINER_DESIGN: hydra
