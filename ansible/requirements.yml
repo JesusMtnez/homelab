@@ -5,7 +5,7 @@ collections:
   - name: community.docker
     version: 4.5.2
   - name: community.general
-    version: 10.4.0
+    version: 10.5.0
 roles:
   - name: xanmanning.k3s
     src: https://github.com/PyratLabs/ansible-role-k3s
