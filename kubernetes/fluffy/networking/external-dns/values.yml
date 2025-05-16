@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.3/charts/library/common/values.schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/refs/heads/main/charts/other/app-template/values.schema.json
 controllers:
   external-dns-pihole:
     strategy: Recreate
@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: registry.k8s.io/external-dns/external-dns
-          tag: v0.16.1
+          tag: v0.17.0
           pullPolicy: IfNotPresent
         env:
           EXTERNAL_DNS_PIHOLE_PASSWORD:
@@ -20,6 +20,7 @@ controllers:
           - --registry=noop
           - --policy=upsert-only
           - --provider=pihole
+          - --pihole-api-version=6
           - --pihole-server=http://192.168.1.250
           - --pihole-tls-skip-verify
         probes:
