@@ -47,8 +47,8 @@ controllers:
             memory: 64Mi
 
 serviceAccount:
-  create: true
-  name: external-dns-pihole
+  external-dns-pihole:
+    enabled: true
 
 service:
   app:
