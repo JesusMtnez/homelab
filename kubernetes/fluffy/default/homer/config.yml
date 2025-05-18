@@ -90,7 +90,7 @@ services:
         subtitle: "A black hole for Internet advertisements"
         logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png"
         tag: "network"
-        url: "http://pihole.home.es/admin"
+        url: "https://pihole.home.es"
         type: "PiHole"
 
       - name: "Adminer"
