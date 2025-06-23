@@ -8,7 +8,7 @@ configMapGenerator:
 helmCharts:
   - name: app-template
     repo: https://bjw-s-labs.github.io/helm-charts/
-    version: 4.1.1
+    version: 4.1.2
     releaseName: &releaseName homer
     namespace: &releaseNamespace default
     valuesFile: values.yml
