@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/linuxserver/bookstack
-          tag: v25.05.1-ls209
+          tag: v25.05.2-ls210
           pullPolicy: IfNotPresent
         env:
           PUID: 1024 # admin
