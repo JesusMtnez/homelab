@@ -3,63 +3,68 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
-
-    nixpkgs-latest.url = "github:NixOS/nixpkgs";
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
+    nixpkgs-latest.url = "github:NixOS/nixpkgs/master";
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "aarch64-darwin"
-    ];
+  outputs = { self, nixpkgs, nixpkgs-latest }:
+    let
+      allSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
 
-    perSystem = { pkgs, ... }: {
-      devShells.default = pkgs.mkShell {
-        name = "homelab-shell";
+      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
+        pkgs = import nixpkgs { inherit system; };
+        latest = import nixpkgs-latest { inherit system; };
+      });
 
-        packages = with pkgs; [
-          ansible
-          sshpass
-          go-task
+    in
+    {
+      packages = forAllSystems ({ pkgs, latest }: {
+        site = pkgs.stdenv.mkDerivation {
+          name = "homelab-site";
+          src = ./.;
+          nativeBuildInputs = [ (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
+          buildPhase = "mkdocs build --site-dir $out";
+          dontInstal = true;
+        };
+      });
 
-          inputs.nixpkgs-latest.legacyPackages.${system}.kubectl
-          inputs.nixpkgs-latest.legacyPackages.${system}.kubernetes-helm
-          sops
-          age
+      devShells = forAllSystems
+        ({ pkgs, latest }: {
+          default = pkgs.mkShell
+            {
+              name = "homelab-shell";
+              packages = with pkgs; [
+                ansible
+                sshpass
+                go-task
 
-          ansible-lint
-          yamllint
-          nodePackages.prettier
-        ];
+                latest.kubectl
+                latest.kubernetes-helm
+                sops
+                age
 
-        shellHook = ''
-          export KUBECONFIG=kubeconfig
-        '';
-      };
+                ansible-lint
+                yamllint
+                nodePackages.prettier
+              ];
 
-      packages.site = pkgs.stdenv.mkDerivation {
-        name = "homelab-site";
-        src = ./.;
-        nativeBuildInputs = [ (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
-        buildPhase = "mkdocs build --site-dir $out";
-        dontInstal = true;
-      };
+              shellHook = ''
+                export KUBECONFIG=kubeconfig
+              '';
+            };
 
-      devShells.site = pkgs.mkShell {
-        name = "docs-shell";
+          site = pkgs.mkShell
+            {
+              name = "docs-shell";
+              packages = [
+                (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
+              ];
+            };
+        });
 
-        packages = [
-          (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
-        ];
-      };
     };
-  };
 }
