@@ -6,7 +6,7 @@ when:
 
 steps:
   - name: build
-    image: nixos/nix:2.29.1
+    image: nixos/nix:2.30.0
     commands:
       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
       - nix build .#site
