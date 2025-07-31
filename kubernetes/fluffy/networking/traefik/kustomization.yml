@@ -5,7 +5,7 @@ helmCharts:
   - name: traefik-crds
     includeCRDs: true
     repo: https://traefik.github.io/charts
-    version: 1.9.0
+    version: 1.10.0
     releaseName: &releaseName traefik-crds
     namespace: &releaseNamespace networking
   - name: traefik
