@@ -10,7 +10,7 @@ helmCharts:
     namespace: &releaseNamespace networking
   - name: traefik
     repo: https://traefik.github.io/charts
-    version: 37.0.0
+    version: 37.1.0
     releaseName: &releaseName traefik
     namespace: &releaseNamespace networking
     valuesFile: values.yml
