@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
   - name: app-template
     repo: https://bjw-s-labs.github.io/helm-charts/
-    version: 4.2.0
+    version: 4.3.0
     releaseName: &releaseName adminer
     namespace: &releaseNamespace default
     valuesFile: values.yml
