@@ -1,7 +1,7 @@
 ---
 image:
   # renovate: datasource=docker depName=fireflyiii/data-importer
-  tag: version-1.8.3
+  tag: version-1.8.4
 
 fireflyiii:
   url: http://firefly-iii
