@@ -26,7 +26,7 @@
         site = pkgs.stdenv.mkDerivation {
           name = "homelab-site";
           src = ./.;
-          nativeBuildInputs = [ (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
+          nativeBuildInputs = [ (pkgs.python313.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
           buildPhase = "mkdocs build --site-dir $out";
           dontInstal = true;
         };
@@ -61,7 +61,7 @@
             {
               name = "docs-shell";
               packages = [
-                (pkgs.python312.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
+                (pkgs.python313.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
               ];
             };
         });
