@@ -47,7 +47,7 @@
                 sops
                 age
 
-                ansible-lint
+                latest.ansible-lint
                 yamllint
                 nodePackages.prettier
               ];
