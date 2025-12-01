@@ -2,7 +2,7 @@
   description = "homelab";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
     nixpkgs-latest.url = "github:NixOS/nixpkgs/master";
   };
 
