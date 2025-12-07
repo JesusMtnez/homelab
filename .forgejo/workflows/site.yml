@@ -1,0 +1,39 @@
+---
+name: site
+
+on:
+  pull_request:
+    path: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/.site.yml"]
+  push:
+    branches: [main]
+    path: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/.site.yml"]
+
+jobs:
+  build:
+    name: Build site
+    runs-on: codeberg-tiny-lazy
+    steps:
+      - name: "Git checkout"
+        uses: https://code.forgejo.org/actions/checkout@v6
+
+      - name: "Install Nix ❄️"
+        uses: https://github.com/cachix/install-nix-action@v31
+
+      - name: "Build 🛠️"
+        run: "nix build .#site"
+
+      - name: "Deploy 🚀"
+        if: ${{ forgejo.ref_name == 'main' }}
+        run: |
+          mkdir public
+          cp .domains public/.domains || true
+          cp _redirects public/_redirects || true
+          cp -ar result/. public/
+          cd public
+          git init
+          git config user.name "JesusMtnez[Bot]"
+          git config user.email "${{ secrets.BOT_EMAIL }}"
+          git checkout --orphan pages
+          git add --all .
+          git commit --message "deploy pages"
+          git push --force https://${{ secrets.BOT_TOKEN }}@codeberg.org/${{ forgejo.repository }} pages
