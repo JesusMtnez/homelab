@@ -1,0 +1,25 @@
+---
+name: update-flake-lock
+
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 4 * * 1'
+
+jobs:
+  lockfile:
+    runs-on: codeberg-tiny-lazy
+    steps:
+      - name: "Git checkout"
+        uses: https://code.forgejo.org/actions/checkout@v6
+
+      - name: "Install Nix ❄️"
+        uses: https://github.com/cachix/install-nix-action@v31
+
+      - name: "Update flake.lock ❄️"
+        uses: https://github.com/DerDennisOP/update-flake-lock@main
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          pr-title: "chore(deps): update flake.lock"
+          git-author-name: "JesusMtnez[Bot]"
+          git-author-email: ${{ secrets.BOT_EMAIL }}
