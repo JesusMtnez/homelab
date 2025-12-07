@@ -3,10 +3,10 @@ name: site
 
 on:
   pull_request:
-    paths: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/.site.yml"]
+    paths: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/workflows/site.yml"]
   push:
     branches: [main]
-    paths: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/.site.yml"]
+    paths: ["docs/**", "mkdocs.yml", "flake.*", ".forgejo/workflows/site.yml"]
 
 jobs:
   build:
