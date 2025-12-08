@@ -8,7 +8,7 @@ on:
 
 jobs:
   lockfile:
-    runs-on: codeberg-tiny-lazy
+    runs-on: codeberg-small-lazy
     steps:
       - name: "Git checkout"
         uses: https://code.forgejo.org/actions/checkout@v6
@@ -23,3 +23,5 @@ jobs:
           pr-title: "chore(deps): update flake.lock"
           git-author-name: "JesusMtnez[Bot]"
           git-author-email: ${{ secrets.BOT_EMAIL }}
+          git-committer-name: "JesusMtnez[Bot]"
+          git-committer-email: ${{ secrets.BOT_EMAIL }}
