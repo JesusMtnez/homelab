@@ -17,4 +17,4 @@ tasks:
   yaml:
     desc: Lint YAML
     cmds:
-      - yamllint -c '.woodpecker/linters/.yamllint.yml' .
+      - yamllint -c '.forgejo/linters/.yamllint.yml' .
