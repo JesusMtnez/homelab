@@ -1,0 +1,40 @@
+---
+image:
+  # renovate: datasource=docker depName=fireflyiii/core
+  tag: version-6.1.25
+
+livenessProbe: null
+readinessProbe: null
+startupProbe: null
+
+persistence:
+  enabled: true
+  storageClassName: "nfs-client"
+  accessModes: ReadWriteOnce
+  storage: 50Gi
+
+config:
+  existingSecret: "firefly-iii-secret"
+  env:
+    APP_ENV: production
+    APP_LOG_LEVEL: info
+    TZ: Europe/MADRID
+    TRUSTED_PROXIES: "**"
+
+ingress:
+  enabled: true
+  hosts:
+    - "firefly.home.es"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: firefly.home.es.
+    external-dns.alpha.kubernetes.io/target: home.es.
+
+cronjob:
+  enabled: true
+  auth:
+    existingSecret: "firefly-iii-secret"
+    secretKey: STATIC_CRON_TOKEN
+  schedule: "0 4 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  restartPolicy: Never

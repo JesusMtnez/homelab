@@ -1,8 +1,9 @@
 {
-  description = "homelab";
+  description = "JesusMtnez's Homelab based on Nix!";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
+
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
@@ -19,6 +20,15 @@
         pkgs = import nixpkgs { inherit system; };
         latest = import nixpkgs-latest { inherit system; };
       });
+
+      mkPkgsFor = system: pkgset:
+        import pkgset {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        };
+
 
     in
     {
@@ -44,6 +54,7 @@
 
                 latest.kubectl
                 latest.kubernetes-helm
+                latest.fluxcd
                 sops
                 age
 
@@ -66,5 +77,16 @@
             };
         });
 
+      nixosConfigurations = {
+        minerva = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            latest = mkPkgsFor "x86_64-linux" nixpkgs-latest;
+          };
+          modules = [
+            ./hosts/minerva/configuration.nix
+          ];
+        };
+      };
     };
 }

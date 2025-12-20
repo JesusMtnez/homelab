@@ -2,32 +2,38 @@
 <img src=img/logo.png align="center" width="144px" height="144px"/>
 </div>
 
-## Homelab {: align='center'}
-_my home infrastructure and Kubernetes cluster_
+## 🚀 My Homelab Repository 🚧 {: align='center'}
+_... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
 {: align='center'}
 
-[![Built with nix][NIX-badge]][NIX-link]
-[![K3S Version][K3S-badge]][K3S-link]
+[![Built with nix][nix-badge]][nix-link]
+[![k3s version][k3s-badge]][k3s-link]
+[![fluxcd version][fluxcd-badge]][fluxcd-link]
 [![forgejo][forgejo-actions-badge]][forgejo-actions-link]
-![Renovate][renovate-badge]
+[![Renovate][renovate-badge]][renovate-link]
 {: align='center'}
 
 
-  [NIX-badge]: https://img.shields.io/badge/Built_with_nix-blue.svg?logo=nixos&labelColor=73C3D5
-  [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/v1.32-blue?&logo=k3s&logoColor=white
-  [K3S-link]: https://k3s.io
-  [forgejo-actions-badge]: https://codeberg.org/JesusMtnez/homelab/badges/workflows/site.yml/badge.svg?&logo=forgejo&logoColor=white&color=blue
+  [nix-badge]: https://img.shields.io/badge/25.11-blue.svg?logo=nixos&style=for-the-badge&logoColor=white&color=blue
+  [nix-link]: https://builtwithnix.org
+  [k3s-badge]: https://img.shields.io/badge/1.34-blue?logo=k3s&style=for-the-badge&logoColor=white&color=blue
+  [k3s-link]: https://k3s.io
+  [fluxcd-badge]: https://img.shields.io/badge/2.7.5-blue?&logo=flux&style=for-the-badge&logoColor=white&color=blue
+  [fluxcd-link]: https://fluxcd.io/
+  [forgejo-actions-badge]: https://codeberg.org/JesusMtnez/homelab/badges/workflows/site.yml/badge.svg?&logo=forgejo&style=for-the-badge&logoColor=white&color=blue&label=
   [forgejo-actions-link]: https://codeberg.org/JesusMtnez/homelab/src/branch/main/.forgejo/workflows/site.yml
-  [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovate&logoColor=white
+  [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovate&style=for-the-badge&color=blue&logoColor=white
+  [renovate-link]: https://codeberg.org/JesusMtnez/automation/src/branch/main/.woodpecker/.renovate.yml
+  [homelab]: https://jesusmtnez.es/homelab
 
 ## 💻 Hardware
 
-| Device           | Count | RAM    | Disks               | OS     | Arch  | Purpose      |
-| ---------------- | ----- | ------ | ------------------- | ------ | ----- | ------------ |
-| Synology DS216j  | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 | NFS + NAS    |
-| Raspberry Pi 1B  | 1     | 512 MB | SD 32GB             | DietPi | armv6 | DNS (PiHole) |
-| Raspberry Pi 3B  | 5     | 1 GB   | SD 32GB             | DietPi | armv8 | Kubernetes   |
+| Device          | Count | RAM    | Disks               | OS     | Arch  | Purpose             |
+| --------------- | ----- | ------ | ------------------- | ------ | ----- | ------------------- |
+| Synology DS216j | 1     | 512 MB | WD Red Nas 4TB (x2) | DSM 7  | armv7 | NFS + NAS           |
+| BMAX B4 Plus    | 1     | 16 GB  | SSD 512GB           | NixOS  | amd64 | Kubernetes (Server) |
+| Raspberry Pi 1B | 1     | 512 MB | SD 32GB             | DietPi | armv6 | DNS (PiHole)        |
+| Raspberry Pi 3B | 5     | 1 GB   | SD 32GB             | DietPi | armv8 | _undefined_         |
 
 ## 📂 Repository structure
 
@@ -38,42 +44,16 @@ The Git repository contains the following directories:
 📁 archive     # unused / old applications
 📁 kubernetes  # Kubernetes clusters
 └─📁 fluffy    # Cluster 'fluffy' organized by namespaces
+📁 nixos       # Hosts configuration based on NixOS
 ```
 
 ## Playbooks
-
-### `dietpi-gen` playbook
-
-Bootstrap a DietPi image with `dietpi.txt` file to run an [_unattended base installion_][dietpi-unattended].
-
-  [dietpi-unattended]: https://dietpi.com/docs/usage/#how-to-do-an-automatic-base-installation-at-first-boot-dietpi-automation
 
 ### `dietpi-upgrade` playbook
 
 Upgrade DietPi systems using `apt` and `dietpi` upgrader.
 
 > (Disabled) Upgrade DSM python installatio in Synology.
-
-### `k3s-bootstrap` playbook
-
-Configure and setup k3s cluster nodes.
-
-- Secure OpenSSH server
-- Enable cgroup support
-- Enable containerd (docker)
-- Enable nfs support
-
-### `k3s-install` playbook
-
-Install or upgrade k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
-
-  [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
-
-### `k3s-nuke` playbook
-
-Remove k3s cluster deployment using [xanmanning/k3s][xanmanning/k3s].
-
-  [xanmanning/k3s]: https://galaxy.ansible.com/ui/standalone/roles/xanmanning/k3s/
 
 ### `entware-install` playbook
 

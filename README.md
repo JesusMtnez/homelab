@@ -2,24 +2,28 @@
 
 <img src="docs/img/logo.png" align="center" width="144px" height="144px"/>
 
-# [Homelab][homelab]
+### 🚀 My [Homelab Repository][homelab] 🚧
 
-_my home infrastructure and Kubernetes cluster_
+_... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
 
-[![Built with nix][NIX-badge]][NIX-link]
-[![K3S Version][K3S-badge]][K3S-link]
+[![Built with nix][nix-badge]][nix-link]
+[![k3s version][k3s-badge]][k3s-link]
+[![fluxcd version][fluxcd-badge]][fluxcd-link]
 [![forgejo][forgejo-actions-badge]][forgejo-actions-link]
-![Renovate][renovate-badge]
+[![Renovate][renovate-badge]][renovate-link]
 
 **Find all the information at**: https://jesusmtnez.es/homelab
 
 </div>
 
-  [NIX-badge]: https://img.shields.io/badge/Built_with_nix-blue.svg?logo=nixos&labelColor=73C3D5
-  [NIX-link]: https://builtwithnix.org
-  [K3S-badge]: https://img.shields.io/badge/v1.32-blue?&logo=k3s&logoColor=white
-  [K3S-link]: https://k3s.io
-  [forgejo-actions-badge]: https://codeberg.org/JesusMtnez/homelab/badges/workflows/site.yml/badge.svg?&logo=forgejo&logoColor=white&color=blue
+  [nix-badge]: https://img.shields.io/badge/25.11-blue.svg?logo=nixos&style=for-the-badge&logoColor=white&color=blue
+  [nix-link]: https://builtwithnix.org
+  [k3s-badge]: https://img.shields.io/badge/1.34-blue?logo=k3s&style=for-the-badge&logoColor=white&color=blue
+  [k3s-link]: https://k3s.io
+  [fluxcd-badge]: https://img.shields.io/badge/2.7.5-blue?&logo=flux&style=for-the-badge&logoColor=white&color=blue
+  [fluxcd-link]: https://fluxcd.io/
+  [forgejo-actions-badge]: https://codeberg.org/JesusMtnez/homelab/badges/workflows/site.yml/badge.svg?&logo=forgejo&style=for-the-badge&logoColor=white&color=blue&label=
   [forgejo-actions-link]: https://codeberg.org/JesusMtnez/homelab/src/branch/main/.forgejo/workflows/site.yml
-  [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovate&logoColor=white
+  [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovate&style=for-the-badge&color=blue&logoColor=white
+  [renovate-link]: https://codeberg.org/JesusMtnez/automation/src/branch/main/.woodpecker/.renovate.yml
   [homelab]: https://jesusmtnez.es/homelab

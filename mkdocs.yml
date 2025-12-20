@@ -1,15 +1,14 @@
 ---
-site_name: Homelab
+site_name: Nix Homelab
 site_url: https://jesusmtnez.es/homelab
 repo_url: https://codeberg.org/JesusMtnez/homelab
 
-site_description: my home infrastructure and Kubernetes cluster
+site_description: my home infrastructure managed with Nix, Nixidy, ArgoCD, Renovate and Forgejo Actions
 site_author: https://jesusmtnez.es/homelab
-copyright: Copyright (c) 2021-2024 JesusMtnez
+copyright: Copyright (c) 2021-2025 JesusMtnez
 
 nav:
   - Overview: index.md
-  - Local environment: local-env.md
 
 theme:
   name: material
