@@ -4,7 +4,6 @@ version: "3"
 
 vars:
   # Directories
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
   # Files
   SOPS_AGE_KEY_FILE: "{{.ROOT_DIR}}/age.key"
@@ -16,20 +15,12 @@ env:
   SOPS_CONFIG_FILE: "{{.ROOT_DIR}}/.sops.yml"
 
 includes:
-  ansible: .taskfiles/ansible.yml
   k8s: .taskfiles/kubernetes.yml
-  linter: .taskfiles/linter.yml
-  format: .taskfiles/formatter.yml
 
 tasks:
   default:
     silent: true
     cmd: task -l
-
-  deps:
-    desc: Install required packages
-    cmds:
-      - ansible-galaxy install --role-file "{{.ANSIBLE_DIR}}/requirements.yml" --force
 
   age:
     desc: Initialize Age Key for Sops

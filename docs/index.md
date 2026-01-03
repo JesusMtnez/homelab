@@ -40,34 +40,16 @@ _... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
 The Git repository contains the following directories:
 
 ```sh
-📁 ansible     # Ansible playbooks / roles to setup all the infrastructure
 📁 archive     # unused / old applications
 📁 kubernetes  # Kubernetes clusters
 └─📁 fluffy    # Cluster 'fluffy' organized by namespaces
 📁 nixos       # Hosts configuration based on NixOS
 ```
 
-## Playbooks
-
-### `dietpi-upgrade` playbook
-
-Upgrade DietPi systems using `apt` and `dietpi` upgrader.
-
-> (Disabled) Upgrade DSM python installatio in Synology.
-
-### `entware-install` playbook
-
-Install and configure [Entware][entware] for Synology DSM following [this instructions][entware-dsm].
-
-  [entware]: https://github.com/Entware/Entware/
-  [entware-dsm]: https://github.com/Entware/Entware/wiki/Install-on-Synology-NAS
-
 ## Credits
 
 - [k3s](https://k3s.io) by [Rancher](https://rancher.com/)
 - [alexellis/k3sup](https://github.com/alexellis/k3sup)
-- [OmegaSquad82/ansible-k3sup](https://github.com/OmegaSquad82/ansible-k3sup)
-- [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible)
 - [k8s-at-home/template-cluster-k3s](https://github.com/k8s-at-home/template-cluster-k3s/)
 - [onedr0p/home-ops](https://github.com/onedr0p/home-ops)
 - [onedr0p/flux-cluster-template](https://github.com/onedr0p/flux-cluster-template)

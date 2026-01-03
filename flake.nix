@@ -48,8 +48,6 @@
             {
               name = "homelab-shell";
               packages = with pkgs; [
-                ansible
-                sshpass
                 go-task
 
                 latest.kubectl
@@ -57,10 +55,6 @@
                 latest.fluxcd
                 sops
                 age
-
-                latest.ansible-lint
-                yamllint
-                nodePackages.prettier
               ];
 
               shellHook = ''

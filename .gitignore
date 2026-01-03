@@ -20,6 +20,3 @@ site/
 *.key
 *.pem
 *.age
-
-# ansible
-.ansible
