@@ -7,7 +7,7 @@ controllers:
       app:
         image:
           repository: docker.io/phitux/dailytxt
-          tag: 2.4.5
+          tag: 2.4.6
           pullPolicy: IfNotPresent
         env:
           PORT: 8765
