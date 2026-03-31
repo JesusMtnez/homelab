@@ -7,69 +7,89 @@
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-latest }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-latest,
+    }:
     let
       allSystems = [
         "x86_64-linux"
         "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
       ];
 
-      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
-        pkgs = import nixpkgs { inherit system; };
-        latest = import nixpkgs-latest { inherit system; };
-      });
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs allSystems (
+          system:
+          f {
+            pkgs = import nixpkgs { inherit system; };
+            latest = import nixpkgs-latest { inherit system; };
+          }
+        );
 
-      mkPkgsFor = system: pkgset:
+      mkPkgsFor =
+        system: pkgset:
         import pkgset {
           inherit system;
           config = {
             allowUnfree = true;
           };
         };
-
-
     in
     {
-      packages = forAllSystems ({ pkgs, latest }: {
-        site = pkgs.stdenv.mkDerivation {
-          name = "homelab-site";
-          src = ./.;
-          nativeBuildInputs = [ (pkgs.python313.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ])) ];
-          buildPhase = "mkdocs build --site-dir $out";
-          dontInstal = true;
-        };
-      });
+      formatter = forAllSystems ({ pkgs, latest }: pkgs.nixfmt-tree);
 
-      devShells = forAllSystems
-        ({ pkgs, latest }: {
-          default = pkgs.mkShell
-            {
-              name = "homelab-shell";
-              packages = with pkgs; [
-                go-task
+      packages = forAllSystems (
+        { pkgs, latest }:
+        {
+          site = pkgs.stdenv.mkDerivation {
+            name = "homelab-site";
+            src = ./.;
+            nativeBuildInputs = [
+              (pkgs.python313.withPackages (ps: [
+                ps.mkdocs
+                ps.mkdocs-material
+              ]))
+            ];
+            buildPhase = "mkdocs build --site-dir $out";
+            dontInstal = true;
+          };
+        }
+      );
 
-                latest.kubectl
-                latest.kubernetes-helm
-                latest.fluxcd
-                sops
-                age
-              ];
+      devShells = forAllSystems (
+        { pkgs, latest }:
+        {
+          default = pkgs.mkShell {
+            name = "homelab-shell";
+            packages = with pkgs; [
+              go-task
 
-              shellHook = ''
-                export KUBECONFIG=kubeconfig
-              '';
-            };
+              latest.kubectl
+              latest.kubernetes-helm
+              latest.fluxcd
+              sops
+              age
+            ];
 
-          site = pkgs.mkShell
-            {
-              name = "docs-shell";
-              packages = [
-                (pkgs.python313.withPackages (ps: [ ps.mkdocs ps.mkdocs-material ]))
-              ];
-            };
-        });
+            shellHook = ''
+              export KUBECONFIG=kubeconfig
+            '';
+          };
+
+          site = pkgs.mkShell {
+            name = "docs-shell";
+            packages = [
+              (pkgs.python313.withPackages (ps: [
+                ps.mkdocs
+                ps.mkdocs-material
+              ]))
+            ];
+          };
+        }
+      );
 
       nixosConfigurations = {
         minerva = nixpkgs.lib.nixosSystem {

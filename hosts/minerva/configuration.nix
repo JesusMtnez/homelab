@@ -39,7 +39,10 @@
     "admin" = {
       isNormalUser = true;
       description = "administrator";
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [
+        "wheel"
+        "docker"
+      ];
       packages = with pkgs; [ vim ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgjymAtk9hHNEGyWBgpWtMf5Jn2JfRcnZJFR4Fix040 jmartinez@albus"
@@ -51,30 +54,28 @@
 
   networking.firewall.enable = false;
 
-  services = {
-    fwupd.enable = true;
+  services.fwupd.enable = true;
 
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      nssmdns6 = true;
-    };
-
-    k3s = {
-      enable = true;
-      package = latest.k3s;
-      role = "server";
-      extraFlags = [
-        "--write-kubeconfig-mode=644"
-        "--disable traefik"
-        "--disable metrics-server"
-        "--disable servicelb"
-        "--disable local-storage"
-      ];
-    };
-
-    openssh.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    nssmdns6 = true;
   };
+
+  services.k3s = {
+    enable = true;
+    package = latest.k3s;
+    role = "server";
+    extraFlags = [
+      "--write-kubeconfig-mode=644"
+      "--disable traefik"
+      "--disable metrics-server"
+      "--disable servicelb"
+      "--disable local-storage"
+    ];
+  };
+
+  services.openssh.enable = true;
 
   virtualisation.docker = {
     enable = true;
