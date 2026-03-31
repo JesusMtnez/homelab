@@ -20,7 +20,7 @@ _... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
   [nix-link]: https://builtwithnix.org
   [k3s-badge]: https://img.shields.io/badge/1.35-blue?logo=k3s&style=for-the-badge&logoColor=white&color=blue
   [k3s-link]: https://k3s.io
-  [fluxcd-badge]: https://img.shields.io/badge/2.7.5-blue?&logo=flux&style=for-the-badge&logoColor=white&color=blue
+  [fluxcd-badge]: https://img.shields.io/badge/2.8.3-blue?&logo=flux&style=for-the-badge&logoColor=white&color=blue
   [fluxcd-link]: https://fluxcd.io/
   [forgejo-actions-badge]: https://codeberg.org/JesusMtnez/homelab/badges/workflows/site.yml/badge.svg?&logo=forgejo&style=for-the-badge&logoColor=white&color=blue&label=
   [forgejo-actions-link]: https://codeberg.org/JesusMtnez/homelab/src/branch/main/.forgejo/workflows/site.yml
