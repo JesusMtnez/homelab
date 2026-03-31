@@ -18,7 +18,7 @@ _... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
 
   [nix-badge]: https://img.shields.io/badge/25.11-blue.svg?logo=nixos&style=for-the-badge&logoColor=white&color=blue
   [nix-link]: https://builtwithnix.org
-  [k3s-badge]: https://img.shields.io/badge/1.34-blue?logo=k3s&style=for-the-badge&logoColor=white&color=blue
+  [k3s-badge]: https://img.shields.io/badge/1.35-blue?logo=k3s&style=for-the-badge&logoColor=white&color=blue
   [k3s-link]: https://k3s.io
   [fluxcd-badge]: https://img.shields.io/badge/2.7.5-blue?&logo=flux&style=for-the-badge&logoColor=white&color=blue
   [fluxcd-link]: https://fluxcd.io/
