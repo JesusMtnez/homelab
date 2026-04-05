@@ -1,0 +1,37 @@
+---
+name: Update Flakes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 1'
+
+jobs:
+  update-flakes:
+    runs-on: codeberg-small-lazy
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: "Git checkout"
+        uses: https://code.forgejo.org/actions/checkout@v6
+
+      - name: "Install Nix ❄️"
+        uses: https://github.com/cachix/install-nix-action@v31
+
+      - name: "Update flake.lock ❄️"
+        run: nix flake update
+
+      - name: "Create Pull Request"
+        uses: https://codeberg.org/konsortium/forgejo-create-pr@main
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          base: main
+          commit-message: "update flake.lock"
+          commit-user: "JesusMtnez[Bot]"
+          commit-email: ${{ secrets.BOT_EMAIL }}
+          pr-branch: update_flake
+          pr-title: "chore(flake): update flake.lock"
+          pr-body: "Automated flake.lock update"
+          pr-condition-cmd: git diff --quiet flake.lock || echo "changed"
