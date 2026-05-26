@@ -2,7 +2,7 @@
   description = "JesusMtnez's Homelab based on Nix!";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
