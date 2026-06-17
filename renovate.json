@@ -57,7 +57,7 @@
       "matchPackageNames": [
         "ghcr.io/linuxserver/bookstack"
       ],
-      "versioning": "regex:^(?<compatibility>[a-z]*-|v)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:[\\.-]?(?<build>.*))?$",
+      "versioning": "regex:^v?(?<major>\\d+)\\.?(?<minor>\\d+)?\\.?(?<patch>\\d+)?-ls(?<build>\\d+)$",
       "commitMessageTopic": "image {{depName}}",
       "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     },
