@@ -14,7 +14,7 @@ jobs:
     runs-on: codeberg-tiny-lazy
     steps:
       - name: "Git checkout"
-        uses: https://code.forgejo.org/actions/checkout@v6
+        uses: https://code.forgejo.org/actions/checkout@v7
 
       - name: "Install Nix ❄️"
         uses: https://github.com/cachix/install-nix-action@v31
