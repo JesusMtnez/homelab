@@ -64,7 +64,7 @@
 
   services.k3s = {
     enable = true;
-    package = latest.k3s;
+    package = latest.k3s_1_36;
     role = "server";
     extraFlags = [
       "--write-kubeconfig-mode=644"
