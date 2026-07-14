@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  build:
+    desc: Build documentation site
+    cmds:
+      - nix develop .#site --command mkdocs build
+
+  serve:
+    desc: Serve documentation site locally
+    cmds:
+      - nix develop .#site --command mkdocs serve

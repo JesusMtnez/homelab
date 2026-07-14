@@ -15,6 +15,7 @@ env:
   SOPS_CONFIG_FILE: "{{.ROOT_DIR}}/.sops.yml"
 
 includes:
+  docs: .taskfiles/docs.yml
   k8s: .taskfiles/kubernetes.yml
 
 tasks:

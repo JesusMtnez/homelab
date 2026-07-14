@@ -53,7 +53,9 @@
                 ps.mkdocs-material
               ]))
             ];
-            buildPhase = "mkdocs build --site-dir $out";
+            buildPhase = ''
+              mkdocs build --site-dir $out
+            '';
             dontInstal = true;
           };
         }
