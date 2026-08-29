@@ -1,0 +1,11 @@
+{
+  "name": "homelab",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "docsify": "5.0.0"
+  },
+  "devDependencies": {
+    "docsify-cli": "5.0.0-rc.4"
+  }
+}

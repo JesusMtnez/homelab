@@ -1,18 +1,20 @@
 <div align="center">
-<img src=img/logo.png align="center" width="144px" height="144px"/>
+<img src="img/logo.png" width="144" height="144" />
 </div>
 
-## 🚀 My Homelab Repository 🚧 {: align='center'}
-_... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
-{: align='center'}
+<div align="center">
+
+## 🚀 My Homelab Repository 🚧
+
+_... managed with Nix, Flux, Renovate and Forgejo Actions_
 
 [![Built with nix][nix-badge]][nix-link]
 [![k3s version][k3s-badge]][k3s-link]
 [![fluxcd version][fluxcd-badge]][fluxcd-link]
 [![forgejo][forgejo-actions-badge]][forgejo-actions-link]
 [![Renovate][renovate-badge]][renovate-link]
-{: align='center'}
 
+</div>
 
   [nix-badge]: https://img.shields.io/badge/26.05-blue.svg?logo=nixos&style=for-the-badge&logoColor=white&color=blue
   [nix-link]: https://builtwithnix.org
@@ -24,7 +26,6 @@ _... managed with Nix, Flux, Renovate and Forgejo Actions_ 🤖
   [forgejo-actions-link]: https://codeberg.org/JesusMtnez/homelab/src/branch/main/.forgejo/workflows/site.yml
   [renovate-badge]: https://img.shields.io/badge/passing-blue?logo=renovate&style=for-the-badge&color=blue&logoColor=white
   [renovate-link]: https://codeberg.org/JesusMtnez/automation/src/branch/main/.woodpecker/.renovate.yml
-  [homelab]: https://jesusmtnez.es/homelab
 
 ## 💻 Hardware
 

@@ -8,8 +8,9 @@ kubeconfig
 # project
 **/env.secrets
 
-# mkdocs
-site/
+# docsify
+docs/vendor
+node_modules/
 
 # secrets (sops and age)
 .decrypted~*

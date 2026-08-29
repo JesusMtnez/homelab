@@ -6,9 +6,9 @@ tasks:
   build:
     desc: Build documentation site
     cmds:
-      - nix develop .#site --command mkdocs build
+      - nix build .#site
 
   serve:
     desc: Serve documentation site locally
     cmds:
-      - nix develop .#site --command mkdocs serve
+      - nix develop .#site --command docsify serve docs

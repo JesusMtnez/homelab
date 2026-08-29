@@ -15,6 +15,11 @@
       "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
     ]
   },
+  "npm": {
+    "fileMatch": [
+      "(^|/)package\\.json$"
+    ]
+  },
   "customManagers": [
     {
       "customType": "regex",
@@ -131,6 +136,13 @@
         "dep/patch"
       ],
       "automerge": true
+    },
+    {
+      "matchDatasources": [
+        "npm"
+      ],
+      "commitMessageTopic": "package {{depName}}",
+      "commitMessageExtra": "to {{#if isSingleVersion}}{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}"
     }
   ]
 }

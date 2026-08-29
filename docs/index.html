@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nix Homelab</title>
+    <link rel="stylesheet" href="./vendor/themes/core.min.css" id="theme-light" />
+    <link
+      rel="stylesheet"
+      href="./vendor/themes/addons/core-dark.min.css"
+      id="theme-dark"
+      disabled
+    />
+    <style>
+      #theme-toggle {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 9999;
+        background: none;
+        border: 1px solid var(--theme-color, #42b983);
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        padding: 0;
+      }
+      #theme-toggle:hover {
+        opacity: 1;
+      }
+      #theme-toggle svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: currentColor;
+      }
+      .codeberg-corner {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70px;
+        height: 70px;
+        z-index: 9999;
+        overflow: hidden;
+      }
+      .codeberg-corner svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 70px;
+        height: 70px;
+      }
+      .codeberg-corner:hover .corner-bg {
+        fill: #333;
+      }
+    </style>
+  </head>
+  <body class="loading">
+    <div id="app"></div>
+
+    <script>
+      window.$docsify = {
+        name: "Nix Homelab",
+        loadSidebar: true,
+        subMaxLevel: 2,
+        auto2top: true,
+      };
+    </script>
+
+    <script src="./vendor/docsify.min.js"></script>
+
+    <a href="https://codeberg.org/JesusMtnez/homelab" class="codeberg-corner" aria-label="View source on Codeberg">
+      <svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <path class="corner-bg" d="M70,0 L70,70 L0,0 Z" fill="var(--theme-color, #42b983)"/>
+        <circle cx="40" cy="30" r="14" fill="white"/>
+        <g transform="translate(29,19) scale(0.92)">
+          <path fill="#333" d="M12 1A11 11 0 0 0 1 12a11 11 0 0 0 1.7 6.4L12 6l9.3 12.4A11 11 0 0 0 23 12 11 11 0 0 0 12 1Z"/>
+          <path fill="#333" d="M21.3 18.4 12 6l4.4 16.8a11 11 0 0 0 4.9-4.4Z"/>
+        </g>
+      </svg>
+    </a>
+
+    <script>
+      (function () {
+        var dark = document.getElementById("theme-dark");
+        var btn = document.createElement("button");
+        btn.id = "theme-toggle";
+        btn.setAttribute("aria-label", "Toggle dark mode");
+        var moon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>';
+        var sun = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>';
+        btn.innerHTML = dark.disabled ? moon : sun;
+        btn.addEventListener("click", function () {
+          dark.disabled = !dark.disabled;
+          btn.innerHTML = dark.disabled ? moon : sun;
+          localStorage.setItem(
+            "docsify-theme",
+            dark.disabled ? "light" : "dark"
+          );
+        });
+        document.body.appendChild(btn);
+        if (localStorage.getItem("docsify-theme") !== "light") {
+          dark.disabled = false;
+          btn.innerHTML = sun;
+        }
+      })();
+    </script>
+  </body>
+</html>
