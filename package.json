@@ -6,6 +6,6 @@
     "docsify": "5.0.0"
   },
   "devDependencies": {
-    "docsify-cli": "5.0.0-rc.4"
+    "docsify-cli": "5.0.0"
   }
 }
