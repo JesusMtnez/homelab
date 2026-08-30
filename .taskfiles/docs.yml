@@ -11,4 +11,4 @@ tasks:
   serve:
     desc: Serve documentation site locally
     cmds:
-      - nix develop .#site --command docsify serve docs
+      - nix develop .#site --command npx docsify-cli serve docs

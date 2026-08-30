@@ -8,8 +8,7 @@ kubeconfig
 # project
 **/env.secrets
 
-# docsify
-docs/vendor
+# node
 node_modules/
 
 # secrets (sops and age)

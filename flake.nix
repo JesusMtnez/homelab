@@ -44,22 +44,13 @@
       packages = forAllSystems (
         { pkgs, latest }:
         {
-          site = pkgs.buildNpmPackage {
-            pname = "homelab-site";
-            version = "0.0.0";
-            src = ./.;
-            npmDepsHash = "sha256-x0FFrCIEPx1SkfNcuYB8q7NNAKDC/NkgecOq3gf6Xoc=";
-            npmFlags = "--omit=dev --ignore-scripts";
-            dontNpmBuild = true;
-            installPhase = ''
-              mkdir -p $out/vendor
-              cp node_modules/docsify/dist/docsify.min.js $out/vendor/
-              cp -r node_modules/docsify/dist/themes $out/vendor/
-              cp docs/index.html $out/index.html
-              for f in docs/*.md; do cp "$f" $out/; done
-              cp -r docs/img $out/img
-            '';
-          };
+          site = pkgs.runCommand "homelab-site" { } ''
+            mkdir -p $out
+            cp ${./.}/docs/index.html $out/index.html
+            touch $out/.nojekyll
+            for f in ${./.}/docs/*.md; do cp "$f" $out/; done
+            cp -r ${./.}/docs/img $out/img
+          '';
         }
       );
 
@@ -86,11 +77,6 @@
           site = pkgs.mkShell {
             name = "docs-shell";
             packages = [ pkgs.nodejs ];
-            shellHook = ''
-              npm install
-              export PATH="$PWD/node_modules/.bin:$PATH"
-              ln -sfn "$PWD/node_modules/docsify/dist" docs/vendor
-            '';
           };
         }
       );
