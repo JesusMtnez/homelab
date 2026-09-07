@@ -17,6 +17,7 @@ env:
 includes:
   docs: .taskfiles/docs.yml
   k8s: .taskfiles/kubernetes.yml
+  nix: .taskfiles/nix.yml
 
 tasks:
   default:

@@ -11,6 +11,26 @@ env:
   KUBECONFIG: "{{.ROOT_DIR}}/kubeconfig"
 
 tasks:
+  bootstrap:
+    desc: Bootstrap a fresh cluster (one-time)
+    summary: |
+      One-time bring-up of a new cluster: install Cilium (CNI) and the Flux
+      Operator via Helm, apply the FluxInstance, then wait for the Flux
+      controllers. Versions/values are sourced from the git manifests, so
+      upgrades afterwards are handled by Flux from git.
+    vars:
+      CILIUM_VERSION:
+        sh: yq -r '.spec.chart.spec.version' {{.KUBERNETES_DIR}}/{{.cluster}}/apps/kube-system/cilium/helmrelease.yaml
+      FLUX_OPERATOR_VERSION:
+        sh: yq -r '.spec.chart.spec.version' {{.KUBERNETES_DIR}}/{{.cluster}}/infra/flux-operator/helmrelease.yaml
+    cmds:
+      - helm upgrade --install cilium cilium --repo https://helm.cilium.io/ --namespace kube-system --create-namespace --version {{.CILIUM_VERSION}} --values {{.KUBERNETES_DIR}}/{{.cluster}}/apps/kube-system/cilium/values.yaml --wait
+      - kubectl -n kube-system rollout status daemonset/cilium --timeout=10m
+      - helm upgrade --install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator --namespace flux-system --create-namespace --version {{.FLUX_OPERATOR_VERSION}} --wait
+      - kubectl -n flux-system rollout status deployment/flux-operator --timeout=10m
+      - kubectl apply -f {{.KUBERNETES_DIR}}/{{.cluster}}/infra/flux-operator/fluxinstance.yaml
+      - kubectl -n flux-system rollout status deployment/kustomize-controller --timeout=10m
+
   preview:
     desc: Preview
     requires:

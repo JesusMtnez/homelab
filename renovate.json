@@ -3,11 +3,11 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "🤖 Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
-  "ignorePaths": [ "**/archive/**", "**/kubernetes/apps/**", "**/kubernetes/fluffy/**", "**/*.sops.*"],
+  "ignorePaths": [ "**/archive/**", "**/kubernetes/apps/**", "**/*.sops.*"],
   "ignoreDeps": [ "linuxserver/transmission" ],
   "kubernetes": {
     "fileMatch": [
-      "kubernetes/.+\\.yml$"
+      "kubernetes/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
@@ -38,6 +38,47 @@
         "cdn\\.jsdelivr\\.net/npm/(?<depName>[^/@]+)@(?<currentValue>[^/]+)/"
       ],
       "datasourceTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "description": "Flux Operator chart version in the git-managed HelmRelease",
+      "fileMatch": [
+        "(^|/)kubernetes/fluffy/infra/flux-operator/helmrelease\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "chart: (?<depName>flux-operator)\\s+version: \"?(?<currentValue>v?\\d+\\.\\d+\\.\\d+)"
+      ],
+      "registryUrlTemplate": "oci://ghcr.io/controlplaneio-fluxcd/charts",
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Flux controllers version in the FluxInstance",
+      "fileMatch": [
+        "(^|/)kubernetes/fluffy/infra/flux-operator/fluxinstance\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "version: (?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "fluxcd/flux2",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^v(?<version>.*)$",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Flux version badge in the READMEs (kept in sync with the FluxInstance)",
+      "fileMatch": [
+        "(^|/)README\\.md$"
+      ],
+      "matchStrings": [
+        "fluxcd-badge]: https://img\\.shields\\.io/badge/(?<currentValue>\\d+\\.\\d+\\.\\d+)-blue"
+      ],
+      "depNameTemplate": "fluxcd/flux2",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^v(?<version>.*)$",
+      "versioningTemplate": "semver"
     }
   ],
   "packageRules": [

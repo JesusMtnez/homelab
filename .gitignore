@@ -8,6 +8,9 @@ kubeconfig
 # project
 **/env.secrets
 
+# archived legacy cluster manifests (kept on disk, untracked)
+kubernetes/fluffy.backup/
+
 # node
 node_modules/
 

@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  build:
+    desc: Build NixOS system derivation
+    cmd: nix build .#nixosConfigurations.minerva.config.system.build.toplevel
+
+  deploy:
+    desc: Deploy NixOS configuration to minerva.lan
+    summary: |
+      Builds locally and deploys to admin@minerva.lan via SSH.
+    cmd: nixos-rebuild switch --target-host admin@minerva.lan --sudo --ask-sudo-password --flake .#minerva

@@ -1,0 +1,10 @@
+---
+# Kustomize build for the Flux Operator bootstrap.
+# Applies the operator HelmRelease (OCI chart) and the FluxInstance that
+# drives it. Managed from git by Flux after the one-time bootstrap.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - helmrepository.yaml
+  - helmrelease.yaml
+  - fluxinstance.yaml

@@ -1,12 +1,17 @@
-{ pkgs, latest, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./k3s.nix
+  ];
 
   nix.settings.trusted-users = [ "admin" ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    # Pinned to 7.1: kernel 7.2 breaks Cilium's BPF probe at startup
+    # (cilium/cilium#48016). Lift once Cilium >= 1.20.2 is deployed.
+    kernelPackages = pkgs.linuxPackages_7_1;
     kernelModules = [ "kvm-intel" ];
 
     loader = {
@@ -52,7 +57,25 @@
 
   environment.systemPackages = with pkgs; [ ];
 
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      22 # SSH
+      80 # Caddy HTTP -> HTTPS redirect
+      443 # Caddy HTTPS
+      6443 # k3s API server
+    ];
+    allowedUDPPorts = [
+      443 # Caddy HTTP/3 (QUIC)
+    ];
+    # Cilium routes pod<->host traffic via cilium_host/lxc veths without
+    # netfilter conntrack, so kubelets/health checks need the pod+service
+    # CIDRs allowed explicitly.
+    extraInputRules = ''
+      ip saddr 10.42.0.0/16 accept
+      ip saddr 10.43.0.0/16 accept
+    '';
+  };
 
   services.fwupd.enable = true;
 
@@ -60,19 +83,6 @@
     enable = true;
     nssmdns4 = true;
     nssmdns6 = true;
-  };
-
-  services.k3s = {
-    enable = true;
-    package = latest.k3s_1_36;
-    role = "server";
-    extraFlags = [
-      "--write-kubeconfig-mode=644"
-      "--disable traefik"
-      "--disable metrics-server"
-      "--disable servicelb"
-      "--disable local-storage"
-    ];
   };
 
   services.openssh.enable = true;

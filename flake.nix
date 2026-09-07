@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
@@ -57,14 +56,15 @@
       devShells = forAllSystems (
         { pkgs, latest }:
         {
-          default = pkgs.mkShell {
+          default = latest.mkShell {
             name = "homelab-shell";
-            packages = with pkgs; [
+            packages = with latest; [
               go-task
+              yq
 
-              latest.kubectl
-              latest.kubernetes-helm
-              latest.fluxcd
+              kubectl
+              kubernetes-helm
+              fluxcd
               sops
               age
             ];

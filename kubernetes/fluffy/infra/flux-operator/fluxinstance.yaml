@@ -1,0 +1,28 @@
+---
+# FluxInstance drives the Flux Operator.
+# The operator reconciles this CR to install/upgrade the Flux controllers,
+# and (spec.sync) generates the GitRepository + Kustomization that apply the
+# rest of kubernetes/fluffy/. Managed by Flux itself once bootstrapped.
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+spec:
+  distribution:
+    version: 2.9.5
+    registry: ghcr.io/fluxcd
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  cluster:
+    type: kubernetes
+    networkPolicy: false
+  sync:
+    kind: GitRepository
+    url: https://codeberg.org/JesusMtnez/homelab
+    ref: refs/heads/main
+    path: kubernetes/fluffy
+    interval: 1m
