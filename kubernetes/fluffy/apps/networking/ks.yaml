@@ -1,0 +1,18 @@
+---
+# Flux Kustomization for the networking namespace workloads.
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: apps-networking
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./kubernetes/fluffy/apps/networking
+  prune: true
+  dependsOn:
+    - name: apps
+      namespace: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
