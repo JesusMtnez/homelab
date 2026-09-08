@@ -12,8 +12,6 @@ spec:
   dependsOn:
     - name: apps-default
       namespace: flux-system
-    - name: gateway-api-crds
-      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system

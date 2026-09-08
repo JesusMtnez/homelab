@@ -6,4 +6,3 @@ resources:
   - kube-system-ns.yaml
   - networking-ns.yaml
   - flux-operator/ks.yaml
-  - gateway-api-crds/ks.yaml
