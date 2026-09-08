@@ -1,0 +1,10 @@
+---
+# TODO: adjust to an unused block in minerva's actual LAN, outside the
+# router's DHCP range.
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: default
+spec:
+  blocks:
+    - cidr: "192.168.2.100/28"

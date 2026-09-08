@@ -1,0 +1,18 @@
+---
+# Flux Kustomization for Cilium LB-IPAM + L2 Announcements.
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cilium-lb
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./kubernetes/fluffy/apps/kube-system/cilium-lb
+  prune: true
+  dependsOn:
+    - name: cilium
+      namespace: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
