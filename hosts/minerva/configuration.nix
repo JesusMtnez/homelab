@@ -20,7 +20,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = [ "ntfs" "nfs" ];
   };
 
   networking = {
@@ -55,7 +55,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ nfs-utils ];
 
   networking.firewall = {
     enable = true;
@@ -86,6 +86,8 @@
   };
 
   services.openssh.enable = true;
+
+  services.rpcbind.enable = true;
 
   virtualisation.docker = {
     enable = true;
