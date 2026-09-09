@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/kubernetes-sigs/external-dns/refs/heads/master/charts/external-dns/values.schema.json
+sources: ["gateway-httproute"]
+registry: "noop"
+policy: "upsert-only"
+provider:
+  name: pihole
+
+env:
+  - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: external-dns-secret
+        key: pihole-webpassword
+
+extraArgs:
+  - --pihole-api-version=6
+  - --pihole-server=http://192.168.1.250:8080
+  - --pihole-tls-skip-verify

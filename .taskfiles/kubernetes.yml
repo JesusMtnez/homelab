@@ -43,11 +43,11 @@ tasks:
         namespace: namespace of the application (default: default)
         app: application to preview
     cmds:
-      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}
       - defer: {task: cleanup}
     preconditions:
-      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}"}
-      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}"}
+      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}"}
+      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}"}
 
   apply:
     desc: Apply
@@ -59,11 +59,11 @@ tasks:
         app: application
     cmds:
       - task: create-secret
-      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl apply -f -
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}} | kubectl apply -f -
       - defer: {task: cleanup}
     preconditions:
-      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}"}
-      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}"}
+      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}"}
+      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}"}
 
   delete:
     desc: Delete
@@ -75,11 +75,11 @@ tasks:
         app: application
     cmds:
       - task: delete-secret
-      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}} | kubectl delete -f -
+      - kubectl kustomize --enable-helm {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}} | kubectl delete -f -
       - defer: {task: cleanup}
     preconditions:
-      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}"}
-      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}"}
+      - {msg: "Missing namespace", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}"}
+      - {msg: "Missing application", sh: "test -d {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}"}
 
   get:
     desc: Get resource from namespace
@@ -99,19 +99,19 @@ tasks:
   create-secret:
     internal: true
     cmd: |
-      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml ] &&
-        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f - ||
+      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}/secret.sops.yml ] &&
+        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}/secret.sops.yml | kubectl apply -f - ||
         echo "No secret to apply for {{.ns}}/{{.app}}"
 
   delete-secret:
     internal: true
     cmd: |
-      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml ] &&
-        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/secret.sops.yml | kubectl delete -f - ||
+      [ -f {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}/secret.sops.yml ] &&
+        sops --decrypt {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}/secret.sops.yml | kubectl delete -f - ||
         echo "No secret to delete for {{.ns}}/{{.app}}"
 
   cleanup:
     internal: true
     silent: true
     cmds:
-      - rm -rf {{.KUBERNETES_DIR}}/{{.cluster}}/{{.ns}}/{{.app}}/charts
+      - rm -rf {{.KUBERNETES_DIR}}/{{.cluster}}/apps/{{.ns}}/{{.app}}/charts

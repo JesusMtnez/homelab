@@ -1,0 +1,5 @@
+---
+creation_rules:
+  - path_regex: kubernetes/fluffy/.*/secret\.sops\.ya?ml$
+    encrypted_regex: ^(data|stringData)$
+    age: age1REPLACE_WITH_YOUR_AGE_PUBLIC_KEY
