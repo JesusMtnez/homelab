@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pihole-external
+  namespace: networking
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: pihole-external
+  namespace: networking
+subsets:
+  - addresses:
+      - ip: 192.168.1.250
+    ports:
+      - port: 8080
+        protocol: TCP
+        name: http
