@@ -1,0 +1,18 @@
+---
+# Flux Kustomization for the NFS Subdir External Provisioner (dynamic NFS-backed storage class).
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: nfs-subdir-external-provisioner
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./kubernetes/fluffy/apps/kube-system/nfs-subdir-external-provisioner
+  prune: true
+  dependsOn:
+    - name: apps-kube-system
+      namespace: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
