@@ -1,3 +1,5 @@
+serviceCIDR:
+  - "10.43.0.0/16"
 ipam:
   operator:
     clusterPoolIPv4PodCIDRList:
