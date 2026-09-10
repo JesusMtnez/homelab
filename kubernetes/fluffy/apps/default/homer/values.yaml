@@ -1,4 +1,124 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/refs/heads/main/charts/other/app-template/values.schema.json
+configMaps:
+  config:
+    forceRename: homer-config
+    data:
+      config.yml: |
+        ---
+        title: "Home Dashboard"
+        subtitle: "Welcome back!"
+        logo: "https://cdn4.iconfinder.com/data/icons/logos-brands-5/24/kubernetes-512.png"
+        # icon: "fas fa-paw"
+        header: true
+        footer: false
+        columns: "auto"
+        connectivityCheck: true
+
+        proxy:
+          useCredentials: false
+
+        defaults:
+          layout: list # Either 'columns', or 'list'
+          colorTheme: dark # One of 'auto', 'light', or 'dark'
+
+        theme: default
+
+        links:
+          - name: "Codeberg"
+            icon: "fab fa-git-alt"
+            url: "https://codeberg.org/"
+          - name: "GitHub"
+            icon: "fab fa-github"
+            url: "https://github.com/"
+
+        services:
+          - name: "Applications"
+            icon: "fas fa-laptop-code"
+            items:
+              - name: "Firefly III"
+                subtitle: "A free and OSS personal finance manager"
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefly.png"
+                tag: "money"
+                url: "http://firefly.home.es/"
+
+              - name: "Vikunja"
+                subtitle: "The fluffy, open-source, self-hostable to-do app"
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vikunja.png"
+                tag: "tasks"
+                url: "http://todo.home.es/"
+
+              - name: "BookStack"
+                subtitle: "A simple, self-hosted, easy-to-use platform for organising and storing information"
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bookstack.png"
+                tag: "docs"
+                url: "http://bookstack.home.es/"
+
+          - name: "Tools"
+            icon: "fas fa-network-wired"
+            items:
+              - name: "Pi Hole"
+                subtitle: "A black hole for Internet advertisements"
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png"
+                tag: "network"
+                url: "https://pihole.home.es"
+                type: "PiHole"
+
+          - name: "Storage"
+            icon: "fas fa-server"
+            items:
+              - name: "Grimmauld"
+                subtitle: "Synology DS216j DSM"
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/synology.png"
+                tag: "storage"
+                url: "http://grimmauld.home.es"
+
+              - name: "Grimmauld Syncthing"
+                subtitle: "Continuous file synchronization program."
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/syncthing.png"
+                tag: "storage"
+                url: "http://grimmauld.home.es:8384"
+
+              - name: "Local Syncthing"
+                subtitle: "Continuous file synchronization program."
+                logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/syncthing.png"
+                tag: "storage"
+                url: "http://localhost:8384"
+  css:
+    forceRename: homer-css
+    data:
+      catppuccin-latte.css: |
+        /* Catppuccin Latte - https://github.com/mrpbennett/catppuccin-homer */
+        :root {
+          --highlight-primary: transparent;
+          --highlight-secondary: #ccd0da; /* Surface0 */
+          --highlight-hover: #ccd0da; /* Surface0 */
+          --background: #eff1f5; /* Base */
+          --card-background: #ccd0da; /* Surface0 */
+          --text: #4c4f69; /* Text */
+          --text-header: #4c4f69; /* Text */
+          --text-title: #4c4f69; /* Text */
+          --text-subtitle: #179299; /* Teal */
+          --card-shadow: rgba(0, 0, 0, 0.1);
+          --link: #40a02b; /* Green */
+          --link-hover: #40a02b; /* Green */
+        }
+      catppuccin-frappe.css: |
+        /* Catppuccin Frappé - https://github.com/mrpbennett/catppuccin-homer */
+        :root {
+          --highlight-primary: transparent;
+          --highlight-secondary: #414559; /* Surface0 */
+          --highlight-hover: #414559; /* Surface0 */
+          --background: #303446; /* Base */
+          --card-background: #414559; /* Surface0 */
+          --text: #c6d0f5; /* Text */
+          --text-header: #c6d0f5; /* Text */
+          --text-title: #c6d0f5; /* Text */
+          --text-subtitle: #81c8be; /* Teal */
+          --card-shadow: rgba(0, 0, 0, 0.4);
+          --link: #a6d189; /* Green */
+          --link-hover: #a6d189; /* Green */
+        }
+
 controllers:
   main:
     strategy: Recreate
@@ -42,7 +162,7 @@ persistence:
   config:
     enabled: true
     type: configMap
-    name: homer-config
+    identifier: config
     globalMounts:
       - path: /www/assets/config.yml
         subPath: config.yml
@@ -50,7 +170,7 @@ persistence:
   css:
     enabled: true
     type: configMap
-    name: homer-css
+    identifier: css
     globalMounts:
       - path: /www/assets/css/catppuccin-latte.css
         subPath: catppuccin-latte.css

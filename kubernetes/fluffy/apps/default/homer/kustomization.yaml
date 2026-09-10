@@ -5,15 +5,6 @@ resources:
   - helmrepository.yaml
   - helmrelease.yaml
 configMapGenerator:
-  - name: homer-config
-    namespace: default
-    files:
-      - config.yml
-  - name: homer-css
-    namespace: default
-    files:
-      - assets/css/catppuccin-latte.css
-      - assets/css/catppuccin-frappe.css
   - name: homer-values
     namespace: default
     files:
