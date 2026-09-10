@@ -1,0 +1,15 @@
+/* Catppuccin Frappé - https://github.com/mrpbennett/catppuccin-homer */
+:root {
+  --highlight-primary: transparent;
+  --highlight-secondary: #414559; /* Surface0 */
+  --highlight-hover: #414559; /* Surface0 */
+  --background: #303446; /* Base */
+  --card-background: #414559; /* Surface0 */
+  --text: #c6d0f5; /* Text */
+  --text-header: #c6d0f5; /* Text */
+  --text-title: #c6d0f5; /* Text */
+  --text-subtitle: #81c8be; /* Teal */
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --link: #a6d189; /* Green */
+  --link-hover: #a6d189; /* Green */
+}
