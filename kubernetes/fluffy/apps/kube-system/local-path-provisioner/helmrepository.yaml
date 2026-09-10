@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: local-path-provisioner
+  namespace: kube-system
+spec:
+  interval: 24h
+  type: oci
+  url: oci://ghcr.io/rancher/local-path-provisioner/charts

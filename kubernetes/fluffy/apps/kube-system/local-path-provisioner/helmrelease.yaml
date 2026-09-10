@@ -1,0 +1,20 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: local-path-provisioner
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: local-path-provisioner
+      version: "0.0.37"
+      sourceRef:
+        kind: HelmRepository
+        name: local-path-provisioner
+        namespace: kube-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: local-path-provisioner-values
+      valuesKey: values.yaml

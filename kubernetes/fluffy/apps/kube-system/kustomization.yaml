@@ -5,3 +5,4 @@ resources:
   - cilium/ks.yaml
   - cilium-lb/ks.yaml
   - nfs-subdir-external-provisioner/ks.yaml
+  - local-path-provisioner/ks.yaml
