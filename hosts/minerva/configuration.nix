@@ -57,31 +57,7 @@
 
   environment.systemPackages = with pkgs; [ nfs-utils ];
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      22    # SSH
-      53    # CoreDNS
-      80    # Caddy HTTP -> HTTPS redirect
-      443   # Caddy HTTPS
-      4240  # Cilium health
-      6443  # k3s API server
-      10250 # kubelet (health checks, logs, exec)
-      2379  # etcd client
-      2380  # etcd peer
-    ];
-    allowedUDPPorts = [
-      53  # CoreDNS
-      443 # Caddy HTTP/3 (QUIC)
-    ];
-    # Cilium routes pod<->host traffic via cilium_host/lxc veths without
-    # netfilter conntrack, so kubelets/health checks need the pod+service
-    # CIDRs allowed explicitly.
-    extraInputRules = ''
-      ip saddr 10.42.0.0/16 accept
-      ip saddr 10.43.0.0/16 accept
-    '';
-  };
+  networking.firewall.enable = false;
 
   services.fwupd.enable = true;
 
