@@ -47,3 +47,14 @@ persistence:
       - path: /www/assets/config.yml
         subPath: config.yml
         readOnly: true
+  css:
+    enabled: true
+    type: configMap
+    name: homer-css
+    globalMounts:
+      - path: /www/assets/css/catppuccin-latte.css
+        subPath: catppuccin-latte.css
+        readOnly: true
+      - path: /www/assets/css/catppuccin-frappe.css
+        subPath: catppuccin-frappe.css
+        readOnly: true
