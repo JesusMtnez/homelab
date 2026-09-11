@@ -21,7 +21,10 @@ configMaps:
           layout: list # Either 'columns', or 'list'
           colorTheme: dark # One of 'auto', 'light', or 'dark'
 
-        theme: catppuccin
+        theme: default
+
+        stylesheet:
+          - "assets/css/catppuccin.css"
 
         links:
           - name: "Codeberg"
@@ -86,37 +89,39 @@ configMaps:
   css:
     forceRename: homer-css
     data:
-      catppuccin-light.css: |
-        /* Catppuccin Latte - https://github.com/mrpbennett/catppuccin-homer */
-        :root {
+      catppuccin.css: |
+        /* Catppuccin theme for Homer - https://github.com/mrpbennett/catppuccin-homer */
+
+        /* Dark theme (Frappé) */
+        #app.theme-default.dark {
           --highlight-primary: transparent;
-          --highlight-secondary: #ccd0da; /* Surface0 */
-          --highlight-hover: #ccd0da; /* Surface0 */
-          --background: #eff1f5; /* Base */
-          --card-background: #ccd0da; /* Surface0 */
-          --text: #4c4f69; /* Text */
-          --text-header: #4c4f69; /* Text */
-          --text-title: #4c4f69; /* Text */
-          --text-subtitle: #179299; /* Teal */
-          --card-shadow: rgba(0, 0, 0, 0.1);
-          --link: #40a02b; /* Green */
-          --link-hover: #40a02b; /* Green */
-        }
-      catppuccin-dark.css: |
-        /* Catppuccin Frappé - https://github.com/mrpbennett/catppuccin-homer */
-        :root {
-          --highlight-primary: transparent;
-          --highlight-secondary: #414559; /* Surface0 */
-          --highlight-hover: #414559; /* Surface0 */
-          --background: #303446; /* Base */
-          --card-background: #414559; /* Surface0 */
-          --text: #c6d0f5; /* Text */
-          --text-header: #c6d0f5; /* Text */
-          --text-title: #c6d0f5; /* Text */
-          --text-subtitle: #81c8be; /* Teal */
+          --highlight-secondary: #414559;
+          --highlight-hover: #414559;
+          --background: #303446;
+          --card-background: #414559;
+          --text: #c6d0f5;
+          --text-header: #c6d0f5;
+          --text-title: #c6d0f5;
+          --text-subtitle: #81c8be;
           --card-shadow: rgba(0, 0, 0, 0.4);
-          --link: #a6d189; /* Green */
-          --link-hover: #a6d189; /* Green */
+          --link: #a6d189;
+          --link-hover: #a6d189;
+        }
+
+        /* Light theme (Latte) */
+        #app.theme-default.light {
+          --highlight-primary: transparent;
+          --highlight-secondary: #ccd0da;
+          --highlight-hover: #ccd0da;
+          --background: #eff1f5;
+          --card-background: #ccd0da;
+          --text: #4c4f69;
+          --text-header: #4c4f69;
+          --text-title: #4c4f69;
+          --text-subtitle: #179299;
+          --card-shadow: rgba(0, 0, 0, 0.1);
+          --link: #40a02b;
+          --link-hover: #40a02b;
         }
 
 controllers:
@@ -172,9 +177,6 @@ persistence:
     type: configMap
     identifier: css
     globalMounts:
-      - path: /www/assets/css/catppuccin-light.css
-        subPath: catppuccin-light.css
-        readOnly: true
-      - path: /www/assets/css/catppuccin-dark.css
-        subPath: catppuccin-dark.css
+      - path: /www/assets/css/catppuccin.css
+        subPath: catppuccin.css
         readOnly: true
