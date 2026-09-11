@@ -18,3 +18,5 @@ spec:
     - kind: ConfigMap
       name: homer-values
       valuesKey: values.yaml
+  upgrade:
+    force: true
