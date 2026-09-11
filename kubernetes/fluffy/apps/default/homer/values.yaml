@@ -21,7 +21,7 @@ configMaps:
           layout: list # Either 'columns', or 'list'
           colorTheme: dark # One of 'auto', 'light', or 'dark'
 
-        theme: catppuccin-frappe
+        theme: catppuccin
 
         links:
           - name: "Codeberg"
@@ -86,7 +86,7 @@ configMaps:
   css:
     forceRename: homer-css
     data:
-      catppuccin-latte.css: |
+      catppuccin-light.css: |
         /* Catppuccin Latte - https://github.com/mrpbennett/catppuccin-homer */
         :root {
           --highlight-primary: transparent;
@@ -102,7 +102,7 @@ configMaps:
           --link: #40a02b; /* Green */
           --link-hover: #40a02b; /* Green */
         }
-      catppuccin-frappe.css: |
+      catppuccin-dark.css: |
         /* Catppuccin Frappé - https://github.com/mrpbennett/catppuccin-homer */
         :root {
           --highlight-primary: transparent;
@@ -172,9 +172,9 @@ persistence:
     type: configMap
     identifier: css
     globalMounts:
-      - path: /www/assets/css/catppuccin-latte.css
-        subPath: catppuccin-latte.css
+      - path: /www/assets/css/catppuccin-light.css
+        subPath: catppuccin-light.css
         readOnly: true
-      - path: /www/assets/css/catppuccin-frappe.css
-        subPath: catppuccin-frappe.css
+      - path: /www/assets/css/catppuccin-dark.css
+        subPath: catppuccin-dark.css
         readOnly: true
