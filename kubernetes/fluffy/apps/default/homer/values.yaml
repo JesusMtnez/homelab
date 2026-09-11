@@ -21,7 +21,7 @@ configMaps:
           layout: list # Either 'columns', or 'list'
           colorTheme: dark # One of 'auto', 'light', or 'dark'
 
-        theme: default
+        theme: catppuccin-frappe
 
         links:
           - name: "Codeberg"
