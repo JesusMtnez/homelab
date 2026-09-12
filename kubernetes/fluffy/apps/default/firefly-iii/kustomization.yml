@@ -12,3 +12,12 @@ configMapGenerator:
       - values.yml
 generatorOptions:
   disableNameSuffixHash: true
+patches:
+  - target:
+      kind: PersistentVolumeClaim
+      name: firefly-iii
+    patch: |
+      - op: add
+        path: /metadata/annotations
+        value:
+          nfs.io/storage-path: "firefly_iii_uploads"

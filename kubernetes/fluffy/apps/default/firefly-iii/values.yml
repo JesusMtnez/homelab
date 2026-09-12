@@ -5,7 +5,7 @@ image:
 
 persistence:
   enabled: true
-  storageClassName: "local-path"
+  storageClassName: "nfs-client"
   accessModes: ReadWriteOnce
   storage: 50Gi
 
