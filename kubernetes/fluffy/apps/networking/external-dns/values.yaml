@@ -13,6 +13,5 @@ env:
         key: pihole-webpassword
 
 extraArgs:
-  - --pihole-api-version=6
   - --pihole-server=http://192.168.1.250:8080
   - --pihole-tls-skip-verify
