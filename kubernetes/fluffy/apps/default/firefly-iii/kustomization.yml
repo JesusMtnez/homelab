@@ -1,18 +1,13 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-helmCharts:
-  - name: firefly-iii
-    repo: https://firefly-iii.github.io/kubernetes
-    version: 1.10.1
-    releaseName: &releaseName firefly-iii
-    namespace: &releaseNamespace default
-    valuesFile: values.yml
-commonAnnotations:
-  meta.helm.sh/release-name: *releaseName
-  meta.helm.sh/release-namespace: *releaseNamespace
-
-labels:
-  - includeSelectors: true
-    pairs:
-      app.kubernetes.io/managed-by: Helm
+resources:
+  - helmrepository.yaml
+  - helmrelease.yaml
+configMapGenerator:
+  - name: firefly-iii-values
+    namespace: default
+    files:
+      - values.yaml
+generatorOptions:
+  disableNameSuffixHash: true
