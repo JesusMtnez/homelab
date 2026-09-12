@@ -8,6 +8,6 @@ configMapGenerator:
   - name: firefly-iii-values
     namespace: default
     files:
-      - values.yaml
+      - values.yml
 generatorOptions:
   disableNameSuffixHash: true
