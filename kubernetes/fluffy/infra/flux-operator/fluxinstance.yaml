@@ -20,6 +20,24 @@ spec:
   cluster:
     type: kubernetes
     networkPolicy: false
+  kustomize:
+    patches:
+      - patch: |
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --sops-age-secret=sops-age
+        target:
+          kind: Deployment
+          name: kustomize-controller
+      - patch: |
+          - op: add
+            path: /spec/decryption
+            value:
+              provider: sops
+              secretRef:
+                name: sops-age
+        target:
+          kind: Kustomization
   sync:
     kind: GitRepository
     url: https://codeberg.org/JesusMtnez/homelab
