@@ -17,7 +17,9 @@ patches:
       kind: PersistentVolumeClaim
       name: firefly-iii
     patch: |
-      - op: add
-        path: /metadata/annotations
-        value:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: firefly-iii
+        annotations:
           nfs.io/storage-path: "firefly_iii_uploads"
