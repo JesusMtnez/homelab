@@ -42,7 +42,7 @@ configMaps:
                 subtitle: "A free and OSS personal finance manager"
                 logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/firefly.png"
                 tag: "money"
-                url: "http://firefly.home.es/"
+                url: "http://money.home.es/"
 
               - name: "Vikunja"
                 subtitle: "The fluffy, open-source, self-hostable to-do app"

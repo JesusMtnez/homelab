@@ -1,0 +1,39 @@
+---
+image:
+  # renovate: datasource=docker depName=fireflyiii/core
+  tag: version-6.6.6
+
+persistence:
+  enabled: true
+  storageClassName: "local-path"
+  accessModes: ReadWriteOnce
+  storage: 50Gi
+
+config:
+  existingSecret: "firefly-iii-secret"
+  env:
+    APP_ENV: production
+    APP_LOG_LEVEL: info
+    TZ: Europe/MADRID
+    TRUSTED_PROXIES: "**"
+
+ingress:
+  enabled: false
+
+httpRoute:
+  enabled: true
+  hostnames:
+    - "money.home.es"
+  parentRefs:
+    - name: gateway
+      namespace: networking
+
+cronjob:
+  enabled: true
+  auth:
+    existingSecret: "firefly-iii-secret"
+    secretKey: STATIC_CRON_TOKEN
+  schedule: "0 4 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 2
+  restartPolicy: Never
