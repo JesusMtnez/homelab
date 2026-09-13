@@ -54,7 +54,7 @@ configMaps:
                 subtitle: "A simple, self-hosted, easy-to-use platform for organising and storing information"
                 logo: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/bookstack.png"
                 tag: "docs"
-                url: "http://bookstack.home.es/"
+                url: "http://notes.home.es/"
 
           - name: "Tools"
             icon: "fas fa-network-wired"

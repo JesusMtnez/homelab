@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/refs/heads/main/charts/other/app-template/values.schema.json
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: ghcr.io/linuxserver/bookstack
+          tag: v26.05.4-ls281
+          pullPolicy: IfNotPresent
+        env:
+          PUID: 1024 # admin
+          PGID: 100 # users
+          TZ: Europe/Madrid
+        envFrom:
+          - secretRef:
+              name: bookstack-secret
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+
+persistence:
+  data:
+    enabled: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    retain: true
+
+    advancedMounts:
+      main:
+        app:
+          - path: /config
+            readOnly: false
+
+service:
+  app:
+    controller: main
+    ports:
+      http:
+        port: 80
+
+httpRoute:
+  enabled: true
+  hostnames:
+    - "notes.home.es"
+  parentRefs:
+    - name: gateway
+      namespace: networking
