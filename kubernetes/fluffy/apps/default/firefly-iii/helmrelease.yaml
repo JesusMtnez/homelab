@@ -17,4 +17,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: firefly-iii-values
-      valuesKey: values.yml
+      valuesKey: values.yaml

@@ -4,12 +4,12 @@ kind: Kustomization
 resources:
   - helmrepository.yaml
   - helmrelease.yaml
-  - secret.sops.yml
+  - secret.sops.yaml
 configMapGenerator:
   - name: firefly-iii-values
     namespace: default
     files:
-      - values.yml
+      - values.yaml
 generatorOptions:
   disableNameSuffixHash: true
 patches:

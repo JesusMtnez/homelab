@@ -9,6 +9,10 @@ spec:
   interval: 5m
   path: ./kubernetes/fluffy/apps/default/firefly-iii
   prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   dependsOn:
     - name: apps-default
       namespace: flux-system
