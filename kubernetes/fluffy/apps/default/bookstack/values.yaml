@@ -43,10 +43,19 @@ service:
       http:
         port: 80
 
-httpRoute:
-  enabled: true
-  hostnames:
-    - "notes.home.es"
-  parentRefs:
-    - name: gateway
-      namespace: networking
+route:
+  bookstack:
+    enabled: true
+    hostnames:
+      - "notes.home.es"
+    parentRefs:
+      - name: gateway
+        namespace: networking
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: app
+            port: http
