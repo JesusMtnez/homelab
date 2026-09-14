@@ -18,3 +18,16 @@ spec:
     - kind: ConfigMap
       name: firefly-iii-values
       valuesKey: values.yaml
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: PersistentVolumeClaim
+              name: firefly-iii
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolumeClaim
+              metadata:
+                name: firefly-iii
+                annotations:
+                  nfs.io/storage-path: "uploads"
