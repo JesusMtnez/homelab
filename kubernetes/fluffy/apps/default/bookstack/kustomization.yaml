@@ -12,14 +12,3 @@ configMapGenerator:
       - values.yaml
 generatorOptions:
   disableNameSuffixHash: true
-patches:
-  - target:
-      kind: PersistentVolumeClaim
-      name: bookstack-data
-    patch: |
-      apiVersion: v1
-      kind: PersistentVolumeClaim
-      metadata:
-        name: bookstack-data
-        annotations:
-          nfs.io/storage-path: "bookstack"

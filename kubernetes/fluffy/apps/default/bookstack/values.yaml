@@ -29,6 +29,8 @@ persistence:
     accessMode: ReadWriteOnce
     size: 10Gi
     retain: true
+    annotations:
+      nfs.io/storage-path: "data"
 
     advancedMounts:
       main:
