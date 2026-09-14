@@ -5,3 +5,4 @@ resources:
   - homer/ks.yaml
   - firefly-iii/ks.yaml
   - bookstack/ks.yaml
+  - vikunja/ks.yaml

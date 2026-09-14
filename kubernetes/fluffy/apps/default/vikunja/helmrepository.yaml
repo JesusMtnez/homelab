@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: vikunja
+  namespace: default
+spec:
+  interval: 24h
+  url: https://bjw-s-labs.github.io/helm-charts/
