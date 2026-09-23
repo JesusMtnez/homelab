@@ -61,4 +61,4 @@ route:
               value: /
         backendRefs:
           - identifier: app
-            port: 3456
+            port: http
