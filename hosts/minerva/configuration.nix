@@ -69,13 +69,5 @@
 
   services.rpcbind.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-    autoPrune.enable = true;
-    extraPackages = [
-      pkgs.docker-compose
-    ];
-  };
-
   system.stateVersion = "25.05";
 }
