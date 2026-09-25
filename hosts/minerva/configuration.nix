@@ -9,9 +9,7 @@
   nix.settings.trusted-users = [ "admin" ];
 
   boot = {
-    # Pinned to 7.1: kernel 7.2 breaks Cilium's BPF probe at startup
-    # (cilium/cilium#48016). Lift once Cilium >= 1.20.2 is deployed.
-    kernelPackages = pkgs.linuxPackages_7_1;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-intel" ];
 
     loader = {
