@@ -3,7 +3,7 @@
 {
   services.k3s = {
     enable = true;
-    package = latest.k3s_1_36;
+    package = latest.k3s_1_37;
     role = "server";
     extraFlags = [
       "--write-kubeconfig-mode=644"
@@ -14,6 +14,7 @@
       "--disable=flannel"
       "--disable-network-policy"
       "--flannel-backend=none"
+      "--disable-helm-controller"
     ];
   };
 }
