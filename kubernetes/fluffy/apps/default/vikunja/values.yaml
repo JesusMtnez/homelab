@@ -8,7 +8,7 @@ controllers:
         image:
           # renovate: datasource=docker depName=vikunja/vikunja
           repository: docker.io/vikunja/vikunja
-          tag: "2.7.0"
+          tag: "2.7.1"
           pullPolicy: IfNotPresent
         env:
           VIKUNJA_SERVICE_TIMEZONE: Europe/Madrid
