@@ -9,6 +9,8 @@ spec:
   interval: 5m
   path: ./kubernetes/fluffy/apps/kube-system/nfs-subdir-external-provisioner
   prune: true
+  wait: true
+  timeout: 10m
   dependsOn:
     - name: apps-kube-system
       namespace: flux-system

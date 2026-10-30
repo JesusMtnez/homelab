@@ -30,4 +30,4 @@ spec:
               metadata:
                 name: firefly-iii
                 annotations:
-                  nfs.io/storage-path: "uploads"
+                  helm.sh/resource-policy: keep

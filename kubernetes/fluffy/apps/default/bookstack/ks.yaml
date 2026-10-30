@@ -18,6 +18,8 @@ spec:
       namespace: flux-system
     - name: gateway
       namespace: flux-system
+    - name: nfs-subdir-external-provisioner
+      namespace: flux-system
   sourceRef:
     kind: GitRepository
     name: flux-system
