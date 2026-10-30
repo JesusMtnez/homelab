@@ -47,26 +47,6 @@ The Git repository contains the following directories:
 📁 nixos       # Hosts configuration based on NixOS
 ```
 
-## NFS persistence recovery
-
-NFS PVCs must keep `helm.sh/resource-policy: keep` so `task k8s:delete` and `task k8s:apply` reuse the same PV.
-
-If a redeploy creates a new PV or binds the wrong NFS path:
-
-1. Identify the expected path:
-   `kubectl get pvc -n <namespace> <pvc> -o yaml`
-   `kubectl get pv`
-2. Delete the app, PVC and stale PVs:
-   `task k8s:delete app=<app> ns=<namespace>`
-   `kubectl delete pvc -n <namespace> <pvc>`
-   `kubectl delete pv <stale-pv> [...]`
-3. Reapply and verify:
-   `task k8s:apply app=<app> ns=<namespace>`
-   `kubectl get pvc,pv -n <namespace>`
-   `kubectl get events -n <namespace> --sort-by=.lastTimestamp`
-
-`Retain` keeps NFS data when PV objects are deleted; do not delete the NFS directories.
-
 ## Credits
 
 - [k3s](https://k3s.io) by [Rancher](https://rancher.com/)
