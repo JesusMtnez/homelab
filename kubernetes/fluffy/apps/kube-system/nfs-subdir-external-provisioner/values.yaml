@@ -7,7 +7,7 @@ nfs:
 storageClass:
   reclaimPolicy: Retain
   onDelete: "retain"
-  pathPattern: "${.PVC.namespace}/${.PVC.annotations.nfs.io/storage-path}"
+  pathPattern: "${.PVC.namespace}/${.PVC.name}/${.PVC.annotations.nfs.io/storage-path}"
 
 leaderElection:
   enabled: false
