@@ -22,3 +22,5 @@ hubble:
     enabled: true
   ui:
     enabled: true
+envoy:
+  xdsMode: ads
